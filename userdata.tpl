@@ -5,7 +5,7 @@ set -eux
 echo "### INSTALL PACKAGES"
 
 yum update -y
-yum install -y amazon-efs-utils
+yum install -y amazon-efs-utils aws-cli
 
 echo "### INSTALL SSM AGENT"
 
@@ -25,3 +25,7 @@ mount -a -t efs defaults
 echo "### SETUP AGENT"
 
 echo "ECS_CLUSTER=${tf_cluster_name}" >> /etc/ecs/ecs.config
+
+echo "### EXTRA USERDATA"
+
+${userdata_extra}

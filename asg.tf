@@ -44,7 +44,6 @@ resource "aws_autoscaling_group" "ecs" {
 
 resource "aws_autoscaling_policy" "ecs_memory_tracking" {
   name                      = "ecs-${var.name}-memory"
-  adjustment_type           = "ChangeInCapacity"
   policy_type               = "TargetTrackingScaling"
   autoscaling_group_name    = "${aws_autoscaling_group.ecs.name}"
   estimated_instance_warmup = "180"

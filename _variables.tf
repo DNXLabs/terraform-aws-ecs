@@ -44,6 +44,17 @@ variable "certificate_arn" {}
 
 # == OPTIONAL VARS
 
+variable "security_group_ids" {
+  type        = "list"
+  default     = []
+  description = "Extra security groups for instances"
+}
+
+variable "userdata" {
+  default     = ""
+  description = "Extra commands to pass to userdata"
+}
+
 variable "alb" {
   default     = true
   description = "Whether to deploy an ALB or not with the cluster"
