@@ -61,13 +61,16 @@ variable "alb" {
 }
 
 variable "asg_min" {
-  default = 1
+  default     = 1
+  description = "Min number of instances for autoscaling group"
 }
 
 variable "asg_max" {
-  default = 4
+  default     = 4
+  description = "Max number of instances for autoscaling group"
 }
 
 variable "asg_memory_target" {
-  default = 60
+  default     = 60
+  description = "Target average memory percentage to track for autoscaling"
 }
