@@ -1,5 +1,5 @@
 module "ecs_app_wordpress_01" {
-  source                 = "git::https://github.com/DNXLabs/terraform-aws-ecs-app.git?ref=0.1.1"
+  source                 = "git::https://github.com/DNXLabs/terraform-aws-ecs-app.git?ref=1.5.0"
   vpc_id                 = "${local.workspace["vpc_id"]}"
   cluster_name           = "${module.ecs_apps.ecs_name}"
   service_role_arn       = "${module.ecs_apps.ecs_service_iam_role_arn}"
@@ -15,4 +15,5 @@ module "ecs_app_wordpress_01" {
   hosted_zone            = "labs.dnx.host"
   healthcheck_path       = "/readme.html"
   certificate_arn        = "${local.workspace["cf_certificate_arn"]}"                            # goes on cloudfront
+  alb_cloudfront_key     = "${module.ecs_apps.alb_cloudfront_key}"
 }

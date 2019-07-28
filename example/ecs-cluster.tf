@@ -1,5 +1,5 @@
 module "ecs_apps" {
-  source               = "git::https://github.com/DNXLabs/terraform-aws-ecs.git?ref=0.1.0"
+  source               = "git::https://github.com/DNXLabs/terraform-aws-ecs.git?ref=0.2.0"
   name                 = "${local.workspace["cluster_name"]}"
   instance_type_1      = "t3.large"
   instance_type_2      = "t2.large"
