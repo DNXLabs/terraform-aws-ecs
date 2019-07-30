@@ -52,12 +52,13 @@ resource "aws_autoscaling_policy" "ecs_memory_tracking" {
     customized_metric_specification {
       metric_dimension {
         name  = "ClusterName"
-        value = "${aws_autoscaling_group.ecs.name}"
+        value = "${aws_ecs_cluster.ecs.name}"
       }
 
       metric_name = "MemoryReservation"
       namespace   = "AWS/ECS"
       statistic   = "Average"
+      unit        = "Percent"
     }
 
     target_value = "${var.asg_memory_target}"
