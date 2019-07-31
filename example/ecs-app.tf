@@ -13,7 +13,10 @@ module "ecs_app_wordpress_01" {
   hostname_blue          = "wp01-blue.labs.dnx.host"                                             # signed by cf_certificate_arn
   hostname_origin        = "wp01-origin.labs.dnx.host"                                           # signed by alb_certificate_arn
   hosted_zone            = "labs.dnx.host"
-  healthcheck_path       = "/readme.html"
   certificate_arn        = "${local.workspace["cf_certificate_arn"]}"                            # goes on cloudfront
   alb_cloudfront_key     = "${module.ecs_apps.alb_cloudfront_key}"
+
+  # use these values for Wordpress
+  healthcheck_path                          = "/readme.html"
+  service_health_check_grace_period_seconds = 120
 }
