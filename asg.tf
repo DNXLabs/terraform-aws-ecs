@@ -5,7 +5,7 @@ resource "aws_autoscaling_group" "ecs" {
     launch_template {
       launch_template_specification {
         launch_template_id = "${aws_launch_template.ecs.id}"
-        version            = "$$Latest"
+        version            = "$Latest"
       }
 
       override {
@@ -28,7 +28,7 @@ resource "aws_autoscaling_group" "ecs" {
     }
   }
 
-  vpc_zone_identifier = ["${var.private_subnet_ids}"]
+  vpc_zone_identifier = var.private_subnet_ids
 
   min_size = "${var.asg_min}"
   max_size = "${var.asg_max}"
