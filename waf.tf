@@ -1,5 +1,6 @@
 resource "aws_wafregional_web_acl_association" "alb" {
-  resource_arn = "${aws_lb.ecs.arn}"
+  # TODO: disable waf when there's no ALB
+  resource_arn = aws_lb.ecs[0].arn
   web_acl_id   = "${aws_wafregional_web_acl.alb.id}"
 }
 

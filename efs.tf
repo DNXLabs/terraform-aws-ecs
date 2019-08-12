@@ -2,7 +2,7 @@ resource "aws_efs_file_system" "ecs" {
   creation_token = "ecs-${var.name}"
   encrypted      = true
 
-  tags {
+  tags = {
     Name = "ecs-${var.name}"
   }
 
@@ -19,6 +19,10 @@ resource "aws_efs_mount_target" "ecs" {
   security_groups = [
     "${aws_security_group.efs.id}",
   ]
+
+  lifecycle {
+    ignore_changes = [ subnet_id ]
+  }
 }
 
 resource "aws_security_group" "efs" {
