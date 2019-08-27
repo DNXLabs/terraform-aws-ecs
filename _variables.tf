@@ -75,7 +75,7 @@ variable "asg_memory_target" {
   description = "Target average memory percentage to track for autoscaling"
 }
 
-variable "alarm_sns_topic" {
-  default = ""
-  description = "Alarm topic to create and alert on ECS cluster metrics"
+variable "alarm_sns_topics" {
+  default = []
+  description = "Alarm topics to create and alert on ECS instance metrics"
 }
