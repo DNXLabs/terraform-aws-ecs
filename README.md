@@ -44,6 +44,8 @@ module "ecs_apps" {
 | security\_group\_ids | Extra security groups for instances | list | `<list>` | no |
 | userdata | Extra commands to pass to userdata | string | `""` | no |
 | vpc\_id | VPC ID to deploy the ECS cluster | string | n/a | yes |
+| expire\_backup\_efs | Number of days after creation that a recovery point is deleted | string | n/a | no |
+
 
 ## Outputs
 
