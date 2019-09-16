@@ -79,3 +79,9 @@ variable "alarm_sns_topics" {
   default = []
   description = "Alarm topics to create and alert on ECS instance metrics"
 }
+
+
+variable "expire_backup_efs" {
+  default = 0
+  description = "Number of days the backup will be expired"
+}
