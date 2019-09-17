@@ -21,7 +21,7 @@ resource "aws_backup_plan" "bkp_efs_plan" {
 resource "aws_iam_role" "efs_backup_role" {
   count = "${var.expire_backup_efs > 0 ? 1 : 0}"
   
-  name               = "Backup-EFS-${var.name}"
+  name               = "Backup-efs-${var.name}"
   assume_role_policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -37,6 +37,12 @@ resource "aws_iam_role" "efs_backup_role" {
 }
 POLICY
 }
+
+resource "aws_iam_role_policy_attachment" "efs_backup_role" {
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSBackupServiceRolePolicyForBackup"
+  role       = "${aws_iam_role.efs_backup_role.name}"
+}
+
 
 resource "aws_backup_selection" "example" {
   count = "${var.expire_backup_efs > 0 ? 1 : 0}"
