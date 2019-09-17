@@ -39,8 +39,10 @@ POLICY
 }
 
 resource "aws_iam_role_policy_attachment" "efs_backup_role" {
+  count = "${var.expire_backup_efs > 0 ? 1 : 0}"
+  
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSBackupServiceRolePolicyForBackup"
-  role       = "${aws_iam_role.efs_backup_role.name}"
+  role       = "${aws_iam_role.efs_backup_role.*.name[count.index]}"
 }
 
 
