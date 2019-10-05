@@ -1,10 +1,13 @@
 resource "aws_wafregional_web_acl_association" "alb" {
-  # TODO: disable waf when there's no ALB
+  count = "${var.alb ? 1 : 0}"
+
   resource_arn = aws_lb.ecs[0].arn
   web_acl_id   = "${aws_wafregional_web_acl.alb.id}"
 }
 
 resource "aws_wafregional_web_acl" "alb" {
+  count = "${var.alb ? 1 : 0}"
+
   depends_on  = ["aws_wafregional_rule.alb_header"]
   name        = "alb_ecs_${var.name}"
   metric_name = "${replace(format("alb_ecs_%s", var.name), "/[^a-zA-Z0-9]/", "")}"
@@ -25,6 +28,8 @@ resource "aws_wafregional_web_acl" "alb" {
 }
 
 resource "aws_wafregional_rule" "alb_header" {
+  count = "${var.alb ? 1 : 0}"
+
   depends_on  = ["aws_wafregional_byte_match_set.alb_header"]
   name        = "alb_cloudfront_header_ecs_${var.name}"
   metric_name = "${replace(format("alb_cloudfront_header_ecs_%s", var.name), "/[^a-zA-Z0-9]/", "")}"
@@ -37,11 +42,15 @@ resource "aws_wafregional_rule" "alb_header" {
 }
 
 resource "random_string" "alb_cloudfront_key" {
+  count = "${var.alb ? 1 : 0}"
+
   length  = 50
   special = false
 }
 
 resource "aws_wafregional_byte_match_set" "alb_header" {
+  count = "${var.alb ? 1 : 0}"
+
   name = "alb_cloudfront_header_ecs_${var.name}"
 
   byte_match_tuples {
