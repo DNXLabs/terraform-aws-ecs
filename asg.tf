@@ -37,6 +37,8 @@ resource "aws_autoscaling_group" "ecs" {
     "${map("key", "Name", "value", "ecs-node-${var.name}", "propagate_at_launch", true)}",
   ]
 
+  target_group_arns = var.target_group_arns
+
   lifecycle {
     create_before_destroy = true
   }

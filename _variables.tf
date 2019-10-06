@@ -80,8 +80,13 @@ variable "alarm_sns_topics" {
   description = "Alarm topics to create and alert on ECS instance metrics"
 }
 
-
 variable "expire_backup_efs" {
   default = 0
   description = "Number of days the backup will be expired"
+}
+
+variable "target_group_arns" {
+  default = []
+  type = "list"
+  description = "List of target groups for ASG to register"
 }
