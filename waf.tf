@@ -2,7 +2,7 @@ resource "aws_wafregional_web_acl_association" "alb" {
   count = "${var.alb ? 1 : 0}"
 
   resource_arn = aws_lb.ecs[0].arn
-  web_acl_id   = "${aws_wafregional_web_acl.alb.id}"
+  web_acl_id   = "${aws_wafregional_web_acl.alb.*.id}"
 }
 
 resource "aws_wafregional_web_acl" "alb" {
@@ -22,7 +22,7 @@ resource "aws_wafregional_web_acl" "alb" {
     }
 
     priority = 1
-    rule_id  = "${aws_wafregional_rule.alb_header.id}"
+    rule_id  = "${aws_wafregional_rule.alb_header.*.id}"
     type     = "REGULAR"
   }
 }
@@ -35,7 +35,7 @@ resource "aws_wafregional_rule" "alb_header" {
   metric_name = "${replace(format("alb_cloudfront_header_ecs_%s", var.name), "/[^a-zA-Z0-9]/", "")}"
 
   predicate {
-    data_id = "${aws_wafregional_byte_match_set.alb_header.id}"
+    data_id = "${aws_wafregional_byte_match_set.alb_header.*.id}"
     negated = true
     type    = "ByteMatch"
   }
