@@ -1,10 +1,10 @@
 resource "aws_iam_instance_profile" "ecs" {
-  name = "ecs-${var.name}"
+  name = "ecs-${var.name}-${data.aws_region.current.name}"
   role = "${aws_iam_role.ecs.name}"
 }
 
 resource "aws_iam_role" "ecs" {
-  name = "ecs-${var.name}"
+  name = "ecs-${var.name}-${data.aws_region.current.name}"
 
   assume_role_policy = <<EOF
 {
