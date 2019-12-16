@@ -59,5 +59,6 @@ output "ecs_nodes_secgrp_id" {
 }
 
 output "alb_cloudfront_key" {
+  count = "${var.alb && !var.alb-only ? 1 : 0}"
   value = "${random_string.alb_cloudfront_key.result}"
 }
