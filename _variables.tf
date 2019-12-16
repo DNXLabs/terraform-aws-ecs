@@ -61,7 +61,7 @@ variable "alb" {
 }
 variable "alb-only" {
   default     = false
-  description = "Whether to deploy only an alb and no cloudFront with the cluster"
+  description = "Whether to deploy only an alb and no cloudFront or not with the cluster"
 }
 
 variable "asg_min" {

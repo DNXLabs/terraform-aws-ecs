@@ -28,6 +28,7 @@ module "ecs_apps" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| alb-only | Whether to deploy only an alb and no cloudFront or not with the cluster | string | `"false"` | no |
 | alb | Whether to deploy an ALB or not with the cluster | string | `"true"` | no |
 | asg\_max | Max number of instances for autoscaling group | string | `"4"` | no |
 | asg\_memory\_target | Target average memory percentage to track for autoscaling | string | `"60"` | no |
