@@ -94,23 +94,3 @@ variable "target_group_arns" {
   type = "list"
   description = "List of target groups for ASG to register"
 }
-
-variable "hostname" {
-  default     = ""
-  description = "Hostname to create DNS record for this app"
-}
-
-variable "hostname_blue" {
-  default     = ""
-  description = "Blue hostname for testing the app"
-}
-
-variable "hostname_create" {
-  description = "Create hostname in the hosted zone passed?"
-  default     = false
-}
-
-variable "hosted_zone" {
-  default     = ""
-  description = "Existing Hosted Zone domain to add hostnames as DNS records"
-}
