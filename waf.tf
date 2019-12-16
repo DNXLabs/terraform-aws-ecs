@@ -42,6 +42,7 @@ resource "aws_wafregional_rule" "alb_header" {
 }
 
 resource "random_string" "alb_cloudfront_key" {
+  count = "${var.alb && !var.alb-only ? 1 : 0}"
   length  = 50
   special = false
 }
