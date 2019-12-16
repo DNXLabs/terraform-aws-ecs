@@ -106,7 +106,6 @@ variable "hostname_blue" {
 }
 
 variable "hostname_create" {
-  default     = ""
   description = "Create hostname in the hosted zone passed?"
   default     = false
 }
