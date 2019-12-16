@@ -59,6 +59,10 @@ variable "alb" {
   default     = true
   description = "Whether to deploy an ALB or not with the cluster"
 }
+variable "alb-only" {
+  default     = false
+  description = "Whether to deploy only an alb and no cloudFront with the cluster"
+}
 
 variable "asg_min" {
   default     = 1
@@ -89,4 +93,25 @@ variable "target_group_arns" {
   default = []
   type = "list"
   description = "List of target groups for ASG to register"
+}
+
+variable "hostname" {
+  default     = ""
+  description = "Hostname to create DNS record for this app"
+}
+
+variable "hostname_blue" {
+  default     = ""
+  description = "Blue hostname for testing the app"
+}
+
+variable "hostname_create" {
+  default     = ""
+  description = "Create hostname in the hosted zone passed?"
+  default     = false
+}
+
+variable "hosted_zone" {
+  default     = ""
+  description = "Existing Hosted Zone domain to add hostnames as DNS records"
 }

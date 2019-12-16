@@ -1,12 +1,12 @@
 resource "aws_wafregional_web_acl_association" "alb" {
-  count = "${var.alb ? 1 : 0}"
+  count = "${var.alb && !var.alb-only ? 1 : 0}"
 
   resource_arn = aws_lb.ecs[0].arn
   web_acl_id   = aws_wafregional_web_acl.alb[0].id
 }
 
 resource "aws_wafregional_web_acl" "alb" {
-  count = "${var.alb ? 1 : 0}"
+  count = "${var.alb && !var.alb-only ? 1 : 0}"
 
   depends_on  = ["aws_wafregional_rule.alb_header"]
   name        = "alb_ecs_${var.name}"
@@ -28,7 +28,7 @@ resource "aws_wafregional_web_acl" "alb" {
 }
 
 resource "aws_wafregional_rule" "alb_header" {
-  count = "${var.alb ? 1 : 0}"
+  count = "${var.alb && !var.alb-only ? 1 : 0}"
 
   depends_on  = ["aws_wafregional_byte_match_set.alb_header"]
   name        = "alb_cloudfront_header_ecs_${var.name}"
@@ -47,7 +47,7 @@ resource "random_string" "alb_cloudfront_key" {
 }
 
 resource "aws_wafregional_byte_match_set" "alb_header" {
-  count = "${var.alb ? 1 : 0}"
+  count = "${var.alb && !var.alb-only ? 1 : 0}"
 
   name = "alb_cloudfront_header_ecs_${var.name}"
 
