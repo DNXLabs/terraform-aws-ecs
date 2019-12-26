@@ -42,6 +42,16 @@ variable "secure_subnet_ids" {
 
 variable "certificate_arn" {}
 
+variable "wildcard_domain" {
+  type        = string
+  description = "Domain name to use as default endpoint for apps (must be covered by certificate_arn)"
+}
+
+variable "hosted_zone" {
+  type        = string
+  description = "Hosted zone to create the wildcard domain"
+}
+
 # == OPTIONAL VARS
 
 variable "security_group_ids" {

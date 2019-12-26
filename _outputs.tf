@@ -57,7 +57,3 @@ output "alb_listener_https_arn" {
 output "ecs_nodes_secgrp_id" {
   value = "${aws_security_group.ecs_nodes.id}"
 }
-
-output "alb_cloudfront_key" {
-  value = "${random_string.alb_cloudfront_key.result}"
-}

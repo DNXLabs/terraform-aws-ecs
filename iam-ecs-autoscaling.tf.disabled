@@ -1,0 +1,3 @@
+resource "aws_iam_service_linked_role" "ecs_autoscaling" {
+  aws_service_name = "ecs.application-autoscaling.amazonaws.com"
+}

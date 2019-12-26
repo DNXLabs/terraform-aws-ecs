@@ -19,7 +19,6 @@ resource "aws_cloudformation_stack" "tf_exports" {
       "EcsArn" = "${aws_ecs_cluster.ecs.*.arn[0]}",
       "AlbListenerHttpsArn" = "${aws_lb_listener.ecs_https.*.arn[0]}",
       "EcsNodesSecGrpId" = "${aws_security_group.ecs_nodes.id}",
-      "AlbCloudfrontKey" = "${random_string.alb_cloudfront_key.result}",
       "VpcId" = "${var.vpc_id}"
     }
   })
