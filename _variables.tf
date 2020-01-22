@@ -94,3 +94,12 @@ variable "target_group_arns" {
   type = "list"
   description = "List of target groups for ASG to register"
 }
+variable "autoscaling_health_check_grace_period" {
+  default     = 300
+  description = "The length of time that Auto Scaling waits before checking an instance's health status. The grace period begins when an instance comes into service"
+}
+
+variable "autoscaling_default_cooldown" {
+  default     = 300
+  description = "The amount of time, in seconds, after a scaling activity completes before another scaling activity can start"
+}
