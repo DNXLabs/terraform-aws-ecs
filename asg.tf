@@ -38,7 +38,8 @@ resource "aws_autoscaling_group" "ecs" {
   ]
 
   target_group_arns = var.target_group_arns
-
+  health_check_grace_period = var.autoscaling_health_check_grace_period
+  default_cooldown = var.autoscaling_default_cooldown
   lifecycle {
     create_before_destroy = true
   }
