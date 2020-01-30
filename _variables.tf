@@ -20,6 +20,11 @@ variable "on_demand_percentage" {
   description = "Percentage of on-demand intances vs spot"
   default     = 100
 }
+variable "on_demand_base_capacity" {
+  description = "You can designate a base portion of your total capacity as On-Demand. As the group scales, per your settings, the base portion is provisioned first, while additional On-Demand capacity is percentage-based."
+  default     = 0
+}
+
 
 variable "vpc_id" {
   description = "VPC ID to deploy the ECS cluster"
