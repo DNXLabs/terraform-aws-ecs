@@ -1,0 +1,19 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'CloudFormation exports'
+ 
+Conditions:
+  HasNot: !Equals [ 'true', 'false' ]
+ 
+Resources:
+  NullResource:
+    Type: 'Custom::NullResource'
+    Condition: HasNot
+ 
+Outputs:
+%{ for k, v in vars ~}
+  ${k}:
+    Value: "${v}"
+    Export:
+      Name: 'TfExport-Ecs-${name}-${k}'
+%{ endfor }
