@@ -31,17 +31,17 @@ variable "vpc_id" {
 }
 
 variable "private_subnet_ids" {
-  type        = "list"
+  type        = list(string)
   description = "List of private subnet IDs for ECS instances"
 }
 
 variable "public_subnet_ids" {
-  type        = "list"
+  type        = list(string)
   description = "List of public subnet IDs for ECS ALB"
 }
 
 variable "secure_subnet_ids" {
-  type        = "list"
+  type        = list(string)
   description = "List of secure subnet IDs for EFS"
 }
 
@@ -50,7 +50,7 @@ variable "certificate_arn" {}
 # == OPTIONAL VARS
 
 variable "security_group_ids" {
-  type        = "list"
+  type        = list(string)
   default     = []
   description = "Extra security groups for instances"
 }
@@ -97,7 +97,7 @@ variable "expire_backup_efs" {
 
 variable "target_group_arns" {
   default     = []
-  type        = "list"
+  type        = list(string)
   description = "List of target groups for ASG to register"
 }
 

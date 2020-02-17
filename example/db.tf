@@ -7,11 +7,11 @@ resource "aws_rds_cluster" "apps" {
   cluster_identifier      = "${local.workspace["db_name"]}-cluster"
   engine                  = "aurora"
   engine_mode             = "serverless"
-  db_subnet_group_name    = "${local.workspace["db_subnet"]}"
-  vpc_security_group_ids  = ["${aws_security_group.rds_apps.id}"]
+  db_subnet_group_name    = local.workspace["db_subnet"]
+  vpc_security_group_ids  = [aws_security_group.rds_apps.id]
   master_username         = "master"
-  master_password         = "${random_string.rds_apps_password.result}"
-  backup_retention_period = "${local.workspace["db_retention"]}"
+  master_password         = random_string.rds_apps_password.result
+  backup_retention_period = local.workspace["db_retention"]
   apply_immediately       = true
 
   scaling_configuration {
@@ -28,7 +28,7 @@ resource "aws_rds_cluster" "apps" {
 
 resource "aws_security_group" "rds_apps" {
   name   = "rds-${local.workspace["cluster_name"]}"
-  vpc_id = "${local.workspace["vpc_id"]}"
+  vpc_id = local.workspace["vpc_id"]
 
   lifecycle {
     create_before_destroy = true
@@ -38,13 +38,13 @@ resource "aws_security_group" "rds_apps" {
     from_port       = 3306
     to_port         = 3306
     protocol        = "tcp"
-    security_groups = ["${module.ecs_apps.ecs_nodes_secgrp_id}"]
+    security_groups = [module.ecs_apps.ecs_nodes_secgrp_id]
     description     = "From ECS Nodes"
   }
 }
 
 output "rds_host" {
-  value = "${aws_rds_cluster.apps.endpoint}"
+  value = aws_rds_cluster.apps.endpoint
 }
 
 output "rds_creds" {

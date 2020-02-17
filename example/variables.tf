@@ -27,5 +27,5 @@ locals {
     }
   }
 
-  workspace = "${local.env[terraform.workspace]}"
+  workspace = local.env[terraform.workspace]
 }

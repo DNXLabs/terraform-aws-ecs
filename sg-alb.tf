@@ -1,9 +1,9 @@
 resource "aws_security_group" "alb" {
-  count = "${var.alb ? 1 : 0}"
+  count = var.alb ? 1 : 0
 
   name        = "ecs-${var.name}-lb"
   description = "SG for ECS ALB"
-  vpc_id      = "${var.vpc_id}"
+  vpc_id      = var.vpc_id
 
   tags = {
     Name = "ecs-${var.name}-lb"
@@ -11,7 +11,7 @@ resource "aws_security_group" "alb" {
 }
 
 resource "aws_security_group_rule" "http_from_world_to_alb" {
-  count = "${var.alb ? 1 : 0}"
+  count = var.alb ? 1 : 0
 
   description       = "HTTP Redirect ECS ALB"
   type              = "ingress"
@@ -23,7 +23,7 @@ resource "aws_security_group_rule" "http_from_world_to_alb" {
 }
 
 resource "aws_security_group_rule" "https_from_world_to_alb" {
-  count = "${var.alb ? 1 : 0}"
+  count = var.alb ? 1 : 0
 
   description       = "HTTPS ECS ALB"
   type              = "ingress"
@@ -35,7 +35,7 @@ resource "aws_security_group_rule" "https_from_world_to_alb" {
 }
 
 resource "aws_security_group_rule" "to_ecs_nodes" {
-  count = "${var.alb ? 1 : 0}"
+  count = var.alb ? 1 : 0
 
   description              = "Traffic to ECS Nodes"
   type                     = "egress"
@@ -43,5 +43,5 @@ resource "aws_security_group_rule" "to_ecs_nodes" {
   to_port                  = 0
   protocol                 = "-1"
   security_group_id        = aws_security_group.alb[0].id
-  source_security_group_id = "${aws_security_group.ecs_nodes.id}"
+  source_security_group_id = aws_security_group.ecs_nodes.id
 }
