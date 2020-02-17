@@ -21,6 +21,14 @@ resource "aws_launch_template" "ecs" {
     device_name = "/dev/xvda"
 
     ebs {
+      volume_size = "${var.instance_volume_size_root}"
+    }
+  }
+
+  block_device_mappings {
+    device_name = "/dev/xvdcz"
+
+    ebs {
       volume_size = "${var.instance_volume_size}"
     }
   }
