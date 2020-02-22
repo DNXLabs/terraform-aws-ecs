@@ -1,5 +1,5 @@
 resource "aws_iam_role" "ecs_service" {
-  name = "ecs-service-${var.name}"
+  name = "ecs-service-${var.name}-${data.aws_region.current.name}"
 
   assume_role_policy = <<EOF
 {
