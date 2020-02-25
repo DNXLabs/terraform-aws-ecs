@@ -55,6 +55,11 @@ variable "security_group_ids" {
   description = "Extra security groups for instances"
 }
 
+variable "security_group_egress_cidr_blocks" {
+  default     = ["0.0.0.0/0"]
+  description = "CIDR blocks for Nodes egress"
+}
+
 variable "userdata" {
   default     = ""
   description = "Extra commands to pass to userdata"
