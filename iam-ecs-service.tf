@@ -37,6 +37,6 @@ data "aws_iam_policy_document" "ecs_service_policy" {
 
 resource "aws_iam_role_policy" "ecs_service_role_policy" {
   name   = "ecs_service_role_policy-${var.name}"
-  policy = "${data.aws_iam_policy_document.ecs_service_policy.json}"
-  role   = "${aws_iam_role.ecs_service.id}"
+  policy = data.aws_iam_policy_document.ecs_service_policy.json
+  role   = aws_iam_role.ecs_service.id
 }
