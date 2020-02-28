@@ -1,5 +1,8 @@
 # terraform-aws-ecs
 
+[![Lint Status](https://github.com/DNXLabs/terraform-aws-ecs/workflows/Lint/badge.svg)](https://github.com/DNXLabs/terraform-aws-ecs/actions)
+[![LICENSE](https://img.shields.io/github/license/DNXLabs/terraform-aws-ecs)](https://github.com/DNXLabs/terraform-aws-ecs/blob/master/LICENSE)
+
 This module creates an ECS cluster
 
 ## Usage
