@@ -35,8 +35,8 @@ sed -i "s/1024:4096/65535:65535/g" "/etc/sysconfig/docker"
 echo "### HARDENING EC2 INSTACE"
 echo "ulimit -u unlimited" >> /root/.bashrc
 echo "ulimit -n 1048576" >> /root/.bashrc
-echo "sysctl -w vm.max_map_count=262144" >> /etc/sysctl.conf
-echo "sysctl -w fs.file-max=65536" >> /etc/sysctl.conf
+echo "vm.max_map_count=262144" >> /etc/sysctl.conf
+echo "fs.file-max=65536" >> /etc/sysctl.conf
 /sbin/sysctl -p /etc/sysctl.conf
 
 
