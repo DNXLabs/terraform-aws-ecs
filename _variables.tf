@@ -120,3 +120,15 @@ variable "instance_volume_size_root" {
   description = "Volume size for root volume (in GB)"
   default     = 16
 }
+
+variable "lb_access_logs_bucket" {
+  type        = string
+  default     = ""
+  description = "Bucket to store logs from app"
+}
+
+variable "lb_access_logs_prefix" {
+  type        = string
+  default     = ""
+  description = "Logging prefix"
+}

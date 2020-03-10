@@ -12,6 +12,16 @@ resource "aws_lb" "ecs" {
 
   idle_timeout = 400
 
+  dynamic "access_logs" {
+    for_each = compact([var.lb_access_logs_bucket])
+
+    content {
+      bucket          = var.lb_access_logs_bucket
+      prefix          = var.lb_access_logs_prefix
+      enabled = true
+    }
+  }
+
   tags = {
     Name = "ecs-${var.name}"
   }
