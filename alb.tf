@@ -16,8 +16,8 @@ resource "aws_lb" "ecs" {
     for_each = compact([var.lb_access_logs_bucket])
 
     content {
-      bucket          = var.lb_access_logs_bucket
-      prefix          = var.lb_access_logs_prefix
+      bucket  = var.lb_access_logs_bucket
+      prefix  = var.lb_access_logs_prefix
       enabled = true
     }
   }

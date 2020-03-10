@@ -37,9 +37,9 @@ resource "aws_autoscaling_group" "ecs" {
     map("key", "Name", "value", "ecs-node-${var.name}", "propagate_at_launch", true)
   ]
 
-  target_group_arns = var.target_group_arns
+  target_group_arns         = var.target_group_arns
   health_check_grace_period = var.autoscaling_health_check_grace_period
-  default_cooldown = var.autoscaling_default_cooldown
+  default_cooldown          = var.autoscaling_default_cooldown
   lifecycle {
     create_before_destroy = true
   }

@@ -21,7 +21,7 @@ resource "aws_efs_mount_target" "ecs" {
   ]
 
   lifecycle {
-    ignore_changes = [ subnet_id ]
+    ignore_changes = [subnet_id]
   }
 }
 

@@ -9,11 +9,11 @@ module "ecs_app_wordpress_01" {
   name                   = "wordpress-01"
   image                  = "nginxdemos/hello:latest"
   container_port         = 80
-  hostname               = "wp01.labs.dnx.host"                                                  # signed by cf_certificate_arn
-  hostname_blue          = "wp01-blue.labs.dnx.host"                                             # signed by cf_certificate_arn
-  hostname_origin        = "wp01-origin.labs.dnx.host"                                           # signed by alb_certificate_arn
+  hostname               = "wp01.labs.dnx.host"        # signed by cf_certificate_arn
+  hostname_blue          = "wp01-blue.labs.dnx.host"   # signed by cf_certificate_arn
+  hostname_origin        = "wp01-origin.labs.dnx.host" # signed by alb_certificate_arn
   hosted_zone            = "labs.dnx.host"
-  certificate_arn        = local.workspace["cf_certificate_arn"]                            # goes on cloudfront
+  certificate_arn        = local.workspace["cf_certificate_arn"] # goes on cloudfront
   alb_cloudfront_key     = module.ecs_apps.alb_cloudfront_key
 
   # use these values for Wordpress
