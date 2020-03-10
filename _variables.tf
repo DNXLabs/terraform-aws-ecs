@@ -124,11 +124,11 @@ variable "instance_volume_size_root" {
 variable "lb_access_logs_bucket" {
   type        = string
   default     = ""
-  description = "Bucket to store logs from app"
+  description = "Bucket to store logs from lb access"
 }
 
 variable "lb_access_logs_prefix" {
   type        = string
   default     = ""
-  description = "Logging prefix"
+  description = "Bucket prefix to store lb access logs"
 }
