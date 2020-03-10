@@ -49,6 +49,8 @@ module "ecs_apps" {
 | userdata | Extra commands to pass to userdata | string | `""` | no |
 | vpc\_id | VPC ID to deploy the ECS cluster | string | n/a | yes |
 | expire\_backup\_efs | Number of days after creation that a recovery point is deleted | string | n/a | no |
+| lb\_access\_logs\_bucket | Bucket to store logs from app | string | n/a | no |
+| lb\_access\_logs\_prefix | Bucket prefix to store lb access logs | string | n/a | no |
 
 
 ## Outputs
