@@ -59,7 +59,7 @@ resource "aws_cloudwatch_metric_alarm" "asg_high_cpu" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "alb_500_errors" {
-  count = length(var.alarm_sns_topics) > 0 && var.alarm_alb_500_errors_threshold != 0 ? 1 : 0
+  count = var.alb && length(var.alarm_sns_topics) > 0 && var.alarm_alb_500_errors_threshold != 0 ? 1 : 0
 
   alarm_name          = "${data.aws_iam_account_alias.current.account_alias}-ecs-${var.name}-alb-500-errors"
   comparison_operator = "GreaterThanOrEqualToThreshold"
@@ -79,7 +79,7 @@ resource "aws_cloudwatch_metric_alarm" "alb_500_errors" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "alb_400_errors" {
-  count = length(var.alarm_sns_topics) > 0 && var.alarm_alb_400_errors_threshold != 0 ? 1 : 0
+  count = var.alb && length(var.alarm_sns_topics) > 0 && var.alarm_alb_400_errors_threshold != 0 ? 1 : 0
 
   alarm_name          = "${data.aws_iam_account_alias.current.account_alias}-ecs-${var.name}-alb-400-errors"
   comparison_operator = "GreaterThanOrEqualToThreshold"
