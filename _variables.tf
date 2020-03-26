@@ -90,6 +90,36 @@ variable "alarm_sns_topics" {
   description = "Alarm topics to create and alert on ECS instance metrics"
 }
 
+variable "alarm_asg_high_cpu_threshold" {
+  description = "Max threshold average CPU percentage allowed in a 2 minutes interval (use 0 to disable this alarm)"
+  default     = 80
+}
+
+variable "alarm_ecs_high_memory_threshold" {
+  description = "Max threshold average Memory percentage allowed in a 2 minutes interval (use 0 to disable this alarm)"
+  default     = 80
+}
+
+variable "alarm_ecs_high_cpu_threshold" {
+  description = "Max threshold average CPU percentage allowed in a 2 minutes interval (use 0 to disable this alarm)"
+  default     = 80
+}
+
+variable "alarm_alb_latency_anomaly_threshold" {
+  description = "ALB Latency anomaly detection width (use 0 to disable this alarm)"
+  default     = 2
+}
+
+variable "alarm_alb_500_errors_threshold" {
+  description = "Max threshold of HTTP 500 errors allowed in a 5 minutes interval (use 0 to disable this alarm)"
+  default     = 10
+}
+
+variable "alarm_alb_400_errors_threshold" {
+  description = "Max threshold of HTTP 4000 errors allowed in a 5 minutes interval (use 0 to disable this alarm)"
+  default     = 10
+}
+
 variable "expire_backup_efs" {
   default     = 0
   description = "Number of days the backup will be expired"
