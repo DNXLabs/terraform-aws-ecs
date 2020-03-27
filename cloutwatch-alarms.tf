@@ -113,7 +113,7 @@ resource "aws_cloudwatch_metric_alarm" "alb_latency" {
   # alarm_name                = "${data.aws_iam_account_alias.current.account_alias}-ecs-${var.name}-alb-latency"
   alarm_name                = "${data.aws_iam_account_alias.current.account_alias}-ecs-${var.name}-latency"
   comparison_operator       = "GreaterThanUpperThreshold"
-  evaluation_periods        = "4"
+  evaluation_periods        = "2"
   datapoints_to_alarm       = "2"
   threshold_metric_id       = "ad1"
   alarm_description         = "Load balancer latency for application"
@@ -134,8 +134,8 @@ resource "aws_cloudwatch_metric_alarm" "alb_latency" {
     metric {
       metric_name = "TargetResponseTime"
       namespace   = "AWS/ApplicationELB"
-      period      = "300"
-      stat        = "p99"
+      period      = "900"
+      stat        = "p90"
 
       dimensions = {
         LoadBalancer = aws_lb.ecs[0].arn_suffix
