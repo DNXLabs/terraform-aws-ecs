@@ -54,7 +54,7 @@ output "alb_listener_https_arn" {
   value = aws_lb_listener.ecs_https.*.arn
 }
 
-output "test_traffic_route_listener_arns" {
+output "test_traffic_route_listener_arn" {
   value = aws_lb_listener.ecs_test_https.*.arn
 }
 
