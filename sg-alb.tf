@@ -37,7 +37,7 @@ resource "aws_security_group_rule" "https_from_world_to_alb" {
 resource "aws_security_group_rule" "https_test_listener_from_world_to_alb" {
   count = var.alb ? 1 : 0
 
-  description       = "HTTPS ECS ALB TEST LISTENER"
+  description       = "HTTPS ECS ALB Test Listener"
   type              = "ingress"
   from_port         = 8443
   to_port           = 8443
