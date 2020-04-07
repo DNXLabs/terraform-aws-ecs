@@ -54,6 +54,10 @@ output "alb_listener_https_arn" {
   value = aws_lb_listener.ecs_https.*.arn
 }
 
+output "test_traffic_route_listener_arn" {
+  value = aws_lb_listener.ecs_test_https.*.arn
+}
+
 output "ecs_nodes_secgrp_id" {
   value = aws_security_group.ecs_nodes.id
 }
