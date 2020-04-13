@@ -162,3 +162,19 @@ variable "lb_access_logs_prefix" {
   default     = ""
   description = "Bucket prefix to store lb access logs"
 }
+
+variable "enable_schedule" {
+  default     = false
+  description = "Enables schedule to shut down and start up instances outside business hours"
+}
+variable "schedule_cron_start" {
+  type        = string
+  default     = ""
+  description = "Cron expression to define when to trigger a start of the auto-scaling group. E.g. '0 20 * * *' to start at 8pm GMT time"
+}
+
+variable "schedule_cron_stop" {
+  type        = string
+  default     = ""
+  description = "Cron expression to define when to trigger a stop of the auto-scaling group. E.g. '0 10 * * *' to stop at 10am GMT time"
+}
