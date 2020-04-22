@@ -32,7 +32,7 @@ variable "vpc_id" {
 
 variable "private_subnet_ids" {
   type        = list(string)
-  description = "List of private subnet IDs for ECS instances"
+  description = "List of private subnet IDs for ECS instances and Internal ALB when enabled"
 }
 
 variable "public_subnet_ids" {
@@ -68,6 +68,11 @@ variable "alb" {
 variable "alb_only" {
   default     = false
   description = "Whether to deploy only an alb and no cloudFront or not with the cluster"
+}
+
+variable "alb_internal" {
+  default     = false
+  description = "Deploys a second internal ALB for private APIs"
 }
 
 variable "asg_min" {

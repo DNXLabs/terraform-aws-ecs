@@ -14,6 +14,22 @@ output "alb_zone_id" {
   value = aws_lb.ecs.*.zone_id
 }
 
+output "alb_internal_id" {
+  value = aws_lb.ecs_internal.*.id
+}
+
+output "alb_internal_arn" {
+  value = aws_lb.ecs_internal.*.arn
+}
+
+output "alb_internal_dns_name" {
+  value = aws_lb.ecs_internal.*.dns_name
+}
+
+output "alb_internal_zone_id" {
+  value = aws_lb.ecs_internal.*.zone_id
+}
+
 output "ecs_iam_role_arn" {
   value = aws_iam_role.ecs.arn
 }
@@ -54,8 +70,16 @@ output "alb_listener_https_arn" {
   value = aws_lb_listener.ecs_https.*.arn
 }
 
-output "test_traffic_route_listener_arn" {
+output "alb_listener_test_traffic_arn" {
   value = aws_lb_listener.ecs_test_https.*.arn
+}
+
+output "alb_internal_listener_https_arn" {
+  value = aws_lb_listener.ecs_https_internal.*.arn
+}
+
+output "alb_internal_listener_test_traffic_arn" {
+  value = aws_lb_listener.ecs_test_https_internal.*.arn
 }
 
 output "ecs_nodes_secgrp_id" {
