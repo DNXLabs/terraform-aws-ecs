@@ -125,6 +125,11 @@ variable "alarm_alb_400_errors_threshold" {
   default     = 10
 }
 
+variable "alarm_efs_credits_low_threshold" {
+  description = "Alerts when EFS credits fell below this number in bytes - default 1000000000000 is 1TB of a maximum of 2.31T of credits (use 0 to disable this alarm)"
+  default     = 1000000000000
+}
+
 variable "expire_backup_efs" {
   default     = 0
   description = "Number of days the backup will be expired"
