@@ -27,56 +27,13 @@ module "ecs_apps" {
 }
 ```
 
-## Inputs
-
-| Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| alb_only | Whether to deploy only an alb and no cloudFront or not with the cluster | string | `"false"` | no |
-| alb | Whether to deploy an ALB or not with the cluster | string | `"true"` | no |
-| asg\_max | Max number of instances for autoscaling group | string | `"4"` | no |
-| asg\_memory\_target | Target average memory percentage to track for autoscaling | string | `"60"` | no |
-| asg\_min | Min number of instances for autoscaling group | string | `"1"` | no |
-| certificate\_arn |  | string | n/a | yes |
-| instance\_type\_1 | Instance type for ECS workers (first priority) | string | n/a | yes |
-| instance\_type\_2 | Instance type for ECS workers (second priority) | string | n/a | yes |
-| instance\_type\_3 | Instance type for ECS workers (third priority) | string | n/a | yes |
-| name | Name of this ECS cluster | string | n/a | yes |
-| on\_demand\_percentage | Percentage of on-demand intances vs spot | string | `"100"` | no |
-| private\_subnet\_ids | List of private subnet IDs for ECS instances | list | n/a | yes |
-| public\_subnet\_ids | List of public subnet IDs for ECS ALB | list | n/a | yes |
-| secure\_subnet\_ids | List of secure subnet IDs for EFS | list | n/a | yes |
-| security\_group\_ids | Extra security groups for instances | list | `<list>` | no |
-| userdata | Extra commands to pass to userdata | string | `""` | no |
-| vpc\_id | VPC ID to deploy the ECS cluster | string | n/a | yes |
-| expire\_backup\_efs | Number of days after creation that a recovery point is deleted | string | n/a | no |
-| lb\_access\_logs\_bucket | Bucket to store logs from app | string | n/a | no |
-| lb\_access\_logs\_prefix | Bucket prefix to store lb access logs | string | n/a | no |
-
-
-## Outputs
-
-| Name | Description |
-|------|-------------|
-| alb\_arn |  |
-| alb\_dns\_name |  |
-| alb\_id |  |
-| alb\_listener\_https\_arn |  |
-| alb\_zone\_id |  |
-| ecs\_arn |  |
-| ecs\_iam\_role\_arn |  |
-| ecs\_iam\_role\_name |  |
-| ecs\_id |  |
-| ecs\_name |  |
-| ecs\_nodes\_secgrp\_id |  |
-| ecs\_service\_iam\_role\_arn |  |
-| ecs\_service\_iam\_role\_name |  |
-| ecs\_task\_iam\_role\_arn |  |
-| ecs\_task\_iam\_role\_name |  |
+<!--- BEGIN_TF_DOCS --->
+<!--- END_TF_DOCS --->
 
 ## Authors
 
-Module managed by [Allan Denot](https://github.com/adenot).
+Module managed by [DNX Solutions](https://github.com/DNXLabs).
 
 ## License
 
-Apache 2 Licensed. See LICENSE for full details.
+Apache 2 Licensed. See [LICENSE](https://github.com/DNXLabs/terraform-aws-ecs/blob/master/LICENSE) for full details.
