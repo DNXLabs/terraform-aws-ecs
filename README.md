@@ -28,6 +28,92 @@ module "ecs_apps" {
 ```
 
 <!--- BEGIN_TF_DOCS --->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12.20 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| aws | n/a |
+| random | n/a |
+| template | n/a |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| alarm\_alb\_400\_errors\_threshold | Max threshold of HTTP 4000 errors allowed in a 5 minutes interval (use 0 to disable this alarm) | `number` | `10` | no |
+| alarm\_alb\_500\_errors\_threshold | Max threshold of HTTP 500 errors allowed in a 5 minutes interval (use 0 to disable this alarm) | `number` | `10` | no |
+| alarm\_alb\_latency\_anomaly\_threshold | ALB Latency anomaly detection width (use 0 to disable this alarm) | `number` | `2` | no |
+| alarm\_asg\_high\_cpu\_threshold | Max threshold average CPU percentage allowed in a 2 minutes interval (use 0 to disable this alarm) | `number` | `80` | no |
+| alarm\_ecs\_high\_cpu\_threshold | Max threshold average CPU percentage allowed in a 2 minutes interval (use 0 to disable this alarm) | `number` | `80` | no |
+| alarm\_ecs\_high\_memory\_threshold | Max threshold average Memory percentage allowed in a 2 minutes interval (use 0 to disable this alarm) | `number` | `80` | no |
+| alarm\_efs\_credits\_low\_threshold | Alerts when EFS credits fell below this number in bytes - default 1000000000000 is 1TB of a maximum of 2.31T of credits (use 0 to disable this alarm) | `number` | `1000000000000` | no |
+| alarm\_sns\_topics | Alarm topics to create and alert on ECS instance metrics | `list` | `[]` | no |
+| alb | Whether to deploy an ALB or not with the cluster | `bool` | `true` | no |
+| alb\_internal | Deploys a second internal ALB for private APIs | `bool` | `false` | no |
+| alb\_only | Whether to deploy only an alb and no cloudFront or not with the cluster | `bool` | `false` | no |
+| asg\_max | Max number of instances for autoscaling group | `number` | `4` | no |
+| asg\_memory\_target | Target average memory percentage to track for autoscaling | `number` | `60` | no |
+| asg\_min | Min number of instances for autoscaling group | `number` | `1` | no |
+| autoscaling\_default\_cooldown | The amount of time, in seconds, after a scaling activity completes before another scaling activity can start | `number` | `300` | no |
+| autoscaling\_health\_check\_grace\_period | The length of time that Auto Scaling waits before checking an instance's health status. The grace period begins when an instance comes into service | `number` | `300` | no |
+| certificate\_arn | n/a | `any` | n/a | yes |
+| enable\_schedule | Enables schedule to shut down and start up instances outside business hours | `bool` | `false` | no |
+| expire\_backup\_efs | Number of days the backup will be expired | `number` | `0` | no |
+| instance\_type\_1 | Instance type for ECS workers (first priority) | `any` | n/a | yes |
+| instance\_type\_2 | Instance type for ECS workers (second priority) | `any` | n/a | yes |
+| instance\_type\_3 | Instance type for ECS workers (third priority) | `any` | n/a | yes |
+| instance\_volume\_size | Volume size for docker volume (in GB) | `number` | `22` | no |
+| instance\_volume\_size\_root | Volume size for root volume (in GB) | `number` | `16` | no |
+| lb\_access\_logs\_bucket | Bucket to store logs from lb access | `string` | `""` | no |
+| lb\_access\_logs\_prefix | Bucket prefix to store lb access logs | `string` | `""` | no |
+| name | Name of this ECS cluster | `any` | n/a | yes |
+| on\_demand\_base\_capacity | You can designate a base portion of your total capacity as On-Demand. As the group scales, per your settings, the base portion is provisioned first, while additional On-Demand capacity is percentage-based. | `number` | `0` | no |
+| on\_demand\_percentage | Percentage of on-demand intances vs spot | `number` | `100` | no |
+| private\_subnet\_ids | List of private subnet IDs for ECS instances and Internal ALB when enabled | `list(string)` | n/a | yes |
+| public\_subnet\_ids | List of public subnet IDs for ECS ALB | `list(string)` | n/a | yes |
+| schedule\_cron\_start | Cron expression to define when to trigger a start of the auto-scaling group. E.g. '0 20 \* \* \*' to start at 8pm GMT time | `string` | `""` | no |
+| schedule\_cron\_stop | Cron expression to define when to trigger a stop of the auto-scaling group. E.g. '0 10 \* \* \*' to stop at 10am GMT time | `string` | `""` | no |
+| secure\_subnet\_ids | List of secure subnet IDs for EFS | `list(string)` | n/a | yes |
+| security\_group\_ids | Extra security groups for instances | `list(string)` | `[]` | no |
+| target\_group\_arns | List of target groups for ASG to register | `list(string)` | `[]` | no |
+| userdata | Extra commands to pass to userdata | `string` | `""` | no |
+| vpc\_id | VPC ID to deploy the ECS cluster | `any` | n/a | yes |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| alb\_arn | n/a |
+| alb\_cloudfront\_key | n/a |
+| alb\_dns\_name | n/a |
+| alb\_id | n/a |
+| alb\_internal\_arn | n/a |
+| alb\_internal\_dns\_name | n/a |
+| alb\_internal\_id | n/a |
+| alb\_internal\_listener\_https\_arn | n/a |
+| alb\_internal\_listener\_test\_traffic\_arn | n/a |
+| alb\_internal\_zone\_id | n/a |
+| alb\_listener\_https\_arn | n/a |
+| alb\_listener\_test\_traffic\_arn | n/a |
+| alb\_secgrp\_id | n/a |
+| alb\_zone\_id | n/a |
+| ecs\_arn | n/a |
+| ecs\_iam\_role\_arn | n/a |
+| ecs\_iam\_role\_name | n/a |
+| ecs\_id | n/a |
+| ecs\_name | n/a |
+| ecs\_nodes\_secgrp\_id | n/a |
+| ecs\_service\_iam\_role\_arn | n/a |
+| ecs\_service\_iam\_role\_name | n/a |
+| ecs\_task\_iam\_role\_arn | n/a |
+| ecs\_task\_iam\_role\_name | n/a |
+
 <!--- END_TF_DOCS --->
 
 ## Authors
