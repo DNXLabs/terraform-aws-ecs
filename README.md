@@ -28,6 +28,7 @@ module "ecs_apps" {
 ```
 
 <!--- BEGIN_TF_DOCS --->
+
 ## Requirements
 
 | Name | Version |
