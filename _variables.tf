@@ -188,3 +188,9 @@ variable "schedule_cron_stop" {
   default     = ""
   description = "Cron expression to define when to trigger a stop of the auto-scaling group. E.g. '0 10 * * *' to stop at 10am GMT time"
 }
+
+variable "backup" {
+  type        = string
+  default     = "false"
+  description = "TESTE"
+}

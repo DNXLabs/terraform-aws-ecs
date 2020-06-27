@@ -4,6 +4,7 @@ resource "aws_efs_file_system" "ecs" {
 
   tags = {
     Name = "ecs-${var.name}"
+    Backup = var.backup
   }
 
   # lifecycle {
