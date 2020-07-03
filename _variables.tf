@@ -130,11 +130,6 @@ variable "alarm_efs_credits_low_threshold" {
   default     = 1000000000000
 }
 
-variable "expire_backup_efs" {
-  default     = 0
-  description = "Number of days the backup will be expired"
-}
-
 variable "target_group_arns" {
   default     = []
   type        = list(string)
