@@ -186,6 +186,6 @@ variable "schedule_cron_stop" {
 
 variable "backup" {
   type        = string
-  default     = "false"
-  description = "TESTE"
+  default     = "true"
+  description = "Assing a backup tag to efs resource - Backup will be performed by AWS Backup"
 }
