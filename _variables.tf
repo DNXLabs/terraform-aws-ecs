@@ -130,11 +130,6 @@ variable "alarm_efs_credits_low_threshold" {
   default     = 1000000000000
 }
 
-variable "expire_backup_efs" {
-  default     = 0
-  description = "Number of days the backup will be expired"
-}
-
 variable "target_group_arns" {
   default     = []
   type        = list(string)
@@ -187,4 +182,10 @@ variable "schedule_cron_stop" {
   type        = string
   default     = ""
   description = "Cron expression to define when to trigger a stop of the auto-scaling group. E.g. '0 10 * * *' to stop at 10am GMT time"
+}
+
+variable "backup" {
+  type        = string
+  default     = "true"
+  description = "Assing a backup tag to efs resource - Backup will be performed by AWS Backup"
 }

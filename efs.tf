@@ -3,7 +3,8 @@ resource "aws_efs_file_system" "ecs" {
   encrypted      = true
 
   tags = {
-    Name = "ecs-${var.name}"
+    Name   = "ecs-${var.name}"
+    Backup = var.backup
   }
 
   # lifecycle {

@@ -43,8 +43,8 @@ resource "aws_cloudwatch_metric_alarm" "alb_400_errors" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "alb_latency" {
-  count = var.alb && length(var.alarm_sns_topics) > 0 && var.alarm_alb_latency_anomaly_threshold > 0 ? 1 : 0
-  alarm_name                = "${data.aws_iam_account_alias.current.account_alias}-ecs-${var.name}-alb-latency"
+  count      = var.alb && length(var.alarm_sns_topics) > 0 && var.alarm_alb_latency_anomaly_threshold > 0 ? 1 : 0
+  alarm_name = "${data.aws_iam_account_alias.current.account_alias}-ecs-${var.name}-alb-latency"
   # alarm_name                = "${data.aws_iam_account_alias.current.account_alias}-ecs-${var.name}-latency"
   comparison_operator       = "GreaterThanUpperThreshold"
   evaluation_periods        = "2"
