@@ -63,9 +63,9 @@ module "ecs_apps" {
 | asg\_min | Min number of instances for autoscaling group | `number` | `1` | no |
 | autoscaling\_default\_cooldown | The amount of time, in seconds, after a scaling activity completes before another scaling activity can start | `number` | `300` | no |
 | autoscaling\_health\_check\_grace\_period | The length of time that Auto Scaling waits before checking an instance's health status. The grace period begins when an instance comes into service | `number` | `300` | no |
+| backup | Assing a backup tag to efs resource - Backup will be performed by AWS Backup | `string` | `"true"` | no |
 | certificate\_arn | n/a | `any` | n/a | yes |
 | enable\_schedule | Enables schedule to shut down and start up instances outside business hours | `bool` | `false` | no |
-| expire\_backup\_efs | Number of days the backup will be expired | `number` | `0` | no |
 | instance\_type\_1 | Instance type for ECS workers (first priority) | `any` | n/a | yes |
 | instance\_type\_2 | Instance type for ECS workers (second priority) | `any` | n/a | yes |
 | instance\_type\_3 | Instance type for ECS workers (third priority) | `any` | n/a | yes |
