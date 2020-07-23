@@ -75,6 +75,11 @@ variable "alb_internal" {
   description = "Deploys a second internal ALB for private APIs"
 }
 
+variable "alb_ssl_policy" {
+  default     = "ELBSecurityPolicy-2016-08"
+  description = "Select a SSL policy for the ALB Listener"
+}
+
 variable "asg_min" {
   default     = 1
   description = "Min number of instances for autoscaling group"
