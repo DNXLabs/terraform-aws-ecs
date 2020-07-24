@@ -58,7 +58,7 @@ module "ecs_apps" {
 | alb | Whether to deploy an ALB or not with the cluster | `bool` | `true` | no |
 | alb\_internal | Deploys a second internal ALB for private APIs | `bool` | `false` | no |
 | alb\_only | Whether to deploy only an alb and no cloudFront or not with the cluster | `bool` | `false` | no |
-| alb\_ssl_policy | Select a SSL policy for the ALB Listener | `string` | `ELBSecurityPolicy-2016-08` | no |
+| alb\_ssl\_policy | The name of the SSL Policy for the listener. Required if protocol is HTTPS or TLS. | `string` | `"ELBSecurityPolicy-2016-08"` | no |
 | asg\_max | Max number of instances for autoscaling group | `number` | `4` | no |
 | asg\_memory\_target | Target average memory percentage to track for autoscaling | `number` | `60` | no |
 | asg\_min | Min number of instances for autoscaling group | `number` | `1` | no |
