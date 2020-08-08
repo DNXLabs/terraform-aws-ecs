@@ -1,27 +1,31 @@
 # terraform-aws-ecs
 
-[![Lint Status](https://github.com/DNXLabs/terraform-aws-ecs/workflows/Lint/badge.svg)](https://github.com/DNXLabs/terraform-aws-ecs/actions)
-[![LICENSE](https://img.shields.io/github/license/DNXLabs/terraform-aws-ecs)](https://github.com/DNXLabs/terraform-aws-ecs/blob/master/LICENSE)
-
-This module creates an ECS cluster
-
-Resources that you will decide whether you will create or not inside this ECS Cluster:
- - Application Load Balancer
-  - alb - An external ALB
-  - alb_internal - A second internal ALB for private APIs  
-  - alb_only - Deploy only an alb and no cloudFront or not with the cluster
-
-Resources that will create inside this ECS Cluster
- - EFS
- - Auto Scaling
- - CloudWatch alarms for (ALB,ASG,ECS and EFS)
- - 3 Instances for ECS Workers
+Terraform-aws-ecs is a terraform module for building an Elastic Container Service(ECS) Cluster in AWS.
+The ECS cluster requires:
+* An existing VPC
+* Some existing subnets
+The ECS cluster creates:
+* Elastic File System (EFS)
+* Auto Scaling
+* CloudWatch alarms for (Application Load Balancer ,Auto Scale,ECS and EFS)
+* S3 Bucket to store logs from the application Load Balancer access
+* Security groups for (ALB,ALB-INTERNAL,ECS NODES, RDS DB)
+* Web Application Firewall (WAF)
+* 3 Instances for ECS Workers
    - instance_tye_1 - First Priority
    - instance_tye_2 - Second Priority
    - instance_tye_3 - Third Priority
- - S3 Bucket to store logs from alb access
- - Security groups for (ALB,ALB-INTERNAL,ECS NODES, RDS DB)
- - WAF
+* IAM roles and policies for the container instances
+In addition you have the option to create or not :
+ - Application Load Balancer (ALB)
+     - alb - An external ALB
+     - alb_internal - A second internal ALB for private APIs
+     - alb_only - Deploy only an Application Load Balancer and no cloudFront or not with the cluster
+
+[![Lint Status](https://github.com/DNXLabs/terraform-aws-ecs/workflows/Lint/badge.svg)](https://github.com/DNXLabs/terraform-aws-ecs/actions)
+[![LICENSE](https://img.shields.io/github/license/DNXLabs/terraform-aws-ecs)](https://github.com/DNXLabs/terraform-aws-ecs/blob/master/LICENSE)
+
+
 
  Modules that Terraform-aws-ecs interacts:
 
@@ -147,3 +151,5 @@ Module managed by [DNX Solutions](https://github.com/DNXLabs).
 ## License
 
 Apache 2 Licensed. See [LICENSE](https://github.com/DNXLabs/terraform-aws-ecs/blob/master/LICENSE) for full details.
+
+
