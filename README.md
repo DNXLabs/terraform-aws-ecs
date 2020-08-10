@@ -18,6 +18,7 @@ The ECS cluster creates:
    - instance_tye_2 - Second Priority
    - instance_tye_3 - Third Priority
 - IAM roles and policies for the container instances
+
 In addition you have the option to create or not :
  - Application Load Balancer (ALB)
      - alb - An external ALB
