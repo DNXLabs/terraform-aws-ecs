@@ -1,10 +1,9 @@
 # terraform-aws-ecs
 
-Terraform-aws-ecs is a terraform module for building an Elastic Container Service(ECS) Cluster in AWS.
+[![Lint Status](https://github.com/DNXLabs/terraform-aws-ecs/workflows/Lint/badge.svg)](https://github.com/DNXLabs/terraform-aws-ecs/actions)
+[![LICENSE](https://img.shields.io/github/license/DNXLabs/terraform-aws-ecs)](https://github.com/DNXLabs/terraform-aws-ecs/blob/master/LICENSE)
 
-The ECS cluster requires:
- - An existing VPC
- - Some existing subnets
+This terraform module builds an Elastic Container Service(ECS) Cluster in AWS.
 
 The ECS cluster creates:
 - Elastic File System (EFS)
@@ -24,13 +23,6 @@ In addition you have the option to create or not :
      - alb - An external ALB
      - alb_internal - A second internal ALB for private APIs
      - alb_only - Deploy only an Application Load Balancer and no cloudFront or not with the cluster
-
-More information : https://dnxlabs.slab.com/public/cmu2pf6r
-
-
-[![Lint Status](https://github.com/DNXLabs/terraform-aws-ecs/workflows/Lint/badge.svg)](https://github.com/DNXLabs/terraform-aws-ecs/actions)
-[![LICENSE](https://img.shields.io/github/license/DNXLabs/terraform-aws-ecs)](https://github.com/DNXLabs/terraform-aws-ecs/blob/master/LICENSE)
-
 
 ## Usage
 
