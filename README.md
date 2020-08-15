@@ -5,7 +5,7 @@
 
 This terraform module builds an Elastic Container Service(ECS) Cluster in AWS.
 
-The ECS cluster creates:
+The following resources will be created:
 - Elastic File System (EFS)
 - Auto Scaling
 - CloudWatch alarms for (Application Load Balancer ,Auto Scale,ECS and EFS)
@@ -144,5 +144,3 @@ Module managed by [DNX Solutions](https://github.com/DNXLabs).
 ## License
 
 Apache 2 Licensed. See [LICENSE](https://github.com/DNXLabs/terraform-aws-ecs/blob/master/LICENSE) for full details.
-
-
