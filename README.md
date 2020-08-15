@@ -3,7 +3,26 @@
 [![Lint Status](https://github.com/DNXLabs/terraform-aws-ecs/workflows/Lint/badge.svg)](https://github.com/DNXLabs/terraform-aws-ecs/actions)
 [![LICENSE](https://img.shields.io/github/license/DNXLabs/terraform-aws-ecs)](https://github.com/DNXLabs/terraform-aws-ecs/blob/master/LICENSE)
 
-This module creates an ECS cluster
+This terraform module builds an Elastic Container Service(ECS) Cluster in AWS.
+
+The following resources will be created:
+- Elastic File System (EFS)
+- Auto Scaling
+- CloudWatch alarms for (Application Load Balancer ,Auto Scale,ECS and EFS)
+- S3 Bucket to store logs from the application Load Balancer access
+- Security groups for (ALB,ALB-INTERNAL,ECS NODES, RDS DB)
+- Web Application Firewall (WAF)
+- 3 Instances for ECS Workers
+   - instance_tye_1 - First Priority
+   - instance_tye_2 - Second Priority
+   - instance_tye_3 - Third Priority
+- IAM roles and policies for the container instances
+
+In addition you have the option to create or not :
+ - Application Load Balancer (ALB)
+     - alb - An external ALB
+     - alb_internal - A second internal ALB for private APIs
+     - alb_only - Deploy only an Application Load Balancer and no cloudFront or not with the cluster
 
 ## Usage
 
