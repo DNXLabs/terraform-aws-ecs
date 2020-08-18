@@ -34,7 +34,7 @@ resource "aws_lb_listener" "ecs_https_internal" {
   port              = "443"
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2016-08"
-  certificate_arn   = var.certificate_arn
+  certificate_arn   = var.certificate_internal_arn != "" ? var.certificate_internal_arn : var.certificate_arn
 
   default_action {
     type             = "forward"
@@ -49,7 +49,7 @@ resource "aws_lb_listener" "ecs_test_https_internal" {
   port              = "8443"
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2016-08"
-  certificate_arn   = var.certificate_arn
+  certificate_arn   = var.certificate_internal_arn != "" ? var.certificate_internal_arn : var.certificate_arn
 
   default_action {
     type = "forward"
