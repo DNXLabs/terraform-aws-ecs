@@ -75,6 +75,11 @@ variable "alb_internal" {
   description = "Deploys a second internal ALB for private APIs"
 }
 
+variable "certificate_internal_arn" {
+  default     = null
+  description = "certificate arn for internal ALB (If alb_internal is true provide the certificate arn)"
+}
+
 variable "alb_ssl_policy" {
   default     = "ELBSecurityPolicy-2016-08"
   type        = string
