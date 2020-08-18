@@ -76,8 +76,8 @@ variable "alb_internal" {
 }
 
 variable "certificate_internal_arn" {
-  default     = null
-  description = "certificate arn for internal ALB (If alb_internal is true provide the certificate arn)"
+  default     = ""
+  description = "certificate arn for internal ALB."
 }
 
 variable "alb_ssl_policy" {
