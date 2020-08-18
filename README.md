@@ -85,6 +85,7 @@ module "ecs_apps" {
 | autoscaling\_health\_check\_grace\_period | The length of time that Auto Scaling waits before checking an instance's health status. The grace period begins when an instance comes into service | `number` | `300` | no |
 | backup | Assing a backup tag to efs resource - Backup will be performed by AWS Backup | `string` | `"true"` | no |
 | certificate\_arn | n/a | `any` | n/a | yes |
+| certificate\_internal\_arn | certificate arn for internal ALB. | `string` | `""` | no |
 | enable\_schedule | Enables schedule to shut down and start up instances outside business hours | `bool` | `false` | no |
 | instance\_type\_1 | Instance type for ECS workers (first priority) | `any` | n/a | yes |
 | instance\_type\_2 | Instance type for ECS workers (second priority) | `any` | n/a | yes |
