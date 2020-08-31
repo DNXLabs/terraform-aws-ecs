@@ -22,9 +22,9 @@ resource "aws_cloudwatch_metric_alarm" "alb_500_errors" {
   tags = merge(
     var.tags,
     {
-      "EcsCluster"    = var.name
+      "EcsCluster" = var.name
     },
-  )   
+  )
 }
 
 resource "aws_cloudwatch_metric_alarm" "alb_400_errors" {
@@ -83,11 +83,11 @@ resource "aws_cloudwatch_metric_alarm" "alb_latency" {
       }
     }
   }
-  
+
   tags = merge(
     var.tags,
     {
-      "EcsCluster"    = var.name
+      "EcsCluster" = var.name
     },
-  )   
+  )
 }

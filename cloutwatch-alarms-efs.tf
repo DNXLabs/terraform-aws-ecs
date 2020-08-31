@@ -22,7 +22,7 @@ resource "aws_cloudwatch_metric_alarm" "efs_credits_low" {
   tags = merge(
     var.tags,
     {
-      "EcsCluster"    = var.name
+      "EcsCluster" = var.name
     },
-  )   
+  )
 }

@@ -8,9 +8,9 @@ resource "aws_security_group" "alb_internal" {
   tags = merge(
     var.tags,
     {
-      "EcsCluster"    = var.name
+      "EcsCluster" = var.name
     },
-  )   
+  )
 }
 
 resource "aws_security_group_rule" "https_from_world_to_alb_internal" {

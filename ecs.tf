@@ -4,7 +4,7 @@ resource "aws_ecs_cluster" "ecs" {
   tags = merge(
     var.tags,
     {
-      "EcsCluster"    = var.name
+      "EcsCluster" = var.name
     },
-  )   
+  )
 }

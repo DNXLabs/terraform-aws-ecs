@@ -25,9 +25,9 @@ resource "aws_lb" "ecs_internal" {
   tags = merge(
     var.tags,
     {
-      "EcsCluster"    = "${var.name}-internal"
+      "EcsCluster" = "${var.name}-internal"
     },
-  )   
+  )
 }
 
 resource "aws_lb_listener" "ecs_https_internal" {
@@ -84,9 +84,9 @@ resource "aws_lb_target_group" "ecs_default_https_internal" {
   tags = merge(
     var.tags,
     {
-      "EcsCluster"    = "${var.name}-internal"
+      "EcsCluster" = "${var.name}-internal"
     },
-  ) 
+  )
 }
 
 

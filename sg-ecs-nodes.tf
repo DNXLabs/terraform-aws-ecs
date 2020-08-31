@@ -6,9 +6,9 @@ resource "aws_security_group" "ecs_nodes" {
   tags = merge(
     var.tags,
     {
-      "EcsCluster"    = var.name
+      "EcsCluster" = var.name
     },
-  )   
+  )
 }
 
 resource "aws_security_group_rule" "all_from_alb_to_ecs_nodes" {

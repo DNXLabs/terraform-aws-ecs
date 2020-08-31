@@ -22,7 +22,7 @@ resource "aws_cloudwatch_metric_alarm" "asg_high_cpu" {
   tags = merge(
     var.tags,
     {
-      "EcsCluster"    = var.name
+      "EcsCluster" = var.name
     },
-  )   
+  )
 }

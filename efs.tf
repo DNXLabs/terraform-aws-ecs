@@ -5,10 +5,10 @@ resource "aws_efs_file_system" "ecs" {
   tags = merge(
     var.tags,
     {
-      "EcsCluster"    = var.name
-      "Backup"        = var.backup
+      "EcsCluster" = var.name
+      "Backup"     = var.backup
     },
-  )   
+  )
 
   # lifecycle {
   #   prevent_destroy = true

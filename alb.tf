@@ -25,9 +25,9 @@ resource "aws_lb" "ecs" {
   tags = merge(
     var.tags,
     {
-      "EcsCluster"    = var.name
+      "EcsCluster" = var.name
     },
-  ) 
+  )
 }
 
 resource "aws_lb_listener" "ecs_https" {
@@ -119,9 +119,9 @@ resource "aws_lb_target_group" "ecs_default_http" {
   tags = merge(
     var.tags,
     {
-      "EcsCluster"    = var.name
+      "EcsCluster" = var.name
     },
-  ) 
+  )
 }
 
 resource "aws_lb_target_group" "ecs_default_https" {
@@ -139,9 +139,9 @@ resource "aws_lb_target_group" "ecs_default_https" {
   tags = merge(
     var.tags,
     {
-      "EcsCluster"    = var.name
+      "EcsCluster" = var.name
     },
-  )   
+  )
 }
 
 

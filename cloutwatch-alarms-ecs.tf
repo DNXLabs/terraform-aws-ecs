@@ -18,13 +18,13 @@ resource "aws_cloudwatch_metric_alarm" "ecs_high_memory" {
   dimensions = {
     ClusterName = aws_ecs_cluster.ecs.name
   }
-  
+
   tags = merge(
     var.tags,
     {
-      "EcsCluster"    = var.name
+      "EcsCluster" = var.name
     },
-  )   
+  )
 }
 
 resource "aws_cloudwatch_metric_alarm" "ecs_high_cpu" {
@@ -51,7 +51,7 @@ resource "aws_cloudwatch_metric_alarm" "ecs_high_cpu" {
   tags = merge(
     var.tags,
     {
-      "EcsCluster"    = var.name
+      "EcsCluster" = var.name
     },
-  )   
+  )
 }

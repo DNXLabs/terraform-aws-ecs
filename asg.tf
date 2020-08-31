@@ -33,24 +33,24 @@ resource "aws_autoscaling_group" "ecs" {
   min_size = var.asg_min
   max_size = var.asg_max
 
-  dynamic "tag" { 
+  dynamic "tag" {
     for_each = var.tags
     content {
-      key = tag.key
-      value = tag.value
+      key                 = tag.key
+      value               = tag.value
       propagate_at_launch = true
     }
   }
 
   tag {
-    key = "ECSCluster"
-    value = var.name
+    key                 = "ECSCluster"
+    value               = var.name
     propagate_at_launch = true
   }
 
-  tag { 
-    key = "Name"
-    value = "ecs-node-${var.name}"
+  tag {
+    key                 = "Name"
+    value               = "ecs-node-${var.name}"
     propagate_at_launch = true
   }
 
