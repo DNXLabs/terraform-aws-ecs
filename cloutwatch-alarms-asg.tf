@@ -18,4 +18,11 @@ resource "aws_cloudwatch_metric_alarm" "asg_high_cpu" {
   dimensions = {
     AutoScalingGroupName = aws_autoscaling_group.ecs.name
   }
+
+  tags = merge(
+    var.tags,
+    {
+      "EcsCluster"    = var.name
+    },
+  )   
 }

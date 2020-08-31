@@ -2,10 +2,13 @@ resource "aws_efs_file_system" "ecs" {
   creation_token = "ecs-${var.name}"
   encrypted      = true
 
-  tags = {
-    Name   = "ecs-${var.name}"
-    Backup = var.backup
-  }
+  tags = merge(
+    var.tags,
+    {
+      "EcsCluster"    = var.name
+      "Backup"        = var.backup
+    },
+  )   
 
   # lifecycle {
   #   prevent_destroy = true

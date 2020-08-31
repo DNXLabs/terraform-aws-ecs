@@ -33,9 +33,26 @@ resource "aws_autoscaling_group" "ecs" {
   min_size = var.asg_min
   max_size = var.asg_max
 
-  tags = [
-    map("key", "Name", "value", "ecs-node-${var.name}", "propagate_at_launch", true)
-  ]
+  dynamic "tag" { 
+    for_each = var.tags
+    content {
+      key = tag.key
+      value = tag.value
+      propagate_at_launch = true
+    }
+  }
+
+  tag {
+    key = "ECSCluster"
+    value = var.name
+    propagate_at_launch = true
+  }
+
+  tag { 
+    key = "Name"
+    value = "ecs-node-${var.name}"
+    propagate_at_launch = true
+  }
 
   target_group_arns         = var.target_group_arns
   health_check_grace_period = var.autoscaling_health_check_grace_period

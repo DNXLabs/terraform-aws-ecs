@@ -200,3 +200,9 @@ variable "backup" {
   default     = "true"
   description = "Assing a backup tag to efs resource - Backup will be performed by AWS Backup"
 }
+
+variable "tags" {
+	  type        = map(string)
+	  default     = {}
+	  description = "Extra tags to attach to resources"
+	}

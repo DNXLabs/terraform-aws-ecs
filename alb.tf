@@ -22,9 +22,12 @@ resource "aws_lb" "ecs" {
     }
   }
 
-  tags = {
-    Name = "ecs-${var.name}"
-  }
+  tags = merge(
+    var.tags,
+    {
+      "EcsCluster"    = var.name
+    },
+  ) 
 }
 
 resource "aws_lb_listener" "ecs_https" {
@@ -112,6 +115,13 @@ resource "aws_lb_target_group" "ecs_default_http" {
   lifecycle {
     create_before_destroy = true
   }
+
+  tags = merge(
+    var.tags,
+    {
+      "EcsCluster"    = var.name
+    },
+  ) 
 }
 
 resource "aws_lb_target_group" "ecs_default_https" {
@@ -125,6 +135,13 @@ resource "aws_lb_target_group" "ecs_default_https" {
   lifecycle {
     create_before_destroy = true
   }
+
+  tags = merge(
+    var.tags,
+    {
+      "EcsCluster"    = var.name
+    },
+  )   
 }
 
 

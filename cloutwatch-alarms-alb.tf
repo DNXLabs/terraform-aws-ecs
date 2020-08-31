@@ -18,6 +18,13 @@ resource "aws_cloudwatch_metric_alarm" "alb_500_errors" {
   dimensions = {
     LoadBalancer = aws_lb.ecs[0].arn_suffix
   }
+
+  tags = merge(
+    var.tags,
+    {
+      "EcsCluster"    = var.name
+    },
+  )   
 }
 
 resource "aws_cloudwatch_metric_alarm" "alb_400_errors" {
@@ -76,4 +83,11 @@ resource "aws_cloudwatch_metric_alarm" "alb_latency" {
       }
     }
   }
+  
+  tags = merge(
+    var.tags,
+    {
+      "EcsCluster"    = var.name
+    },
+  )   
 }

@@ -18,4 +18,11 @@ resource "aws_cloudwatch_metric_alarm" "efs_credits_low" {
   dimensions = {
     FileSystemId = aws_efs_file_system.ecs.id
   }
+
+  tags = merge(
+    var.tags,
+    {
+      "EcsCluster"    = var.name
+    },
+  )   
 }
