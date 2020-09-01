@@ -2,6 +2,9 @@ resource "aws_efs_file_system" "ecs" {
   creation_token = "ecs-${var.name}"
   encrypted      = true
 
+  throughput_mode                 = var.throughput_mode
+  provisioned_throughput_in_mibps = var.provisioned_throughput_in_mibps
+
   tags = {
     Name   = "ecs-${var.name}"
     Backup = var.backup

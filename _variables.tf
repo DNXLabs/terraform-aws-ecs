@@ -200,3 +200,15 @@ variable "backup" {
   default     = "true"
   description = "Assing a backup tag to efs resource - Backup will be performed by AWS Backup"
 }
+
+variable "throughput_mode" {
+  type        = string
+  default     = "bursting"
+  description = "Throughput mode for the file system. Defaults to bursting. Valid values: bursting, provisioned"
+}
+
+variable "provisioned_throughput_in_mibps" {
+  default     = 0
+  description = "The throughput, measured in MiB/s, that you want to provision for the file system"
+}
+
