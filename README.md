@@ -98,12 +98,14 @@ module "ecs_apps" {
 | on\_demand\_base\_capacity | You can designate a base portion of your total capacity as On-Demand. As the group scales, per your settings, the base portion is provisioned first, while additional On-Demand capacity is percentage-based. | `number` | `0` | no |
 | on\_demand\_percentage | Percentage of on-demand intances vs spot | `number` | `100` | no |
 | private\_subnet\_ids | List of private subnet IDs for ECS instances and Internal ALB when enabled | `list(string)` | n/a | yes |
+| provisioned\_throughput\_in\_mibps | The throughput, measured in MiB/s, that you want to provision for the file system | `number` | `0` | no |
 | public\_subnet\_ids | List of public subnet IDs for ECS ALB | `list(string)` | n/a | yes |
 | schedule\_cron\_start | Cron expression to define when to trigger a start of the auto-scaling group. E.g. '0 20 \* \* \*' to start at 8pm GMT time | `string` | `""` | no |
 | schedule\_cron\_stop | Cron expression to define when to trigger a stop of the auto-scaling group. E.g. '0 10 \* \* \*' to stop at 10am GMT time | `string` | `""` | no |
 | secure\_subnet\_ids | List of secure subnet IDs for EFS | `list(string)` | n/a | yes |
 | security\_group\_ids | Extra security groups for instances | `list(string)` | `[]` | no |
 | target\_group\_arns | List of target groups for ASG to register | `list(string)` | `[]` | no |
+| throughput\_mode | Throughput mode for the file system. Defaults to bursting. Valid values: bursting, provisioned | `string` | `"bursting"` | no |
 | userdata | Extra commands to pass to userdata | `string` | `""` | no |
 | vpc\_id | VPC ID to deploy the ECS cluster | `any` | n/a | yes |
 
