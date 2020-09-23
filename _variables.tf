@@ -212,3 +212,7 @@ variable "provisioned_throughput_in_mibps" {
   description = "The throughput, measured in MiB/s, that you want to provision for the file system"
 }
 
+variable "ignore_iam_account_alias" {
+  default     = false
+  description = "Disables data source for iam_account_alias used on cloudwatch alarms"
+}

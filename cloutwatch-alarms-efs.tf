@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_metric_alarm" "efs_credits_low" {
   count = length(var.alarm_sns_topics) > 0 && var.alarm_efs_credits_low_threshold != 0 ? 1 : 0
 
-  alarm_name                = "${data.aws_iam_account_alias.current.account_alias}-ecs-${var.name}-efs-credits-low"
+  alarm_name                = "${var.ignore_iam_account_alias[0] ? "ecs-${var.name}-efs-credits-low" : data.aws_iam_account_alias.current[0]}-ecs-${var.name}-efs-credits-low"
   comparison_operator       = "LessThanOrEqualToThreshold"
   evaluation_periods        = "3"
   metric_name               = "BurstCreditBalance"

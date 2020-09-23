@@ -12,7 +12,9 @@ data "aws_ami" "amzn" {
 }
 
 data "aws_caller_identity" "current" {}
-data "aws_iam_account_alias" "current" {}
+data "aws_iam_account_alias" "current" {
+  count = "${var.ignore_iam_account_alias ? 0 : 1}"
+}
 
 #-------
 # KMS
