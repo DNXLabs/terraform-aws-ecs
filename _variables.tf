@@ -212,3 +212,7 @@ variable "provisioned_throughput_in_mibps" {
   description = "The throughput, measured in MiB/s, that you want to provision for the file system"
 }
 
+variable "alarm_prefix" {
+  type = string
+  description = "Strinf prefix for cloudwatch alarms."
+}
