@@ -206,3 +206,8 @@ variable "tags" {
   default     = {}
   description = "Extra tags to attach to resources"
 }
+
+variable "https_test_listener_from_world_to_alb" {
+  default     = true
+  description = "Enables Public access to https test listener"
+}
