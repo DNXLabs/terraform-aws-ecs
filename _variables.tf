@@ -211,3 +211,8 @@ variable "https_test_listener_from_world_to_alb" {
   default     = true
   description = "Enables Public access to https test listener"
 }
+
+variable "container_insights" {
+  default     = false
+  description = "Enables CloudWatch Container Insights for a cluster."
+}
