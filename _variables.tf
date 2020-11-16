@@ -213,6 +213,6 @@ variable "https_test_listener_from_world_to_alb" {
 }
 
 variable "container_insights" {
-  default     = "disabled"
+  default     = "false"
   description = "Enables CloudWatch Container Insights for a cluster."
 }
