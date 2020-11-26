@@ -33,6 +33,8 @@ resource "aws_autoscaling_group" "ecs" {
   min_size = var.asg_min
   max_size = var.asg_max
 
+  protect_from_scale_in = var.asg_protect_from_scale_in
+
   tags = [
     map("key", "Name", "value", "ecs-node-${var.name}", "propagate_at_launch", true)
   ]
