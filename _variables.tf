@@ -215,7 +215,7 @@ variable "provisioned_throughput_in_mibps" {
 variable "alarm_prefix" {
   type        = string
   description = "String prefix for cloudwatch alarms. (Optional)"
-  default     = ""
+  default     = "alarm"
 }
 
 variable "kms_key_arn" {
