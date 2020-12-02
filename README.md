@@ -73,7 +73,7 @@ module "ecs_apps" {
 | alarm\_ecs\_high\_cpu\_threshold | Max threshold average CPU percentage allowed in a 2 minutes interval (use 0 to disable this alarm) | `number` | `80` | no |
 | alarm\_ecs\_high\_memory\_threshold | Max threshold average Memory percentage allowed in a 2 minutes interval (use 0 to disable this alarm) | `number` | `80` | no |
 | alarm\_efs\_credits\_low\_threshold | Alerts when EFS credits fell below this number in bytes - default 1000000000000 is 1TB of a maximum of 2.31T of credits (use 0 to disable this alarm) | `number` | `1000000000000` | no |
-| alarm\_prefix | Strinf prefix for cloudwatch alarms. | `string` | n/a | yes |
+| alarm\_prefix | String prefix for cloudwatch alarms. (Optional) | `string` | `""` | no |
 | alarm\_sns\_topics | Alarm topics to create and alert on ECS instance metrics | `list` | `[]` | no |
 | alb | Whether to deploy an ALB or not with the cluster | `bool` | `true` | no |
 | alb\_internal | Deploys a second internal ALB for private APIs | `bool` | `false` | no |
