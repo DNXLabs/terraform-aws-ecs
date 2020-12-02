@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_metric_alarm" "alb_500_errors" {
   count = var.alb && length(var.alarm_sns_topics) > 0 && var.alarm_alb_500_errors_threshold != 0 ? 1 : 0
 
-  alarm_name                = "${var.alarm_prefix}-ecs-${var.name}-alb-500-errors"
+  alarm_name                = "${try(data.aws_iam_account_alias.current[0].account_alias, var.alarm_prefix)}-ecs-${var.name}-alb-500-errors"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "2"
   metric_name               = "HTTPCode_ELB_5XX_Count"
@@ -23,7 +23,7 @@ resource "aws_cloudwatch_metric_alarm" "alb_500_errors" {
 resource "aws_cloudwatch_metric_alarm" "alb_400_errors" {
   count = var.alb && length(var.alarm_sns_topics) > 0 && var.alarm_alb_400_errors_threshold != 0 ? 1 : 0
 
-  alarm_name                = "${var.alarm_prefix}-ecs-${var.name}-alb-400-errors"
+  alarm_name                = "${try(data.aws_iam_account_alias.current[0].account_alias, var.alarm_prefix)}-ecs-${var.name}-alb-400-errors"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "2"
   metric_name               = "HTTPCode_ELB_4XX_Count"
@@ -43,9 +43,8 @@ resource "aws_cloudwatch_metric_alarm" "alb_400_errors" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "alb_latency" {
-  count      = var.alb && length(var.alarm_sns_topics) > 0 && var.alarm_alb_latency_anomaly_threshold > 0 ? 1 : 0
-  alarm_name = "${var.alarm_prefix}-ecs-${var.name}-alb-latency"
-  # alarm_name                = "${var.alarm_prefix}-ecs-${var.name}-latency"
+  count                     = var.alb && length(var.alarm_sns_topics) > 0 && var.alarm_alb_latency_anomaly_threshold > 0 ? 1 : 0
+  alarm_name                = "${try(data.aws_iam_account_alias.current[0].account_alias, var.alarm_prefix)}-ecs-${var.name}-alb-latency"
   comparison_operator       = "GreaterThanUpperThreshold"
   evaluation_periods        = "2"
   datapoints_to_alarm       = "2"

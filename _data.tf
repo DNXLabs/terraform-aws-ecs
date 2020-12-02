@@ -12,6 +12,9 @@ data "aws_ami" "amzn" {
 }
 
 data "aws_caller_identity" "current" {}
+data "aws_iam_account_alias" "current" {
+  count = var.alarm_prefix == "" ? 1 : 0
+}
 
 #-------
 # KMS

@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_metric_alarm" "ecs_high_memory" {
   count = length(var.alarm_sns_topics) > 0 && var.alarm_ecs_high_cpu_threshold != 0 ? 1 : 0
 
-  alarm_name                = "${var.alarm_prefix}-ecs-${var.name}-high-memory"
+  alarm_name                = "${try(data.aws_iam_account_alias.current[0].account_alias, var.alarm_prefix)}-ecs-${var.name}-high-memory"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "3"
   metric_name               = "MemoryUtilization"
@@ -23,7 +23,7 @@ resource "aws_cloudwatch_metric_alarm" "ecs_high_memory" {
 resource "aws_cloudwatch_metric_alarm" "ecs_high_cpu" {
   count = length(var.alarm_sns_topics) > 0 && var.alarm_ecs_high_cpu_threshold != 0 ? 1 : 0
 
-  alarm_name                = "${var.alarm_prefix}-ecs-${var.name}-high-cpu"
+  alarm_name                = "${try(data.aws_iam_account_alias.current[0].account_alias, var.alarm_prefix)}-ecs-${var.name}-high-cpu"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "3"
   metric_name               = "CPUUtilization"

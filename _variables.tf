@@ -213,6 +213,7 @@ variable "provisioned_throughput_in_mibps" {
 }
 
 variable "alarm_prefix" {
-  type = string
-  description = "Strinf prefix for cloudwatch alarms."
+  type        = string
+  description = "String prefix for cloudwatch alarms. (Optional)"
+  default     = ""
 }
