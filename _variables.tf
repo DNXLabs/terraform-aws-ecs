@@ -16,6 +16,11 @@ variable "instance_type_3" {
   description = "Instance type for ECS workers (third priority)"
 }
 
+variable "architecture" {
+  default     = "x86_64"
+  description = "Architecture to select the AMI, x86_64 or arm64"
+}
+
 variable "on_demand_percentage" {
   description = "Percentage of on-demand intances vs spot"
   default     = 100
@@ -159,12 +164,7 @@ variable "autoscaling_default_cooldown" {
 
 variable "instance_volume_size" {
   description = "Volume size for docker volume (in GB)"
-  default     = 22
-}
-
-variable "instance_volume_size_root" {
-  description = "Volume size for root volume (in GB)"
-  default     = 16
+  default     = 30
 }
 
 variable "lb_access_logs_bucket" {
@@ -215,5 +215,11 @@ variable "provisioned_throughput_in_mibps" {
 variable "alarm_prefix" {
   type        = string
   description = "String prefix for cloudwatch alarms. (Optional)"
+  default     = ""
+}
+
+variable "kms_key_arn" {
+  type        = string
+  description = "ARN of a KMS Key to use on EFS and EBS volumes"
   default     = ""
 }

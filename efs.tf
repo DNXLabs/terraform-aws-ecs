@@ -1,6 +1,7 @@
 resource "aws_efs_file_system" "ecs" {
   creation_token = "ecs-${var.name}"
   encrypted      = true
+  kms_key_id     = var.kms_key_arn != "" ? var.kms_key_arn : null
 
   throughput_mode                 = var.throughput_mode
   provisioned_throughput_in_mibps = var.provisioned_throughput_in_mibps
