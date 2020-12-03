@@ -79,6 +79,7 @@ module "ecs_apps" {
 | alb\_internal | Deploys a second internal ALB for private APIs | `bool` | `false` | no |
 | alb\_only | Whether to deploy only an alb and no cloudFront or not with the cluster | `bool` | `false` | no |
 | alb\_ssl\_policy | The name of the SSL Policy for the listener. Required if protocol is HTTPS or TLS. | `string` | `"ELBSecurityPolicy-2016-08"` | no |
+| architecture | Architecture to select the AMI, x86\_64 or arm64 | `string` | `"x86_64"` | no |
 | asg\_max | Max number of instances for autoscaling group | `number` | `4` | no |
 | asg\_memory\_target | Target average memory percentage to track for autoscaling | `number` | `60` | no |
 | asg\_min | Min number of instances for autoscaling group | `number` | `1` | no |
@@ -91,8 +92,8 @@ module "ecs_apps" {
 | instance\_type\_1 | Instance type for ECS workers (first priority) | `any` | n/a | yes |
 | instance\_type\_2 | Instance type for ECS workers (second priority) | `any` | n/a | yes |
 | instance\_type\_3 | Instance type for ECS workers (third priority) | `any` | n/a | yes |
-| instance\_volume\_size | Volume size for docker volume (in GB) | `number` | `22` | no |
-| instance\_volume\_size\_root | Volume size for root volume (in GB) | `number` | `16` | no |
+| instance\_volume\_size | Volume size for docker volume (in GB) | `number` | `30` | no |
+| kms\_key\_arn | ARN of a KMS Key to use on EFS and EBS volumes | `string` | `""` | no |
 | lb\_access\_logs\_bucket | Bucket to store logs from lb access | `string` | `""` | no |
 | lb\_access\_logs\_prefix | Bucket prefix to store lb access logs | `string` | `""` | no |
 | name | Name of this ECS cluster | `any` | n/a | yes |
