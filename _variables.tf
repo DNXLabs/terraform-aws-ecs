@@ -102,13 +102,13 @@ variable "asg_max" {
 }
 
 variable "asg_protect_from_scale_in" {
-  default     = true
+  default     = false
   description = "(Optional) Allows setting instance protection. The autoscaling group will not select instances with this setting for termination during scale in events."
 }
 
-variable "asg_memory_target" {
-  default     = 60
-  description = "Target average memory percentage to track for autoscaling"
+variable "asg_target_capacity" {
+  default     = 70
+  description = "Target average capacity percentage for the ECS capacity provider to track for autoscaling."
 }
 
 variable "alarm_sns_topics" {

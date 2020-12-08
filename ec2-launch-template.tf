@@ -2,7 +2,7 @@ data "template_file" "userdata" {
   template = file("${path.module}/userdata.tpl")
 
   vars = {
-    tf_cluster_name = aws_ecs_cluster.ecs.name
+    tf_cluster_name = var.name
     tf_efs_id       = aws_efs_file_system.ecs.id
     userdata_extra  = var.userdata
   }

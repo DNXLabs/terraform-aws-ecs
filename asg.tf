@@ -47,25 +47,18 @@ resource "aws_autoscaling_group" "ecs" {
   }
 }
 
-resource "aws_autoscaling_policy" "ecs_memory_tracking" {
-  name                      = "ecs-${var.name}-memory"
-  policy_type               = "TargetTrackingScaling"
-  autoscaling_group_name    = aws_autoscaling_group.ecs.name
-  estimated_instance_warmup = "180"
+resource "aws_ecs_capacity_provider" "ecs_capacity_provider" {
+  name = "${var.name}-capacity-provider"
 
-  target_tracking_configuration {
-    customized_metric_specification {
-      metric_dimension {
-        name  = "ClusterName"
-        value = aws_ecs_cluster.ecs.name
-      }
+  auto_scaling_group_provider {
+    auto_scaling_group_arn         = aws_autoscaling_group.ecs.arn
+    managed_termination_protection = "DISABLED"
 
-      metric_name = "MemoryReservation"
-      namespace   = "AWS/ECS"
-      statistic   = "Average"
-      unit        = "Percent"
+    managed_scaling {
+      maximum_scaling_step_size = 10
+      minimum_scaling_step_size = 1
+      status                    = "ENABLED"
+      target_capacity           = var.asg_target_capacity
     }
-
-    target_value = var.asg_memory_target
   }
 }
