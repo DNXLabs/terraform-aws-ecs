@@ -8,6 +8,7 @@ resource "aws_autoscaling_schedule" "ecs_stop" {
   recurrence             = var.schedule_cron_stop
 }
 
+
 resource "aws_autoscaling_schedule" "ecs_start" {
   count                  = var.enable_schedule ? 1 : 0
   scheduled_action_name  = "ecs-${var.name}-start"

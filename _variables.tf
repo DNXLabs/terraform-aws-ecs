@@ -42,6 +42,7 @@ variable "secure_subnet_ids" {
 
 variable "certificate_arn" {}
 
+
 variable "enable_schedule" {
   default     = false
   description = "Enables schedule to shut down and start up instances outside business hours."
