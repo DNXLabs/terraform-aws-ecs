@@ -144,6 +144,12 @@ module "ecs_apps" {
 
 <!--- END_TF_DOCS --->
 
+## WAF V2 Managed rule groups
+
+The official documentation with the list of groups and individual rules is available here: (https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups-list.html).
+
+By default, only the Core rule set (a.k.a Common rules) is deployed with WAF, if you want to customise and add more managed groups to the Web ACL you can find the list of groups expected by Terraform following this developer guide: (https://docs.aws.amazon.com/waf/latest/developerguide/waf-using-managed-rule-groups.html).
+
 ## Authors
 
 Module managed by [DNX Solutions](https://github.com/DNXLabs).
