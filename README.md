@@ -118,7 +118,6 @@ module "ecs_apps" {
 | Name | Description |
 |------|-------------|
 | alb\_arn | n/a |
-| alb\_cloudfront\_key | n/a |
 | alb\_dns\_name | n/a |
 | alb\_id | n/a |
 | alb\_internal\_arn | n/a |
