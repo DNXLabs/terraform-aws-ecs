@@ -112,6 +112,8 @@ module "ecs_apps" {
 | throughput\_mode | Throughput mode for the file system. Defaults to bursting. Valid values: bursting, provisioned. | `string` | `"bursting"` | no |
 | userdata | Extra commands to pass to userdata. | `string` | `""` | no |
 | vpc\_id | VPC ID to deploy the ECS cluster. | `any` | n/a | yes |
+| wafv2_enable | Enable WAF V2 with managed rule groups. | `bool` | `false` | no |
+| wafv2_managed_rule_groups | List of AWS managed rule groups implemented with WAF V2. | `list(string)` | `["AWSManagedRulesCommonRuleSet"]` | no |
 
 ## Outputs
 
