@@ -1,4 +1,4 @@
-resource "aws_wafv2_web_acl" "alb" {
+resource "aws_wafv2_web_acl" "waf_alb" {
   count       = var.alb && var.wafv2_enable ? 1 : 0
   name        = "waf-${var.name}-web-application"
   description = "WAF managed rules for web applications"
@@ -45,8 +45,8 @@ resource "aws_wafv2_web_acl" "alb" {
   }
 }
 
-resource "aws_wafv2_web_acl_association" "brighte_waf_alb" {
+resource "aws_wafv2_web_acl_association" "waf_alb_association" {
   count        = var.alb && var.wafv2_enable ? 1 : 0
   resource_arn = aws_lb.ecs[0].arn
-  web_acl_arn  = aws_wafv2_web_acl.alb[0].arn
+  web_acl_arn  = aws_wafv2_web_acl.waf_alb[0].arn
 }
