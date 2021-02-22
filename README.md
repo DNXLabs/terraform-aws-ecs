@@ -112,13 +112,14 @@ module "ecs_apps" {
 | throughput\_mode | Throughput mode for the file system. Defaults to bursting. Valid values: bursting, provisioned. | `string` | `"bursting"` | no |
 | userdata | Extra commands to pass to userdata. | `string` | `""` | no |
 | vpc\_id | VPC ID to deploy the ECS cluster. | `any` | n/a | yes |
+| wafv2_enable | Enable WAF V2 with managed rule groups. | `bool` | `false` | no |
+| wafv2_managed_rule_groups | List of AWS managed rule groups implemented with WAF V2. | `list(string)` | `["AWSManagedRulesCommonRuleSet"]` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | alb\_arn | n/a |
-| alb\_cloudfront\_key | n/a |
 | alb\_dns\_name | n/a |
 | alb\_id | n/a |
 | alb\_internal\_arn | n/a |
@@ -143,6 +144,12 @@ module "ecs_apps" {
 | ecs\_task\_iam\_role\_name | n/a |
 
 <!--- END_TF_DOCS --->
+
+## WAF V2 Managed rule groups
+
+The official documentation with the list of groups and individual rules is available here: (https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups-list.html).
+
+By default, only the Core rule set (a.k.a Common rules) is deployed with WAF, if you want to customise and add more managed groups to the Web ACL you can find the list of groups expected by Terraform following this developer guide: (https://docs.aws.amazon.com/waf/latest/developerguide/waf-using-managed-rule-groups.html).
 
 ## Authors
 

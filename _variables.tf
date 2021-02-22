@@ -233,3 +233,14 @@ variable "kms_key_arn" {
   description = "ARN of a KMS Key to use on EFS and EBS volumes"
   default     = ""
 }
+
+variable "wafv2_enable" {
+  default     = false
+  description = "Deploys WAF V2 with Managed rule groups"
+}
+
+variable "wafv2_managed_rule_groups" {
+  type        = list(string)
+  default     = ["AWSManagedRulesCommonRuleSet"]
+  description = "List of WAF V2 managed rule groups"
+}

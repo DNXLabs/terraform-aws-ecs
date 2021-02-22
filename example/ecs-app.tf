@@ -14,7 +14,6 @@ module "ecs_app_wordpress_01" {
   hostname_origin        = "wp01-origin.labs.dnx.host" # signed by alb_certificate_arn
   hosted_zone            = "labs.dnx.host"
   certificate_arn        = local.workspace["cf_certificate_arn"] # goes on cloudfront
-  alb_cloudfront_key     = module.ecs_apps.alb_cloudfront_key
 
   # use these values for Wordpress
   healthcheck_path                          = "/readme.html"
