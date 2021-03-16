@@ -103,3 +103,45 @@ variable "expire_backup_efs" {
   default = 0
   description = "Number of days the backup will be expired"
 }
+
+
+variable "alarm_ecs_high_cpu_threshold" {
+  description = "Max threshold average CPU percentage allowed in a 2 minutes interval (use 0 to disable this alarm)."
+  default     = 80
+}
+
+variable "alarm_ecs_high_memory_threshold" {
+  description = "Max threshold average Memory percentage allowed in a 2 minutes interval (use 0 to disable this alarm)."
+  default     = 80
+}
+
+variable "alarm_prefix" {
+  type        = string
+  description = "String prefix for cloudwatch alarms. (Optional)"
+  default     = "alarm"
+}
+
+variable "alarm_alb_500_errors_threshold" {
+  description = "Max threshold of HTTP 500 errors allowed in a 5 minutes interval (use 0 to disable this alarm)."
+  default     = 10
+}
+
+variable "alarm_alb_400_errors_threshold" {
+  description = "Max threshold of HTTP 4000 errors allowed in a 5 minutes interval (use 0 to disable this alarm)."
+  default     = 10
+}
+
+variable "alarm_alb_latency_anomaly_threshold" {
+  description = "ALB Latency anomaly detection width (use 0 to disable this alarm)."
+  default     = 2
+}
+
+variable "alarm_asg_high_cpu_threshold" {
+  description = "Max threshold average CPU percentage allowed in a 2 minutes interval (use 0 to disable this alarm)."
+  default     = 80
+}
+
+variable "alarm_efs_credits_low_threshold" {
+  description = "Alerts when EFS credits fell below this number in bytes - default 1000000000000 is 1TB of a maximum of 2.31T of credits (use 0 to disable this alarm)."
+  default     = 1000000000000
+}
