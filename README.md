@@ -93,7 +93,7 @@ module "ecs_apps" {
 | instance\_type\_1 | Instance type for ECS workers (first priority). | `any` | n/a | yes |
 | instance\_type\_2 | Instance type for ECS workers (second priority). | `any` | n/a | yes |
 | instance\_type\_3 | Instance type for ECS workers (third priority). | `any` | n/a | yes |
-| instance\_volume\_size | Volume size for docker volume (in GB). | `number` | `22` | no |
+| instance\_volume\_size | Volume size for docker volume (in GB). | `number` | `30` | no |
 | instance\_volume\_size\_root | Volume size for root volume (in GB). | `number` | `16` | no |
 | kms\_key\_arn | ARN of a KMS Key to use on EFS and EBS volumes | `string` | `""` | no |
 | lb\_access\_logs\_bucket | Bucket to store logs from lb access. | `string` | `""` | no |
