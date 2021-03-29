@@ -169,7 +169,7 @@ variable "autoscaling_default_cooldown" {
 
 variable "instance_volume_size" {
   description = "Volume size for docker volume (in GB)."
-  default     = 22
+  default     = 30
 }
 
 variable "instance_volume_size_root" {
