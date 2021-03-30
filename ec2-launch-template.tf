@@ -11,7 +11,7 @@ data "template_file" "userdata" {
 resource "aws_launch_template" "ecs" {
   name_prefix   = "ecs-${var.name}-"
   image_id      = data.aws_ami.amzn.image_id
-  instance_type = var.instance_type_1
+  instance_type = var.instance_types[0]
 
   iam_instance_profile {
     name = aws_iam_instance_profile.ecs.name
