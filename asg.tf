@@ -8,16 +8,11 @@ resource "aws_autoscaling_group" "ecs" {
         version            = "$Latest"
       }
 
-      override {
-        instance_type = var.instance_type_1
-      }
-
-      override {
-        instance_type = var.instance_type_2
-      }
-
-      override {
-        instance_type = var.instance_type_3
+      dynamic "override" {
+        for_each = var.instance_types
+        content {
+          instance_type = override.value
+        }
       }
     }
 
