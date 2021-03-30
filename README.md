@@ -12,10 +12,7 @@ The following resources will be created:
 - S3 Bucket to store logs from the application Load Balancer access
 - Security groups for (ALB,ALB-INTERNAL,ECS NODES, RDS DB)
 - Web Application Firewall (WAF)
-- 3 Instances for ECS Workers
-   - instance_tye_1 - First Priority
-   - instance_tye_2 - Second Priority
-   - instance_tye_3 - Third Priority
+- Instances for ECS Workers
 - IAM roles and policies for the container instances
 
 In addition you have the option to create or not :
@@ -31,9 +28,7 @@ module "ecs_apps" {
   # source               = "git::https://github.com/DNXLabs/terraform-aws-ecs.git?ref=0.1.0"
 
   name                 = "${local.workspace["cluster_name"]}"
-  instance_type_1      = "t3.large"
-  instance_type_2      = "t2.large"
-  instance_type_3      = "m2.xlarge"
+  intance_types        = ["t3.large","t2.large","m2.xlarge"]
   vpc_id               = "${data.aws_vpc.selected.id}"
   private_subnet_ids   = ["${data.aws_subnet_ids.private.ids}"]
   public_subnet_ids    = ["${data.aws_subnet_ids.public.ids}"]
