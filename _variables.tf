@@ -4,16 +4,10 @@ variable "name" {
   description = "Name of this ECS cluster."
 }
 
-variable "instance_type_1" {
-  description = "Instance type for ECS workers (first priority)."
-}
-
-variable "instance_type_2" {
-  description = "Instance type for ECS workers (second priority)."
-}
-
-variable "instance_type_3" {
-  description = "Instance type for ECS workers (third priority)."
+variable "instance_types" {
+  description = "Instance type for ECS workers"
+  type        = list
+  default     = []
 }
 
 variable "architecture" {
