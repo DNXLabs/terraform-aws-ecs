@@ -135,6 +135,7 @@ module "ecs_apps" {
 | ecs\_service\_iam\_role\_name | n/a |
 | ecs\_task\_iam\_role\_arn | n/a |
 | ecs\_task\_iam\_role\_name | n/a |
+| efs\_fs\_id | n/a |
 
 <!--- END_TF_DOCS --->
 
