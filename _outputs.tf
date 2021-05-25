@@ -66,6 +66,10 @@ output "ecs_name" {
   value = aws_ecs_cluster.ecs.name
 }
 
+output "ecs_launch_template_arn" {
+  value = aws_launch_template.ecs.arn
+}
+
 output "alb_listener_https_arn" {
   value = aws_lb_listener.ecs_https.*.arn
 }
