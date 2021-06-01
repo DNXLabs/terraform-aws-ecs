@@ -1,3 +1,8 @@
+resource "aws_iam_service_linked_role" "ecs" {
+  count = var.create_iam_service_linked_role ? 1 : 0
+  aws_service_name = "ecs.amazonaws.com"
+}
+
 resource "aws_iam_instance_profile" "ecs" {
   name = "ecs-${var.name}-${data.aws_region.current.name}"
   role = aws_iam_role.ecs.name

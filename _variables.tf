@@ -238,3 +238,9 @@ variable "wafv2_managed_rule_groups" {
   default     = ["AWSManagedRulesCommonRuleSet"]
   description = "List of WAF V2 managed rule groups"
 }
+
+variable "create_iam_service_linked_role" {
+  type        = bool
+  default     = false
+  description = "Create iam_service_linked_role for ECS or not."
+}
