@@ -19,7 +19,7 @@ resource "aws_security_group_rule" "http_from_world_to_alb" {
   to_port           = 80
   protocol          = "tcp"
   security_group_id = aws_security_group.alb[0].id
-  cidr_blocks       = [var.cidr_blocks_world]
+  cidr_blocks       = [var.alb_cidr_blocks]
 }
 
 resource "aws_security_group_rule" "https_from_world_to_alb" {
@@ -31,7 +31,7 @@ resource "aws_security_group_rule" "https_from_world_to_alb" {
   to_port           = 443
   protocol          = "tcp"
   security_group_id = aws_security_group.alb[0].id
-  cidr_blocks       = [var.cidr_blocks_world]
+  cidr_blocks       = [var.alb_cidr_blocks]
 }
 
 resource "aws_security_group_rule" "https_test_listener_from_world_to_alb" {
@@ -43,7 +43,7 @@ resource "aws_security_group_rule" "https_test_listener_from_world_to_alb" {
   to_port           = 8443
   protocol          = "tcp"
   security_group_id = aws_security_group.alb[0].id
-  cidr_blocks       = [var.cidr_blocks_world]
+  cidr_blocks       = [var.alb_cidr_blocks]
 }
 
 

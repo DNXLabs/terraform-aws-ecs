@@ -245,7 +245,7 @@ variable "create_iam_service_linked_role" {
   description = "Create iam_service_linked_role for ECS or not."
 }
 
-variable "cidr_blocks_world" {
+variable "alb_cidr_blocks" {
   description = "Access allowed to ALB"
   type        = list
   default     = ["0.0.0.0/0"]
