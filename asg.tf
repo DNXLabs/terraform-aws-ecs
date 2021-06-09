@@ -30,9 +30,11 @@ resource "aws_autoscaling_group" "ecs" {
 
   protect_from_scale_in = var.asg_protect_from_scale_in
 
-  tags = [
-    map("key", "Name", "value", "ecs-node-${var.name}", "propagate_at_launch", true)
-  ]
+  tag {
+    key                 = "Name"
+    value               = "ecs-node-${var.name}"
+    propagate_at_launch = true
+  }
 
   target_group_arns         = var.target_group_arns
   health_check_grace_period = var.autoscaling_health_check_grace_period

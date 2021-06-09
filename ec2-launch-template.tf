@@ -27,7 +27,7 @@ resource "aws_launch_template" "ecs" {
     }
   }
 
-  vpc_security_group_ids = concat(list(aws_security_group.ecs_nodes.id), var.security_group_ids)
+  vpc_security_group_ids = concat([aws_security_group.ecs_nodes.id], var.security_group_ids)
 
   user_data = base64encode(data.template_file.userdata.rendered)
 
