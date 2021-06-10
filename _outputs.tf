@@ -93,3 +93,7 @@ output "alb_secgrp_id" {
 output "efs_fs_id" {
   value = aws_efs_file_system.ecs.id
 }
+
+output "efs_secgrp_id" {
+  value = aws_security_group.efs.id
+}

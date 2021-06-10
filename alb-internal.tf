@@ -69,7 +69,7 @@ resource "random_string" "alb_internal_prefix" {
 resource "aws_lb_target_group" "ecs_default_https_internal" {
   count = var.alb_internal ? 1 : 0
 
-  name     = substr("ecs-${var.name}-int-default-https-${random_string.alb_internal_prefix[0].result}", 0, 32)
+  name     = substr("ecs-${var.name}-int-https-${random_string.alb_internal_prefix[0].result}", 0, 32)
   port     = 80
   protocol = "HTTP"
   vpc_id   = var.vpc_id
