@@ -1,5 +1,6 @@
 resource "aws_autoscaling_group" "ecs" {
-  name = "ecs-${var.name}"
+  name               = "ecs-${var.name}"
+  capacity_rebalance = true
 
   mixed_instances_policy {
     launch_template {
@@ -17,7 +18,6 @@ resource "aws_autoscaling_group" "ecs" {
     }
 
     instances_distribution {
-      spot_instance_pools                      = 3
       on_demand_base_capacity                  = var.on_demand_base_capacity
       on_demand_percentage_above_base_capacity = var.on_demand_percentage
     }
