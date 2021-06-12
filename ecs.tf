@@ -6,8 +6,8 @@ resource "aws_ecs_cluster" "ecs" {
   capacity_providers = ["${var.name}-capacity-provider"]
   default_capacity_provider_strategy {
     capacity_provider = "${var.name}-capacity-provider"
-    base = 0
-    weight = 1
+    base              = 0
+    weight            = 1
   }
 
   lifecycle {

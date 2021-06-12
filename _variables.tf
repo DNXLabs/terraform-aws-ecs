@@ -6,7 +6,7 @@ variable "name" {
 
 variable "instance_types" {
   description = "Instance type for ECS workers"
-  type        = list
+  type        = list(any)
   default     = []
 }
 
@@ -247,6 +247,6 @@ variable "create_iam_service_linked_role" {
 
 variable "alb_cidr_blocks" {
   description = "Access allowed to ALB"
-  type        = list
+  type        = list(any)
   default     = ["0.0.0.0/0"]
 }
