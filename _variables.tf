@@ -6,7 +6,7 @@ variable "name" {
 
 variable "instance_types" {
   description = "Instance type for ECS workers"
-  type        = list
+  type        = list(any)
   default     = []
 }
 
