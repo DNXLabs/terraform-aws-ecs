@@ -86,7 +86,7 @@ module "ecs_apps" {
 | certificate\_internal\_arn | certificate arn for internal ALB. | `string` | `""` | no |
 | create\_iam\_service\_linked\_role | Create iam\_service\_linked\_role for ECS or not. | `bool` | `false` | no |
 | enable\_schedule | Enables schedule to shut down and start up instances outside business hours. | `bool` | `false` | no |
-| instance\_types | Instance type for ECS workers | `list` | `[]` | no |
+| instance\_types | Instance type for ECS workers | `list(any)` | `[]` | no |
 | instance\_volume\_size | Volume size for docker volume (in GB). | `number` | `30` | no |
 | instance\_volume\_size\_root | Volume size for root volume (in GB). | `number` | `16` | no |
 | kms\_key\_arn | ARN of a KMS Key to use on EFS and EBS volumes | `string` | `""` | no |
