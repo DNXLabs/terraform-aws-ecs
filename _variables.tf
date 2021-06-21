@@ -85,6 +85,12 @@ variable "alb_ssl_policy" {
   description = "The name of the SSL Policy for the listener. Required if protocol is HTTPS or TLS."
 }
 
+variable "alb_drop_invalid_header_fields" {
+  default     = true
+  type        = bool
+  description = "Indicates whether HTTP headers with invalid header fields are removed by the load balancer (true) or routed to targets (false)."
+}
+
 variable "asg_min" {
   default     = 1
   description = "Min number of instances for autoscaling group."

@@ -1,10 +1,11 @@
 resource "aws_lb" "ecs" {
   count = var.alb ? 1 : 0
 
-  load_balancer_type = "application"
-  internal           = false
-  name               = "ecs-${var.name}"
-  subnets            = var.public_subnet_ids
+  load_balancer_type         = "application"
+  internal                   = false
+  name                       = "ecs-${var.name}"
+  subnets                    = var.public_subnet_ids
+  drop_invalid_header_fields = var.alb_drop_invalid_header_fields
 
   security_groups = [
     aws_security_group.alb[0].id,
@@ -104,7 +105,7 @@ resource "random_string" "alb_prefix" {
 resource "aws_lb_target_group" "ecs_default_http" {
   count = var.alb ? 1 : 0
 
-  name     = substr("ecs-${var.name}-default-http-${random_string.alb_prefix.result}", 0, 32)
+  name     = replace(substr("ecs-${var.name}-default-http-${random_string.alb_prefix.result}", 0, 32), "/-+$/", "")
   port     = 80
   protocol = "HTTP"
   vpc_id   = var.vpc_id
@@ -117,7 +118,7 @@ resource "aws_lb_target_group" "ecs_default_http" {
 resource "aws_lb_target_group" "ecs_default_https" {
   count = var.alb ? 1 : 0
 
-  name     = substr("ecs-${var.name}-default-https-${random_string.alb_prefix.result}", 0, 32)
+  name     = replace(substr("ecs-${var.name}-default-https-${random_string.alb_prefix.result}", 0, 32), "/-+$/", "")
   port     = 80
   protocol = "HTTP"
   vpc_id   = var.vpc_id
