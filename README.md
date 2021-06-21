@@ -71,6 +71,7 @@ module "ecs_apps" {
 | alarm\_prefix | String prefix for cloudwatch alarms. (Optional) | `string` | `"alarm"` | no |
 | alarm\_sns\_topics | Alarm topics to create and alert on ECS instance metrics. | `list` | `[]` | no |
 | alb | Whether to deploy an ALB or not with the cluster. | `bool` | `true` | no |
+| alb\_drop\_invalid\_header\_fields | Indicates whether HTTP headers with invalid header fields are removed by the load balancer (true) or routed to targets (false). | `bool` | `true` | no |
 | alb\_internal | Deploys a second internal ALB for private APIs. | `bool` | `false` | no |
 | alb\_only | Whether to deploy only an alb and no cloudFront or not with the cluster. | `bool` | `false` | no |
 | alb\_ssl\_policy | The name of the SSL Policy for the listener. Required if protocol is HTTPS or TLS. | `string` | `"ELBSecurityPolicy-2016-08"` | no |
