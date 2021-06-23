@@ -42,6 +42,10 @@ output "ecs_service_iam_role_arn" {
   value = aws_iam_role.ecs_service.arn
 }
 
+output "ecs_codedeploy_iam_role_arn" {
+  value = aws_iam_role.codedeploy_service.arn
+}
+
 output "ecs_service_iam_role_name" {
   value = aws_iam_role.ecs_service.name
 }
