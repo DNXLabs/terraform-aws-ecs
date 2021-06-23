@@ -128,6 +128,7 @@ module "ecs_apps" {
 | alb\_secgrp\_id | n/a |
 | alb\_zone\_id | n/a |
 | ecs\_arn | n/a |
+| ecs\_codedeploy\_iam\_role\_arn | n/a |
 | ecs\_iam\_role\_arn | n/a |
 | ecs\_iam\_role\_name | n/a |
 | ecs\_id | n/a |
