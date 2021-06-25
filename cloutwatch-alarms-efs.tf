@@ -1,5 +1,5 @@
 resource "aws_cloudwatch_metric_alarm" "efs_credits_low" {
-  count = length(var.alarm_sns_topics) > 0 && var.alarm_efs_credits_low_threshold != 0 ? 1 : 0
+  count = !var.fargate_only && length(var.alarm_sns_topics) > 0 && var.alarm_efs_credits_low_threshold != 0 ? 1 : 0
 
   alarm_name                = "${try(data.aws_iam_account_alias.current[0].account_alias, var.alarm_prefix)}-ecs-${var.name}-efs-credits-low"
   comparison_operator       = "LessThanOrEqualToThreshold"
@@ -16,6 +16,6 @@ resource "aws_cloudwatch_metric_alarm" "efs_credits_low" {
   treat_missing_data        = "ignore"
 
   dimensions = {
-    FileSystemId = aws_efs_file_system.ecs.id
+    FileSystemId = aws_efs_file_system.ecs[0].id
   }
 }

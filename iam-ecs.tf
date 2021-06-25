@@ -4,12 +4,14 @@ resource "aws_iam_service_linked_role" "ecs" {
 }
 
 resource "aws_iam_instance_profile" "ecs" {
-  name = "ecs-${var.name}-${data.aws_region.current.name}"
-  role = aws_iam_role.ecs.name
+  count = var.fargate_only ? 0 : 1
+  name  = "ecs-${var.name}-${data.aws_region.current.name}"
+  role  = aws_iam_role.ecs[0].name
 }
 
 resource "aws_iam_role" "ecs" {
-  name = "ecs-${var.name}-${data.aws_region.current.name}"
+  count = var.fargate_only ? 0 : 1
+  name  = "ecs-${var.name}-${data.aws_region.current.name}"
 
   assume_role_policy = <<EOF
 {
@@ -29,11 +31,13 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "ecs_ssm" {
-  role       = aws_iam_role.ecs.name
+  count      = var.fargate_only ? 0 : 1
+  role       = aws_iam_role.ecs[0].name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM"
 }
 
 resource "aws_iam_role_policy_attachment" "ecs_ecs" {
-  role       = aws_iam_role.ecs.name
+  count      = var.fargate_only ? 0 : 1
+  role       = aws_iam_role.ecs[0].name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
 }

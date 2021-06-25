@@ -251,3 +251,7 @@ variable "create_iam_service_linked_role" {
   description = "Create iam_service_linked_role for ECS or not."
 }
 
+variable "fargate_only" {
+  default     = false
+  description = "Enable when cluster is only for fargate and does not require ASG/EC2/EFS infrastructure"
+}

@@ -1,5 +1,5 @@
 resource "aws_cloudwatch_metric_alarm" "asg_high_cpu" {
-  count = length(var.alarm_sns_topics) > 0 && var.alarm_asg_high_cpu_threshold != 0 ? 1 : 0
+  count = !var.fargate_only && length(var.alarm_sns_topics) > 0 && var.alarm_asg_high_cpu_threshold != 0 ? 1 : 0
 
   alarm_name                = "${try(data.aws_iam_account_alias.current[0].account_alias, var.alarm_prefix)}-ecs-${var.name}-asg-high-cpu"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
@@ -16,6 +16,6 @@ resource "aws_cloudwatch_metric_alarm" "asg_high_cpu" {
   treat_missing_data        = "ignore"
 
   dimensions = {
-    AutoScalingGroupName = aws_autoscaling_group.ecs.name
+    AutoScalingGroupName = aws_autoscaling_group.ecs[0].name
   }
 }

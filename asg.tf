@@ -1,10 +1,11 @@
 resource "aws_autoscaling_group" "ecs" {
-  name = "ecs-${var.name}"
+  count = var.fargate_only ? 0 : 1
+  name  = "ecs-${var.name}"
 
   mixed_instances_policy {
     launch_template {
       launch_template_specification {
-        launch_template_id = aws_launch_template.ecs.id
+        launch_template_id = aws_launch_template.ecs[0].id
         version            = "$Latest"
       }
 
@@ -45,10 +46,11 @@ resource "aws_autoscaling_group" "ecs" {
 }
 
 resource "aws_ecs_capacity_provider" "ecs_capacity_provider" {
-  name = "${var.name}-capacity-provider"
+  count = var.fargate_only ? 0 : 1
+  name  = "${var.name}-capacity-provider"
 
   auto_scaling_group_provider {
-    auto_scaling_group_arn         = aws_autoscaling_group.ecs.arn
+    auto_scaling_group_arn         = aws_autoscaling_group.ecs[0].arn
     managed_termination_protection = "DISABLED"
 
     managed_scaling {
