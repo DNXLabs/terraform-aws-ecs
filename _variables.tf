@@ -85,6 +85,12 @@ variable "alb_ssl_policy" {
   description = "The name of the SSL Policy for the listener. Required if protocol is HTTPS or TLS."
 }
 
+variable "alb_internal_ssl_policy" {
+  default     = "ELBSecurityPolicy-TLS-1-2-Ext-2018-06"
+  type        = string
+  description = "The name of the SSL Policy for the listener. Required if protocol is HTTPS or TLS."
+}
+
 variable "alb_drop_invalid_header_fields" {
   default     = true
   type        = bool

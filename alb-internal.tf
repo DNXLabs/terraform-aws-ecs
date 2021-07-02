@@ -34,7 +34,7 @@ resource "aws_lb_listener" "ecs_https_internal" {
   load_balancer_arn = aws_lb.ecs_internal[0].arn
   port              = "443"
   protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  ssl_policy        = var.alb_internal_ssl_policy
   certificate_arn   = var.certificate_internal_arn != "" ? var.certificate_internal_arn : var.certificate_arn
 
   default_action {
@@ -49,7 +49,7 @@ resource "aws_lb_listener" "ecs_test_https_internal" {
   load_balancer_arn = aws_lb.ecs_internal[0].arn
   port              = "8443"
   protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  ssl_policy        = var.alb_internal_ssl_policy
   certificate_arn   = var.certificate_internal_arn != "" ? var.certificate_internal_arn : var.certificate_arn
 
   default_action {
