@@ -6,6 +6,7 @@ resource "aws_lb" "ecs_internal" {
   name                       = "ecs-${var.name}-internal"
   subnets                    = var.private_subnet_ids
   drop_invalid_header_fields = var.alb_drop_invalid_header_fields
+  enable_deletion_protection = var.alb_enable_deletion_protection
 
   security_groups = [
     aws_security_group.alb_internal[0].id,

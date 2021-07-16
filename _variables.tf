@@ -74,6 +74,11 @@ variable "alb_internal" {
   description = "Deploys a second internal ALB for private APIs."
 }
 
+variable "alb_enable_deletion_protection" {
+  default     = false
+  description = "Enable deletion protection for ALBs"
+}
+
 variable "certificate_internal_arn" {
   default     = ""
   description = "certificate arn for internal ALB."

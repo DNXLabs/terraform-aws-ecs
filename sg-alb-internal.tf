@@ -19,7 +19,7 @@ resource "aws_security_group_rule" "https_from_world_to_alb_internal" {
   to_port           = 443
   protocol          = "tcp"
   security_group_id = aws_security_group.alb_internal[0].id
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = data.aws_subnet.private_subnets[*].cidr_block
 }
 
 resource "aws_security_group_rule" "https_test_listener_from_world_to_alb_internal" {
@@ -31,7 +31,7 @@ resource "aws_security_group_rule" "https_test_listener_from_world_to_alb_intern
   to_port           = 8443
   protocol          = "tcp"
   security_group_id = aws_security_group.alb_internal[0].id
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = data.aws_subnet.private_subnets[*].cidr_block
 }
 
 
