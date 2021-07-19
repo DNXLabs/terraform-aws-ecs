@@ -46,6 +46,12 @@ variable "secure_subnet_ids" {
 
 variable "certificate_arn" {}
 
+variable "extra_certificate_arns" {
+  type        = list(string)
+  description = "Extra ACM certificates to add to ALB Listeners"
+  default     = []
+}
+
 # == OPTIONAL VARS
 
 variable "security_group_ids" {
