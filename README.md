@@ -77,6 +77,7 @@ module "ecs_apps" {
 | alb\_internal | Deploys a second internal ALB for private APIs. | `bool` | `false` | no |
 | alb\_internal\_ssl\_policy | The name of the SSL Policy for the listener. Required if protocol is HTTPS or TLS. | `string` | `"ELBSecurityPolicy-TLS-1-2-Ext-2018-06"` | no |
 | alb\_only | Whether to deploy only an alb and no cloudFront or not with the cluster. | `bool` | `false` | no |
+| alb\_sg\_allow\_test\_listener | Whether to allow world access to the test listeners | `bool` | `true` | no |
 | alb\_ssl\_policy | The name of the SSL Policy for the listener. Required if protocol is HTTPS or TLS. | `string` | `"ELBSecurityPolicy-2016-08"` | no |
 | architecture | Architecture to select the AMI, x86\_64 or arm64 | `string` | `"x86_64"` | no |
 | asg\_max | Max number of instances for autoscaling group. | `number` | `4` | no |
