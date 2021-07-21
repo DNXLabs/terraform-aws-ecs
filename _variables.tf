@@ -70,6 +70,11 @@ variable "alb" {
   description = "Whether to deploy an ALB or not with the cluster."
 }
 
+variable "alb_http_listener" {
+  default     = true
+  description = "Whether to enable HTTP listeners"
+}
+
 variable "alb_only" {
   default     = false
   description = "Whether to deploy only an alb and no cloudFront or not with the cluster."

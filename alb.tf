@@ -45,7 +45,7 @@ resource "aws_lb_listener" "ecs_https" {
 }
 
 resource "aws_lb_listener" "ecs_http_redirect" {
-  count = var.alb ? 1 : 0
+  count = var.alb && var.alb_http_listener ? 1 : 0
 
   load_balancer_arn = aws_lb.ecs[0].arn
   port              = "80"
@@ -79,7 +79,7 @@ resource "aws_lb_listener" "ecs_test_https" {
 }
 
 resource "aws_lb_listener" "ecs_test_http_redirect" {
-  count = var.alb ? 1 : 0
+  count = var.alb && var.alb_http_listener ? 1 : 0
 
   load_balancer_arn = aws_lb.ecs[0].arn
   port              = "8080"
@@ -104,7 +104,7 @@ resource "random_string" "alb_prefix" {
 }
 
 resource "aws_lb_target_group" "ecs_default_http" {
-  count = var.alb ? 1 : 0
+  count = var.alb && var.alb_http_listener ? 1 : 0
 
   name     = replace(substr("ecs-${var.name}-default-http-${random_string.alb_prefix.result}", 0, 32), "/-+$/", "")
   port     = 80

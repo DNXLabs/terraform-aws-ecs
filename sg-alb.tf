@@ -11,7 +11,7 @@ resource "aws_security_group" "alb" {
 }
 
 resource "aws_security_group_rule" "http_from_world_to_alb" {
-  count = var.alb ? 1 : 0
+  count = var.alb && var.alb_http_listener ? 1 : 0
 
   description       = "HTTP Redirect ECS ALB"
   type              = "ingress"
