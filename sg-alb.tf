@@ -35,7 +35,7 @@ resource "aws_security_group_rule" "https_from_world_to_alb" {
 }
 
 resource "aws_security_group_rule" "https_test_listener_from_world_to_alb" {
-  count = var.alb ? 1 : 0
+  count = var.alb && var.alb_sg_allow_test_listener ? 1 : 0
 
   description       = "HTTPS ECS ALB Test Listener"
   type              = "ingress"

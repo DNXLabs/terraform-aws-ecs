@@ -75,6 +75,11 @@ variable "alb_http_listener" {
   description = "Whether to enable HTTP listeners"
 }
 
+variable "alb_sg_allow_test_listener" {
+  default = true
+  description = "Whether to allow world access to the test listeners"
+}
+
 variable "alb_only" {
   default     = false
   description = "Whether to deploy only an alb and no cloudFront or not with the cluster."
