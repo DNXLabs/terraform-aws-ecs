@@ -82,7 +82,7 @@ variable "alb_http_listener" {
 }
 
 variable "alb_sg_allow_test_listener" {
-  default = true
+  default     = true
   description = "Whether to allow world access to the test listeners"
 }
 

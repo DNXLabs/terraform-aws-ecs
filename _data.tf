@@ -18,7 +18,7 @@ data "aws_ami" "amzn" {
 
 data "aws_subnet" "private_subnets" {
   count = length(var.private_subnet_ids)
-  id = var.private_subnet_ids[count.index]
+  id    = var.private_subnet_ids[count.index]
 }
 
 data "aws_caller_identity" "current" {}
