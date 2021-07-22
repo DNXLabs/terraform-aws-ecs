@@ -108,6 +108,7 @@ module "ecs_apps" {
 | schedule\_cron\_start | Cron expression to define when to trigger a start of the auto-scaling group. E.g. '0 20 \* \* \*' to start at 8pm GMT time. | `string` | `""` | no |
 | schedule\_cron\_stop | Cron expression to define when to trigger a stop of the auto-scaling group. E.g. '0 10 \* \* \*' to stop at 10am GMT time. | `string` | `""` | no |
 | secure\_subnet\_ids | List of secure subnet IDs for EFS. | `list(string)` | n/a | yes |
+| security\_group\_ecs\_nodes\_outbound\_cidrs | ECS Nodes outbound allowed CIDRs for the security group. | `list(string)` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
 | security\_group\_ids | Extra security groups for instances. | `list(string)` | `[]` | no |
 | target\_group\_arns | List of target groups for ASG to register. | `list(string)` | `[]` | no |
 | throughput\_mode | Throughput mode for the file system. Defaults to bursting. Valid values: bursting, provisioned. | `string` | `"bursting"` | no |
