@@ -42,12 +42,13 @@ resource "aws_security_group_rule" "all_from_ecs_nodes_to_ecs_nodes" {
   source_security_group_id = aws_security_group.ecs_nodes.id
 }
 
-resource "aws_security_group_rule" "all_from_ecs_nodes_world" {
-  description       = "Traffic to internet"
+resource "aws_security_group_rule" "all_from_ecs_nodes_outbound" {
+  count             = length(var.security_group_ecs_nodes_outbound_cidrs)
+  description       = "Traffic to outbound cidr ${var.security_group_ecs_nodes_outbound_cidrs[count.index]}"
   type              = "egress"
   from_port         = 0
   to_port           = 0
   protocol          = "-1"
   security_group_id = aws_security_group.ecs_nodes.id
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = [var.security_group_ecs_nodes_outbound_cidrs[count.index]]
 }

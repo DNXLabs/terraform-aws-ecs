@@ -60,6 +60,12 @@ variable "security_group_ids" {
   description = "Extra security groups for instances."
 }
 
+variable "security_group_ecs_nodes_outbound_cidrs" {
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+  description = "ECS Nodes outbound allowed CIDRs for the security group."
+}
+
 variable "userdata" {
   default     = ""
   description = "Extra commands to pass to userdata."
@@ -220,6 +226,7 @@ variable "enable_schedule" {
   default     = false
   description = "Enables schedule to shut down and start up instances outside business hours."
 }
+
 variable "schedule_cron_start" {
   type        = string
   default     = ""
