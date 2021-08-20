@@ -45,8 +45,8 @@ resource "aws_iam_role_policy" "ssm_policy" {
 EOF
 }
 
-resource "aws_iam_role_policy" "s3_policy" {
-  name = "ecs-s3-policy"
+resource "aws_iam_role_policy" "fargate-tunnel" {
+  name = "ecs-fargate-tunnel"
   role = aws_iam_role.ecs_task.name
 
   policy = <<EOF
@@ -54,11 +54,14 @@ resource "aws_iam_role_policy" "s3_policy" {
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Action": [
-        "s3:GetObject"
-      ],
       "Effect": "Allow",
-      "Resource": ["arn:aws:s3:::prod-${data.aws_region.current.name}-starport-layer-bucket/*"]
+      "Action": [
+        "ssmmessages:CreateControlChannel",
+        "ssmmessages:CreateDataChannel",
+        "ssmmessages:OpenControlChannel",
+        "ssmmessages:OpenDataChannel"
+      ],
+      "Resource": "*"
     }
   ]
 }
