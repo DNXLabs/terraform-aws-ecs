@@ -52,3 +52,13 @@ resource "aws_security_group_rule" "all_from_ecs_nodes_outbound" {
   security_group_id = aws_security_group.ecs_nodes.id
   cidr_blocks       = [var.security_group_ecs_nodes_outbound_cidrs[count.index]]
 }
+
+resource "aws_security_group_rule" "all_from_ecs_nodes_outbound_s3" {
+  description       = "Traffic to outbound S3"
+  type              = "egress"
+  from_port         = 443
+  to_port           = 443
+  protocol          = "tcp"
+  security_group_id = aws_security_group.ecs_nodes.id
+  prefix_list_ids   = [aws_ec2_managed_prefix_list.s3.id]
+}
