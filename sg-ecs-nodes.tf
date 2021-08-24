@@ -60,5 +60,5 @@ resource "aws_security_group_rule" "all_from_ecs_nodes_outbound_s3" {
   to_port           = 443
   protocol          = "tcp"
   security_group_id = aws_security_group.ecs_nodes.id
-  prefix_list_ids   = [aws_ec2_managed_prefix_list.s3.id]
+  prefix_list_ids   = [data.aws_ec2_managed_prefix_list.s3.id]
 }
