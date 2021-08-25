@@ -32,6 +32,18 @@ resource "aws_security_group_rule" "all_from_alb_internal_to_ecs_nodes" {
   source_security_group_id = aws_security_group.alb_internal[0].id
 }
 
+resource "aws_security_group_rule" "ssh_from_vpn_to_ecs_nodes" {
+  count = var.ec2_key_enabled ? 1 : 0
+
+  description       = "ssh from VPN"
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks       = var.vpn_cidr
+  security_group_id = aws_security_group.ecs_nodes.id
+}
+
 resource "aws_security_group_rule" "all_from_ecs_nodes_to_ecs_nodes" {
   description              = "Traffic between ECS nodes"
   type                     = "ingress"
