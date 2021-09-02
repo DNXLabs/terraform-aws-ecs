@@ -33,7 +33,21 @@ resource "aws_launch_template" "ecs" {
 
   user_data = base64encode(data.template_file.userdata[0].rendered)
 
+  key_name = var.ec2_key_enabled ? aws_key_pair.generated_key[0].key_name : null
+
   lifecycle {
     create_before_destroy = true
   }
+}
+
+resource "tls_private_key" "algorithm" {
+  count     = var.ec2_key_enabled ? 1 : 0
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
+resource "aws_key_pair" "generated_key" {
+  count      = var.ec2_key_enabled ? 1 : 0
+  key_name   = "${var.name}-key"
+  public_key = tls_private_key.algorithm[0].public_key_openssh
 }

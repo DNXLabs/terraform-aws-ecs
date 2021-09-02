@@ -289,3 +289,13 @@ variable "fargate_only" {
   default     = false
   description = "Enable when cluster is only for fargate and does not require ASG/EC2/EFS infrastructure"
 }
+
+variable "ec2_key_enabled" {
+  default     = false
+  description = "Generate a SSH private key and include in launch template of ECS nodes"
+}
+
+variable "vpn_cidr" {
+  default     = ["10.37.0.0/16"]
+  description = "Cidr of VPN to grant ssh access to ECS nodes"
+}
