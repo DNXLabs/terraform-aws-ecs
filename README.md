@@ -56,6 +56,7 @@ module "ecs_apps" {
 | aws | n/a |
 | random | n/a |
 | template | n/a |
+| tls | n/a |
 
 ## Inputs
 
@@ -90,6 +91,7 @@ module "ecs_apps" {
 | certificate\_arn | n/a | `any` | n/a | yes |
 | certificate\_internal\_arn | certificate arn for internal ALB. | `string` | `""` | no |
 | create\_iam\_service\_linked\_role | Create iam\_service\_linked\_role for ECS or not. | `bool` | `false` | no |
+| ec2\_key\_enabled | Generate a SSH private key and include in launch template of ECS nodes | `bool` | `false` | no |
 | enable\_schedule | Enables schedule to shut down and start up instances outside business hours. | `bool` | `false` | no |
 | extra\_certificate\_arns | Extra ACM certificates to add to ALB Listeners | `list(string)` | `[]` | no |
 | fargate\_only | Enable when cluster is only for fargate and does not require ASG/EC2/EFS infrastructure | `bool` | `false` | no |
@@ -114,6 +116,7 @@ module "ecs_apps" {
 | throughput\_mode | Throughput mode for the file system. Defaults to bursting. Valid values: bursting, provisioned. | `string` | `"bursting"` | no |
 | userdata | Extra commands to pass to userdata. | `string` | `""` | no |
 | vpc\_id | VPC ID to deploy the ECS cluster. | `any` | n/a | yes |
+| vpn\_cidr | Cidr of VPN to grant ssh access to ECS nodes | `list` | <pre>[<br>  "10.37.0.0/16"<br>]</pre> | no |
 | wafv2\_enable | Deploys WAF V2 with Managed rule groups | `bool` | `false` | no |
 | wafv2\_managed\_rule\_groups | List of WAF V2 managed rule groups | `list(string)` | <pre>[<br>  "AWSManagedRulesCommonRuleSet"<br>]</pre> | no |
 
@@ -146,6 +149,7 @@ module "ecs_apps" {
 | ecs\_task\_iam\_role\_arn | n/a |
 | ecs\_task\_iam\_role\_name | n/a |
 | efs\_fs\_id | n/a |
+| private\_key\_pem | n/a |
 
 <!--- END_TF_DOCS --->
 
