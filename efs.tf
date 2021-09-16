@@ -1,5 +1,5 @@
 resource "aws_efs_file_system" "ecs" {
-  count          = var.fargate_only ? 0 : 1
+  count          = var.create_efs ? 1 : 0
   creation_token = "ecs-${var.name}"
   encrypted      = true
   kms_key_id     = var.kms_key_arn != "" ? var.kms_key_arn : null
@@ -18,7 +18,7 @@ resource "aws_efs_file_system" "ecs" {
 }
 
 resource "aws_efs_mount_target" "ecs" {
-  count          = !var.fargate_only ? length(var.secure_subnet_ids) : 0
+  count          = var.create_efs ? length(var.secure_subnet_ids) : 0
   file_system_id = aws_efs_file_system.ecs[0].id
   subnet_id      = element(var.secure_subnet_ids, count.index)
 
@@ -32,7 +32,7 @@ resource "aws_efs_mount_target" "ecs" {
 }
 
 resource "aws_security_group" "efs" {
-  count       = var.fargate_only ? 0 : 1
+  count       = var.create_efs ? 1 : 0
   name        = "ecs-${var.name}-efs"
   description = "for EFS to talk to ECS cluster"
   vpc_id      = var.vpc_id
@@ -43,7 +43,7 @@ resource "aws_security_group" "efs" {
 }
 
 resource "aws_security_group_rule" "nfs_from_ecs_to_efs" {
-  count                    = var.fargate_only ? 0 : 1
+  count                    = var.create_efs ? 1 : 0
   description              = "ECS to EFS"
   type                     = "ingress"
   from_port                = 2049

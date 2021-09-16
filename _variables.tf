@@ -299,3 +299,9 @@ variable "vpn_cidr" {
   default     = ["10.37.0.0/16"]
   description = "Cidr of VPN to grant ssh access to ECS nodes"
 }
+
+variable "create_efs" {
+  type        = bool
+  default     = true
+  description = "Enables creation of EFS volume for cluster"
+}
