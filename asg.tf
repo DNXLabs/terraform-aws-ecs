@@ -29,6 +29,8 @@ resource "aws_autoscaling_group" "ecs" {
   min_size = var.asg_min
   max_size = var.asg_max
 
+  capacity_rebalance = var.asg_capacity_rebalance
+
   protect_from_scale_in = var.asg_protect_from_scale_in
 
   tag {
