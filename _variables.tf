@@ -299,3 +299,8 @@ variable "vpn_cidr" {
   default     = ["10.37.0.0/16"]
   description = "Cidr of VPN to grant ssh access to ECS nodes"
 }
+
+variable "capacity_rebalance" {
+  default     = false
+  description = "Indicates whether capacity rebalance is enabled"
+}
