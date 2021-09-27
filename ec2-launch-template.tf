@@ -13,7 +13,7 @@ resource "aws_launch_template" "ecs" {
   count         = var.fargate_only ? 0 : 1
   name_prefix   = "ecs-${var.name}-"
   image_id      = data.aws_ami.amzn.image_id
-  instance_type = var.instance_types[0]
+  instance_type = length(var.instance_types) == 0 ? "t2.micro" : var.instance_types[0]
 
   iam_instance_profile {
     name = aws_iam_instance_profile.ecs[0].name
