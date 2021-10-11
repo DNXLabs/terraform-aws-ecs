@@ -276,7 +276,19 @@ variable "wafv2_enable" {
 variable "wafv2_managed_rule_groups" {
   type        = list(string)
   default     = ["AWSManagedRulesCommonRuleSet"]
-  description = "List of WAF V2 managed rule groups"
+  description = "List of WAF V2 managed rule groups, set to count"
+}
+
+variable "wafv2_managed_block_rule_groups" {
+  type        = list(string)
+  default     = []
+  description = "List of WAF V2 managed rule groups, set to block"
+}
+
+variable "wafv2_rate_limit_rule" {
+  type        = number
+  default     = 0
+  description = "The limit on requests per 5-minute period for a single originating IP address (leave 0 to disable)"
 }
 
 variable "create_iam_service_linked_role" {
