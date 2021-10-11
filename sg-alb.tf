@@ -58,3 +58,15 @@ resource "aws_security_group_rule" "to_ecs_nodes" {
   security_group_id        = aws_security_group.alb[0].id
   source_security_group_id = aws_security_group.ecs_nodes.id
 }
+
+resource "aws_security_group_rule" "https_from_alb_to_world" {
+  count = var.alb && var.alb_sg_allow_egress_https_world ? 1 : 0
+
+  description       = "Traffic from ECS Nodes to HTTPS endpoints"
+  type              = "egress"
+  from_port         = 443
+  to_port           = 443
+  protocol          = "tcp"
+  security_group_id = aws_security_group.alb[0].id
+  cidr_blocks       = ["0.0.0.0/0"]
+}
