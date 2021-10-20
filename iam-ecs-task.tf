@@ -34,6 +34,18 @@ resource "aws_iam_role_policy" "ssm_policy" {
     {
       "Effect": "Allow",
       "Action": [
+        "secretsmanager:GetResourcePolicy",
+        "secretsmanager:GetSecretValue",
+        "secretsmanager:DescribeSecret",
+        "secretsmanager:ListSecretVersionIds"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
         "ssm:GetParameters"
       ],
       "Resource": [
