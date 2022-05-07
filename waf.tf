@@ -51,7 +51,7 @@ resource "aws_wafv2_web_acl" "waf_alb" {
       visibility_config {
         cloudwatch_metrics_enabled = true
         metric_name                = "waf-${var.name}-${rule.value.type}-${rule.value.name}"
-        sampled_requests_enabled   = false
+        sampled_requests_enabled   = var.wafv2_sampled_requests
       }
     }
   }
@@ -63,7 +63,7 @@ resource "aws_wafv2_web_acl" "waf_alb" {
   visibility_config {
     cloudwatch_metrics_enabled = true
     metric_name                = "waf-${var.name}-general"
-    sampled_requests_enabled   = false
+    sampled_requests_enabled   = var.wafv2_sampled_requests
   }
 }
 
@@ -82,4 +82,16 @@ resource "aws_wafv2_web_acl_association" "waf_alb_association" {
   count        = var.alb && var.wafv2_enable ? 1 : 0
   resource_arn = aws_lb.ecs[0].arn
   web_acl_arn  = aws_wafv2_web_acl.waf_alb[0].arn
+}
+
+resource "aws_wafv2_web_acl_logging_configuration" "waf_alb_logging" {
+  count                   = var.alb && var.wafv2_enable && length(var.wafv2_logging_destinations) > 0 ? 1 : 0
+  log_destination_configs = var.wafv2_logging_destinations
+  resource_arn            = aws_wafv2_web_acl.waf_alb[0].arn
+  
+  redacted_fields {
+    single_header {
+      name = "authorization"
+    }
+  }
 }

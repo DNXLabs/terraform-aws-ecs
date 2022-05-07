@@ -296,6 +296,17 @@ variable "wafv2_rate_limit_rule" {
   description = "The limit on requests per 5-minute period for a single originating IP address (leave 0 to disable)"
 }
 
+variable "wafv2_logging_destinations" {
+  type        = list(string)
+  default     = []
+  description = "The Amazon Kinesis Data Firehose, Cloudwatch Log group, or S3 bucket ARNs to stream the WAF V2 logs to"
+}
+
+variable "wafv2_sampled_requests" {
+  default     = false
+  description = "Stores samples from the last 3 hours of requests that match the WAF V2 web ACL rules"
+}
+
 variable "create_iam_service_linked_role" {
   type        = bool
   default     = false

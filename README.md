@@ -124,6 +124,8 @@ module "ecs_apps" {
 | wafv2\_managed\_block\_rule\_groups | List of WAF V2 managed rule groups, set to block | `list(string)` | `[]` | no |
 | wafv2\_managed\_rule\_groups | List of WAF V2 managed rule groups, set to count | `list(string)` | <pre>[<br>  "AWSManagedRulesCommonRuleSet"<br>]</pre> | no |
 | wafv2\_rate\_limit\_rule | The limit on requests per 5-minute period for a single originating IP address (leave 0 to disable) | `number` | `0` | no |
+| wafv2_logging_destinations | The Amazon Kinesis Data Firehose, Cloudwatch Log group, or S3 bucket ARNs to stream the WAF V2 logs to | `list(string)` | `[]` | no | 
+| wafv2_sampled_requests | Store samples from the last 3 hours of requests that match the WAF V2 web ACL rules | `bool` | `false` | no |
 
 ## Outputs
 
