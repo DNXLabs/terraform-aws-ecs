@@ -101,3 +101,7 @@ output "efs_fs_id" {
 output "private_key_pem" {
   value = try(tls_private_key.algorithm[0].private_key_pem, "")
 }
+
+output "alb_internal_secgrp_id" {
+  value = aws_security_group.alb_internal.*.id
+}
