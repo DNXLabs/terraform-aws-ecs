@@ -330,5 +330,10 @@ variable "asg_capacity_rebalance" {
 }
 
 variable "efs_lifecycle_policy" {
+  type = object(({
+    enabled = bool
+    transition_to_ia = string
+    transition_to_primary_storage_class = string
+  }))
   description = "Enable EFS Lifecycle configuration"
 }
