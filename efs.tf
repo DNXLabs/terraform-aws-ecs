@@ -8,16 +8,16 @@ resource "aws_efs_file_system" "ecs" {
   provisioned_throughput_in_mibps = var.provisioned_throughput_in_mibps
 
   dynamic "lifecycle_policy" {
-    for_each = var.efs_lifecycle_policy["enabled"] ? [1] : []
+    for_each = var.efs_lifecycle_transition_to_ia != "" ? [1] : []
     content {
-      transition_to_ia = var.efs_lifecycle_policy["transition_to_ia"]
+      transition_to_ia = var.efs_lifecycle_transition_to_ia
     }
   }
 
   dynamic "lifecycle_policy" {
-    for_each = var.efs_lifecycle_policy["enabled"] ? [1] : []
+    for_each = var.efs_lifecycle_transition_to_primary_storage_class ? [1] : []
     content {
-      transition_to_primary_storage_class = var.efs_lifecycle_policy["transition_to_primary_storage_class"]
+      transition_to_primary_storage_class = "AFTER_1_ACCESS"
     }
   }
 
