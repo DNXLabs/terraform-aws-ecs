@@ -7,6 +7,20 @@ resource "aws_efs_file_system" "ecs" {
   throughput_mode                 = var.throughput_mode
   provisioned_throughput_in_mibps = var.provisioned_throughput_in_mibps
 
+  dynamic "lifecycle_policy" {
+    for_each = var.efs_lifecycle_policy["enabled"] ? [1] : []
+    content {
+      transition_to_ia = var.efs_lifecycle_policy["transition_to_ia"]
+    }
+  }
+
+  dynamic "lifecycle_policy" {
+    for_each = var.efs_lifecycle_policy["enabled"] ? [1] : []
+    content {
+      transition_to_primary_storage_class = var.efs_lifecycle_policy["transition_to_primary_storage_class"]
+    }
+  }
+
   tags = {
     Name   = "ecs-${var.name}"
     Backup = var.backup

@@ -323,9 +323,12 @@ variable "create_efs" {
   description = "Enables creation of EFS volume for cluster"
 }
 
-
 variable "asg_capacity_rebalance" {
   type        = bool
   default     = false
   description = "Indicates whether capacity rebalance is enabled"
+}
+
+variable "efs_lifecycle_policy" {
+  description = "Enable EFS Lifecycle configuration"
 }
