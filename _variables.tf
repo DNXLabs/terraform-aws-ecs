@@ -330,8 +330,8 @@ variable "asg_capacity_rebalance" {
 }
 
 variable "efs_lifecycle_transition_to_ia" {
-  type = string
-  default = ""
+  type        = string
+  default     = ""
   description = "Option to enable EFS Lifecycle Transaction to IA"
 
   validation {
@@ -341,7 +341,7 @@ variable "efs_lifecycle_transition_to_ia" {
 }
 
 variable "efs_lifecycle_transition_to_primary_storage_class" {
-  type = bool
-  default = false
+  type        = bool
+  default     = false
   description = "Option to enable EFS Lifecycle Transaction to Primary Storage Class"
 }
