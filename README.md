@@ -95,6 +95,8 @@ module "ecs_apps" {
 | create\_efs | Enables creation of EFS volume for cluster | `bool` | `true` | no |
 | create\_iam\_service\_linked\_role | Create iam\_service\_linked\_role for ECS or not. | `bool` | `false` | no |
 | ec2\_key\_enabled | Generate a SSH private key and include in launch template of ECS nodes | `bool` | `false` | no |
+| efs\_lifecycle\_transition\_to\_ia | Option to enable EFS Lifecycle Transaction to IA | `string` | `""` | no |
+| efs\_lifecycle\_transition\_to\_primary\_storage\_class | Option to enable EFS Lifecycle Transaction to Primary Storage Class | `bool` | `false` | no |
 | enable\_schedule | Enables schedule to shut down and start up instances outside business hours. | `bool` | `false` | no |
 | extra\_certificate\_arns | Extra ACM certificates to add to ALB Listeners | `list(string)` | `[]` | no |
 | fargate\_only | Enable when cluster is only for fargate and does not require ASG/EC2/EFS infrastructure | `bool` | `false` | no |

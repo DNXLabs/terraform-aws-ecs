@@ -323,9 +323,25 @@ variable "create_efs" {
   description = "Enables creation of EFS volume for cluster"
 }
 
-
 variable "asg_capacity_rebalance" {
   type        = bool
   default     = false
   description = "Indicates whether capacity rebalance is enabled"
+}
+
+variable "efs_lifecycle_transition_to_ia" {
+  type        = string
+  default     = ""
+  description = "Option to enable EFS Lifecycle Transaction to IA"
+
+  validation {
+    condition     = contains(["AFTER_7_DAYS", "AFTER_14_DAYS", "AFTER_30_DAYS", "AFTER_60_DAYS", "AFTER_90_DAYS", ""], var.efs_lifecycle_transition_to_ia)
+    error_message = "Indicates how long it takes to transition files to the IA storage class. Valid values: AFTER_7_DAYS, AFTER_14_DAYS, AFTER_30_DAYS, AFTER_60_DAYS, AFTER_90_DAYS. Or leave empty if not used."
+  }
+}
+
+variable "efs_lifecycle_transition_to_primary_storage_class" {
+  type        = bool
+  default     = false
+  description = "Option to enable EFS Lifecycle Transaction to Primary Storage Class"
 }
