@@ -94,7 +94,9 @@ module "ecs_apps" {
 | certificate\_internal\_arn | certificate arn for internal ALB. | `string` | `""` | no |
 | create\_efs | Enables creation of EFS volume for cluster | `bool` | `true` | no |
 | create\_iam\_service\_linked\_role | Create iam\_service\_linked\_role for ECS or not. | `bool` | `false` | no |
+| ebs\_key\_arn | ARN of a KMS Key to use on EBS volumes | `string` | `""` | no |
 | ec2\_key\_enabled | Generate a SSH private key and include in launch template of ECS nodes | `bool` | `false` | no |
+| efs\_key\_arn | ARN of a KMS Key to use on EFS volumes | `string` | `""` | no |
 | efs\_lifecycle\_transition\_to\_ia | Option to enable EFS Lifecycle Transaction to IA | `string` | `""` | no |
 | efs\_lifecycle\_transition\_to\_primary\_storage\_class | Option to enable EFS Lifecycle Transaction to Primary Storage Class | `bool` | `false` | no |
 | enable\_schedule | Enables schedule to shut down and start up instances outside business hours. | `bool` | `false` | no |
@@ -103,7 +105,6 @@ module "ecs_apps" {
 | instance\_types | Instance type for ECS workers | `list(any)` | `[]` | no |
 | instance\_volume\_size | Volume size for docker volume (in GB). | `number` | `30` | no |
 | instance\_volume\_size\_root | Volume size for root volume (in GB). | `number` | `16` | no |
-| kms\_key\_arn | ARN of a KMS Key to use on EFS and EBS volumes | `string` | `""` | no |
 | lb\_access\_logs\_bucket | Bucket to store logs from lb access. | `string` | `""` | no |
 | lb\_access\_logs\_prefix | Bucket prefix to store lb access logs. | `string` | `""` | no |
 | name | Name of this ECS cluster. | `any` | n/a | yes |
