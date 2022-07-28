@@ -32,6 +32,10 @@ data "aws_kms_key" "ebs" {
   key_id = "alias/aws/ebs"
 }
 
+data "aws_kms_key" "efs" {
+  key_id = "alias/aws/elasticfilesystem"
+}
+
 data "aws_ec2_managed_prefix_list" "s3" {
   name = "com.amazonaws.${data.aws_region.current.name}.s3"
 }

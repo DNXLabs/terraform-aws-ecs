@@ -267,9 +267,15 @@ variable "alarm_prefix" {
   default     = "alarm"
 }
 
-variable "kms_key_arn" {
+variable "ebs_key_arn" {
   type        = string
-  description = "ARN of a KMS Key to use on EFS and EBS volumes"
+  description = "ARN of a KMS Key to use on EBS volumes"
+  default     = ""
+}
+
+variable "efs_key_arn" {
+  type        = string
+  description = "ARN of a KMS Key to use on EFS volumes"
   default     = ""
 }
 
