@@ -121,6 +121,7 @@ module "ecs_apps" {
 | target\_group\_arns | List of target groups for ASG to register. | `list(string)` | `[]` | no |
 | throughput\_mode | Throughput mode for the file system. Defaults to bursting. Valid values: bursting, provisioned. | `string` | `"bursting"` | no |
 | userdata | Extra commands to pass to userdata. | `string` | `""` | no |
+| volume\_type | The EBS volume type | `string` | `"gp2"` | no |
 | vpc\_id | VPC ID to deploy the ECS cluster. | `any` | n/a | yes |
 | vpn\_cidr | Cidr of VPN to grant ssh access to ECS nodes | `list` | <pre>[<br>  "10.37.0.0/16"<br>]</pre> | no |
 | wafv2\_enable | Deploys WAF V2 with Managed rule groups | `bool` | `false` | no |
