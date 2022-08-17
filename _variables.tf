@@ -14,6 +14,10 @@ variable "architecture" {
   default     = "x86_64"
   description = "Architecture to select the AMI, x86_64 or arm64"
 }
+variable "volume_type" {
+  default     = "gp3"
+  description = "The EBS volume type"
+}
 
 variable "on_demand_percentage" {
   description = "Percentage of on-demand intances vs spot."

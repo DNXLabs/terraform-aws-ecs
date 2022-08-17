@@ -25,6 +25,7 @@ resource "aws_launch_template" "ecs" {
     ebs {
       volume_size = var.instance_volume_size
       encrypted   = true
+      volume_type = var.volume_type
       kms_key_id  = var.ebs_key_arn != "" ? var.ebs_key_arn : null
     }
   }
