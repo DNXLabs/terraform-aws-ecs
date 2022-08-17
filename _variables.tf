@@ -15,7 +15,7 @@ variable "architecture" {
   description = "Architecture to select the AMI, x86_64 or arm64"
 }
 variable "volume_type" {
-  default     = "gp3"
+  default     = "gp2"
   description = "The EBS volume type"
 }
 
