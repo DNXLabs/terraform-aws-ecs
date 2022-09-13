@@ -101,6 +101,7 @@ module "ecs_apps" {
 | efs\_lifecycle\_transition\_to\_primary\_storage\_class | Option to enable EFS Lifecycle Transaction to Primary Storage Class | `bool` | `false` | no |
 | enable\_schedule | Enables schedule to shut down and start up instances outside business hours. | `bool` | `false` | no |
 | extra\_certificate\_arns | Extra ACM certificates to add to ALB Listeners | `list(string)` | `[]` | no |
+| extra\_task\_policies\_arn | Extra policies to add to the task definition permissions | `list(string)` | `[]` | no |
 | fargate\_only | Enable when cluster is only for fargate and does not require ASG/EC2/EFS infrastructure | `bool` | `false` | no |
 | instance\_types | Instance type for ECS workers | `list(any)` | `[]` | no |
 | instance\_volume\_size | Volume size for docker volume (in GB). | `number` | `30` | no |
