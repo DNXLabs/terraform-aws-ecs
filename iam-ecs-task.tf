@@ -90,7 +90,7 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "extra_task_policies_arn" {
-  for_each = toset(try(var.extra_task_policies_arn, []))
+  for_each   = toset(try(var.extra_task_policies_arn, []))
   role       = aws_iam_role.ecs_task.name
   policy_arn = each.key
 }
