@@ -355,3 +355,9 @@ variable "efs_lifecycle_transition_to_primary_storage_class" {
   default     = false
   description = "Option to enable EFS Lifecycle Transaction to Primary Storage Class"
 }
+
+variable "extra_task_policies_arn" {
+  type        = list(string)
+  default     = []
+  description = "Extra policies to add to the task definition permissions"
+}

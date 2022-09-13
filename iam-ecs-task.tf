@@ -88,3 +88,9 @@ resource "aws_iam_role_policy" "s3_policy" {
 }
 EOF
 }
+
+resource "aws_iam_role_policy_attachment" "extra_task_policies_arn" {
+  count      = length(var.extra_task_policies_arn) > 0 ? length(var.extra_task_policies_arn) : 0
+  role       = aws_iam_role.ecs_task.name
+  policy_arn = var.extra_task_policies_arn[count.index]
+}
