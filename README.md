@@ -37,7 +37,7 @@ module "ecs_apps" {
   on_demand_percentage = 0
   asg_min              = 1
   asg_max              = 4
-  asg_memory_target    = 50
+  asg_target_capacity    = 50
 }
 ```
 
