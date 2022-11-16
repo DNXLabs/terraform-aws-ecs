@@ -323,9 +323,14 @@ variable "create_efs" {
   description = "Enables creation of EFS volume for cluster"
 }
 
-
 variable "asg_capacity_rebalance" {
   type        = bool
   default     = false
   description = "Indicates whether capacity rebalance is enabled"
+}
+
+variable "container_insights" {
+  type        = bool
+  default     = false
+  description = "Option to enable Container Insights on the cluster"
 }
