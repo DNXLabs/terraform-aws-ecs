@@ -361,3 +361,9 @@ variable "extra_task_policies_arn" {
   default     = []
   description = "Extra policies to add to the task definition permissions"
 }
+
+variable "container_insights" {
+  type        = bool
+  default     = false
+  description = "Enables CloudWatch Container Insights for a cluster."
+}

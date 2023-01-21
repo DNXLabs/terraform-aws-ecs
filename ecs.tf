@@ -7,6 +7,11 @@ resource "aws_ecs_cluster" "ecs" {
     "FARGATE_SPOT"
   ])
 
+  setting {
+    name  = "containerInsights"
+    value = var.container_insights ? "enabled" : "disabled"
+  }
+
   lifecycle {
     ignore_changes = [
       tags

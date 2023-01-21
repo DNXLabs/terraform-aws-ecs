@@ -92,6 +92,7 @@ module "ecs_apps" {
 | backup | Assing a backup tag to efs resource - Backup will be performed by AWS Backup. | `string` | `"true"` | no |
 | certificate\_arn | n/a | `any` | n/a | yes |
 | certificate\_internal\_arn | certificate arn for internal ALB. | `string` | `""` | no |
+| container\_insights | Enables CloudWatch Container Insights for a cluster. | `bool` | `false` | no |
 | create\_efs | Enables creation of EFS volume for cluster | `bool` | `true` | no |
 | create\_iam\_service\_linked\_role | Create iam\_service\_linked\_role for ECS or not. | `bool` | `false` | no |
 | ebs\_key\_arn | ARN of a KMS Key to use on EBS volumes | `string` | `""` | no |
