@@ -363,6 +363,7 @@ variable "extra_task_policies_arn" {
 }
 
 variable "container_insights" {
+  type        = bool
   default     = false
   description = "Enables CloudWatch Container Insights for a cluster."
 }
