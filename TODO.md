@@ -1,3 +1,0 @@
-- change to launch template
-- add spot
-- dns records
