@@ -90,6 +90,11 @@ variable "alb_sg_allow_test_listener" {
   description = "Whether to allow world access to the test listeners"
 }
 
+variable "alb_sg_custom_cidr_blocks" {
+  default     = ["0.0.0.0/0"]
+  description = "Block public access to ALB and stick to these CIDR blocks only"
+}
+
 variable "alb_additional_sg" {
   default     = []
   description = "pass addition list of security groups to add to ALB"
