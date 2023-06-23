@@ -100,6 +100,11 @@ variable "alb_sg_allow_api_gateway" {
   description = "Whether to allow API Gateway IP range to access"
 }
 
+variable "alb_sg_allow_api_gateway_region" {
+  default     = ""
+  description = "Use this region to allow API Gateway IP range"
+}
+
 variable "alb_sg_allow_egress_https_world" {
   default     = true
   description = "Whether to allow ALB to access HTTPS endpoints - needed when using OIDC authentication"

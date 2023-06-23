@@ -8,11 +8,11 @@ resource "aws_lb" "ecs" {
   drop_invalid_header_fields = var.alb_drop_invalid_header_fields
   enable_deletion_protection = var.alb_enable_deletion_protection
 
-  security_groups = compact([
+  security_groups = compact(
+    concat(try(aws_security_group.from_cloudfront.*.id, []), [
     aws_security_group.alb[0].id,
-    try(aws_security_group.from_cloudfront[0].id, ""),
     try(aws_security_group.from_api_gateway[0].id, "")
-  ])
+  ]))
 
   idle_timeout = 400
 

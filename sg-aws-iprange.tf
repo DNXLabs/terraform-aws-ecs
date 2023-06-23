@@ -1,26 +1,36 @@
 data "aws_ip_ranges" "cloudfront" {
+  regions  = ["global"]
   services = ["cloudfront"]
 }
 
 data "aws_ip_ranges" "api_gateway" {
+  regions  = compact([data.aws_region.current.name,try(var.alb_sg_allow_api_gateway_region, "")])
   services = ["api_gateway"]
 }
 
+locals {
+  ip_chunks = chunklist(data.aws_ip_ranges.cloudfront.cidr_blocks, 50)
+}
+
 resource "aws_security_group" "from_cloudfront" {
-  count = var.alb && var.alb_sg_allow_cloudfront ? 1 : 0
-  name = "from-cloudfront-${var.name}"
+  count = var.alb && var.alb_sg_allow_cloudfront ? length(local.ip_chunks) : 0
+  name = "from-cloudfront-${var.name}-${count.index}"
   description = "SG for Request from Cloudfront"
   vpc_id      = var.vpc_id
 
-  ingress {
-    from_port        = "443"
-    to_port          = "443"
-    protocol         = "tcp"
-    cidr_blocks      = data.aws_ip_ranges.cloudfront.cidr_blocks
+  dynamic "ingress" {
+    for_each = local.ip_chunks[count.index]
+
+    content {
+      from_port   = 443
+      to_port     = 443
+      protocol    = "tcp"
+      cidr_blocks = [ingress.value]
+    }
   }
 
   tags = {
-    Name = "from-cloudfront-${var.name}"
+    Name = "from-cloudfront-${var.name}-${count.index}"
     CreateDate = data.aws_ip_ranges.cloudfront.create_date
     SyncToken  = data.aws_ip_ranges.cloudfront.sync_token
   }
