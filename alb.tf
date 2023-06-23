@@ -9,9 +9,9 @@ resource "aws_lb" "ecs" {
   enable_deletion_protection = var.alb_enable_deletion_protection
 
   security_groups = compact(
+    concat(try(aws_security_group.from_cloudfront.*.id, []), 
     try(var.alb_additional_sg,[]),
-    concat(try(aws_security_group.from_cloudfront.*.id, []), [
-    aws_security_group.alb[0].id,
+    [ aws_security_group.alb[0].id,
     try(aws_security_group.from_api_gateway[0].id, "")
   ]))
 

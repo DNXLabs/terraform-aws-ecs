@@ -31,8 +31,10 @@ resource "aws_security_group" "from_cloudfront" {
 
   tags = {
     Name = "from-cloudfront-${var.name}-${count.index}"
-    CreateDate = data.aws_ip_ranges.cloudfront.create_date
-    SyncToken  = data.aws_ip_ranges.cloudfront.sync_token
+  }
+
+  lifecycle {
+    create_before_destroy = true
   }
 }
 
@@ -51,7 +53,9 @@ resource "aws_security_group" "from_api_gateway" {
 
   tags = {
     Name = "from-api-gateway-${var.name}"
-    CreateDate = data.aws_ip_ranges.api_gateway.create_date
-    SyncToken  = data.aws_ip_ranges.api_gateway.sync_token
+  }
+
+  lifecycle {
+    create_before_destroy = true
   }
 }

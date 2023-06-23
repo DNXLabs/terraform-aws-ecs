@@ -96,12 +96,12 @@ variable "alb_additional_sg" {
 }
 
 variable "alb_sg_allow_cloudfront" {
-  default     = true
+  default     = false
   description = "Whether to allow Cloudfront IP range to access"
 }
 
 variable "alb_sg_allow_api_gateway" {
-  default     = true
+  default     = false
   description = "Whether to allow API Gateway IP range to access"
 }
 
