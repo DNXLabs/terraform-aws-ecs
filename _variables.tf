@@ -90,6 +90,11 @@ variable "alb_sg_allow_test_listener" {
   description = "Whether to allow world access to the test listeners"
 }
 
+variable "alb_additional_sg" {
+  default     = []
+  description = "pass addition list of security groups to add to ALB"
+}
+
 variable "alb_sg_allow_cloudfront" {
   default     = true
   description = "Whether to allow Cloudfront IP range to access"
