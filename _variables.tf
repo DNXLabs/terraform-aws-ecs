@@ -90,6 +90,16 @@ variable "alb_sg_allow_test_listener" {
   description = "Whether to allow world access to the test listeners"
 }
 
+variable "alb_sg_allow_cloudfront" {
+  default     = true
+  description = "Whether to allow Cloudfront IP range to access"
+}
+
+variable "alb_sg_allow_api_gateway" {
+  default     = true
+  description = "Whether to allow API Gateway IP range to access"
+}
+
 variable "alb_sg_allow_egress_https_world" {
   default     = true
   description = "Whether to allow ALB to access HTTPS endpoints - needed when using OIDC authentication"
