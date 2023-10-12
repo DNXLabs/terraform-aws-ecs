@@ -88,3 +88,21 @@ resource "aws_iam_role_policy" "s3_policy" {
 }
 EOF
 }
+
+resource "aws_iam_role_policy" "sagemaker_invoke_policy" {
+  name = "ecs-sagemaker-invoke-policy"
+  role = aws_iam_role.ecs_task.name
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "sagemaker:InvokeEndpoint",
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}
