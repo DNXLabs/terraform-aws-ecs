@@ -69,6 +69,7 @@ resource "aws_iam_role_policy" "ssm_policy" {
 EOF
 }
 
+# https://docs.aws.amazon.com/AmazonECR/latest/userguide/vpc-endpoints.html#ecr-setting-up-s3-gateway
 resource "aws_iam_role_policy" "s3_policy" {
   name = "ecs-s3-policy"
   role = aws_iam_role.ecs_task.name
