@@ -69,6 +69,27 @@ resource "aws_iam_role_policy" "ssm_policy" {
 EOF
 }
 
+# https://docs.aws.amazon.com/AmazonECR/latest/userguide/vpc-endpoints.html#ecr-setting-up-s3-gateway
+resource "aws_iam_role_policy" "s3_policy" {
+  name = "ecs-s3-policy"
+  role = aws_iam_role.ecs_task.name
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Effect": "Allow",
+      "Resource": ["arn:aws:s3:::prod-${data.aws_region.current.name}-starport-layer-bucket/*"]
+    }
+  ]
+}
+EOF
+}
+
 resource "aws_iam_role_policy_attachment" "extra_task_policies_arn" {
   for_each   = toset(try(var.extra_task_policies_arn, []))
   role       = aws_iam_role.ecs_task.name
