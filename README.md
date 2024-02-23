@@ -55,7 +55,6 @@ module "ecs_apps" {
 |------|---------|
 | aws | n/a |
 | random | n/a |
-| template | n/a |
 | tls | n/a |
 
 ## Inputs
