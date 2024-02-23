@@ -90,6 +90,31 @@ variable "alb_sg_allow_test_listener" {
   description = "Whether to allow world access to the test listeners"
 }
 
+variable "alb_sg_custom_cidr_blocks" {
+  default     = ["0.0.0.0/0"]
+  description = "Block public access to ALB and stick to these CIDR blocks only"
+}
+
+variable "alb_additional_sg" {
+  default     = []
+  description = "pass addition list of security groups to add to ALB"
+}
+
+variable "alb_sg_allow_cloudfront" {
+  default     = false
+  description = "Whether to allow Cloudfront IP range to access"
+}
+
+variable "alb_sg_allow_api_gateway" {
+  default     = false
+  description = "Whether to allow API Gateway IP range to access"
+}
+
+variable "alb_sg_allow_api_gateway_region" {
+  default     = ""
+  description = "Use this region to allow API Gateway IP range"
+}
+
 variable "alb_sg_allow_egress_https_world" {
   default     = true
   description = "Whether to allow ALB to access HTTPS endpoints - needed when using OIDC authentication"
