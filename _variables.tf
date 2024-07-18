@@ -392,3 +392,15 @@ variable "container_insights" {
   default     = false
   description = "Enables CloudWatch Container Insights for a cluster."
 }
+
+variable "enable_managed_draining" {
+  description = "Enable managed draining for ECS instances and add AmazonECSManaged tag"
+  type        = bool
+  default     = true
+}
+
+variable "enable_managed_termination_protection" {
+  description = "Enable managed draining for ECS instances and add AmazonECSManaged tag"
+  type        = bool
+  default     = false
+}
