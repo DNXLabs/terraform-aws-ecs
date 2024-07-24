@@ -24,9 +24,13 @@ resource "aws_lb" "ecs" {
     }
   }
 
-  tags = {
-    Name = "ecs-${var.name}"
-  }
+  tags = merge(
+    var.tags,
+    {
+      "Terraform" = true,
+      "Name" = "ecs-${var.name}"
+    },
+  )
 }
 
 resource "aws_lb_listener" "ecs_https" {
@@ -42,6 +46,13 @@ resource "aws_lb_listener" "ecs_https" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.ecs_default_https[0].arn
   }
+
+    tags = merge(
+    var.tags,
+    {
+      "Terraform" = true
+    },
+  )
 }
 
 resource "aws_lb_listener" "ecs_http_redirect" {
@@ -60,6 +71,12 @@ resource "aws_lb_listener" "ecs_http_redirect" {
       status_code = "HTTP_301"
     }
   }
+    tags = merge(
+    var.tags,
+    {
+      "Terraform" = true
+    },
+  )
 }
 
 resource "aws_lb_listener" "ecs_test_https" {
@@ -76,6 +93,12 @@ resource "aws_lb_listener" "ecs_test_https" {
     #target_group_arn = aws_lb_target_group.ecs_replacement_https[0].arn
     target_group_arn = aws_lb_target_group.ecs_default_https[0].arn
   }
+    tags = merge(
+    var.tags,
+    {
+      "Terraform" = true
+    },
+  )
 }
 
 resource "aws_lb_listener" "ecs_test_http_redirect" {
@@ -94,6 +117,12 @@ resource "aws_lb_listener" "ecs_test_http_redirect" {
       status_code = "HTTP_301"
     }
   }
+    tags = merge(
+    var.tags,
+    {
+      "Terraform" = true
+    },
+  )
 }
 
 # Generate a random string to add it to the name of the Target Group
@@ -111,6 +140,13 @@ resource "aws_lb_target_group" "ecs_default_http" {
   protocol = "HTTP"
   vpc_id   = var.vpc_id
 
+    tags = merge(
+    var.tags,
+    {
+      "Terraform" = true
+    },
+  )
+
   lifecycle {
     create_before_destroy = true
   }
@@ -123,6 +159,13 @@ resource "aws_lb_target_group" "ecs_default_https" {
   port     = 80
   protocol = "HTTP"
   vpc_id   = var.vpc_id
+
+    tags = merge(
+    var.tags,
+    {
+      "Terraform" = true
+    },
+  )
 
   lifecycle {
     create_before_destroy = true

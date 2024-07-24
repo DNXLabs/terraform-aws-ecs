@@ -18,4 +18,11 @@ resource "aws_cloudwatch_metric_alarm" "efs_credits_low" {
   dimensions = {
     FileSystemId = aws_efs_file_system.ecs[0].id
   }
+
+    tags = merge(
+    var.tags,
+    {
+      "Terraform" = true
+    },
+  )
 }

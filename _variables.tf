@@ -19,6 +19,11 @@ variable "volume_type" {
   description = "The EBS volume type"
 }
 
+variable "tags" {
+  description = "Map of tags that will be added to created resources. By default resources will be tagged with terraform=true."
+  type        = map(string)
+  default     = {}
+}
 variable "on_demand_percentage" {
   description = "Percentage of on-demand intances vs spot."
   default     = 100

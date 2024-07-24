@@ -21,10 +21,13 @@ resource "aws_efs_file_system" "ecs" {
     }
   }
 
-  tags = {
-    Name   = "ecs-${var.name}"
-    Backup = var.backup
-  }
+  tags = merge(
+    var.tags,
+    {
+      Name   = "ecs-${var.name}"
+      Backup = var.backup
+    },
+  )
 
   # lifecycle {
   #   prevent_destroy = true
@@ -51,9 +54,14 @@ resource "aws_security_group" "efs" {
   description = "for EFS to talk to ECS cluster"
   vpc_id      = var.vpc_id
 
-  tags = {
-    Name = "ecs-efs-${var.name}"
-  }
+  
+    tags = merge(
+    var.tags,
+    {
+      Name   = "ecs-efs-${var.name}"
+      Backup = var.backup
+    },
+  )
 }
 
 resource "aws_security_group_rule" "nfs_from_ecs_to_efs" {

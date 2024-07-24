@@ -3,9 +3,13 @@ resource "aws_security_group" "ecs_nodes" {
   description = "SG for ECS nodes"
   vpc_id      = var.vpc_id
 
-  tags = {
-    Name = "ecs-${var.name}-nodes"
-  }
+   tags = merge(
+    var.tags,
+    {
+      terraform = "true"
+      Name = "ecs-${var.name}-nodes"
+    },
+  )
 }
 
 resource "aws_security_group_rule" "all_from_alb_to_ecs_nodes" {

@@ -18,6 +18,13 @@ resource "aws_cloudwatch_metric_alarm" "ecs_high_memory" {
   dimensions = {
     ClusterName = aws_ecs_cluster.ecs.name
   }
+
+    tags = merge(
+    var.tags,
+    {
+      "Terraform" = true
+    },
+  )
 }
 
 resource "aws_cloudwatch_metric_alarm" "ecs_high_cpu" {
@@ -40,4 +47,11 @@ resource "aws_cloudwatch_metric_alarm" "ecs_high_cpu" {
   dimensions = {
     ClusterName = aws_ecs_cluster.ecs.name
   }
+
+    tags = merge(
+    var.tags,
+    {
+      "Terraform" = true
+    },
+  )
 }

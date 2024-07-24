@@ -18,4 +18,11 @@ resource "aws_cloudwatch_metric_alarm" "asg_high_cpu" {
   dimensions = {
     AutoScalingGroupName = aws_autoscaling_group.ecs[0].name
   }
+
+    tags = merge(
+    var.tags,
+    {
+      "Terraform" = true
+    },
+  )
 }

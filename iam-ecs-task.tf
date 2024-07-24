@@ -1,6 +1,11 @@
 resource "aws_iam_role" "ecs_task" {
   name = "ecs-task-${var.name}-${data.aws_region.current.name}"
-
+  tags = merge(
+    var.tags,
+    {
+      "terraform" = "true"
+    },
+  )
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
