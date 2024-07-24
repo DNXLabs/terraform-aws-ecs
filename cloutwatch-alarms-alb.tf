@@ -15,6 +15,12 @@ resource "aws_cloudwatch_metric_alarm" "alb_500_errors" {
   insufficient_data_actions = []
   treat_missing_data        = "ignore"
 
+  tags = merge(
+    var.tags,
+    {
+      "Terraform" = true
+    },
+  )
   dimensions = {
     LoadBalancer = aws_lb.ecs[0].arn_suffix
   }
@@ -37,6 +43,12 @@ resource "aws_cloudwatch_metric_alarm" "alb_400_errors" {
   insufficient_data_actions = []
   treat_missing_data        = "ignore"
 
+  tags = merge(
+    var.tags,
+    {
+      "Terraform" = true
+    },
+  )
   dimensions = {
     LoadBalancer = aws_lb.ecs[0].arn_suffix
   }
@@ -75,4 +87,11 @@ resource "aws_cloudwatch_metric_alarm" "alb_latency" {
       }
     }
   }
+
+    tags = merge(
+    var.tags,
+    {
+      "Terraform" = true
+    },
+  )
 }

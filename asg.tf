@@ -33,10 +33,18 @@ resource "aws_autoscaling_group" "ecs" {
 
   protect_from_scale_in = var.asg_protect_from_scale_in
 
-  tag {
-    key                 = "Name"
-    value               = "ecs-node-${var.name}"
-    propagate_at_launch = true
+  dynamic "tag" {
+    for_each = merge(
+      {
+        Name = "ecs-node-${var.name}"
+      },
+      var.tags
+    )
+    content {
+      key                 = tag.key
+      value               = tag.value
+      propagate_at_launch = true
+    }
   }
 
   target_group_arns         = var.target_group_arns

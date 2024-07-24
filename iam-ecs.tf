@@ -7,12 +7,23 @@ resource "aws_iam_instance_profile" "ecs" {
   count = var.fargate_only ? 0 : 1
   name  = "ecs-${var.name}-${data.aws_region.current.name}"
   role  = aws_iam_role.ecs[0].name
+    tags = merge(
+    var.tags,
+    {
+      "terraform" = "true"
+    },
+  )
 }
 
 resource "aws_iam_role" "ecs" {
   count = var.fargate_only ? 0 : 1
   name  = "ecs-${var.name}-${data.aws_region.current.name}"
-
+  tags = merge(
+    var.tags,
+    {
+      "terraform" = "true"
+    },
+  )
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",

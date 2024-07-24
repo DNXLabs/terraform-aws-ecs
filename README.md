@@ -119,6 +119,7 @@ module "ecs_apps" {
 | secure\_subnet\_ids | List of secure subnet IDs for EFS. | `list(string)` | n/a | yes |
 | security\_group\_ecs\_nodes\_outbound\_cidrs | ECS Nodes outbound allowed CIDRs for the security group. | `list(string)` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
 | security\_group\_ids | Extra security groups for instances. | `list(string)` | `[]` | no |
+| tags | Map of tags that will be added to created resources. By default resources will be tagged with terraform=true. | `map(string)` | `{}` | no |
 | target\_group\_arns | List of target groups for ASG to register. | `list(string)` | `[]` | no |
 | throughput\_mode | Throughput mode for the file system. Defaults to bursting. Valid values: bursting, provisioned. | `string` | `"bursting"` | no |
 | userdata | Extra commands to pass to userdata. | `string` | `""` | no |
