@@ -28,7 +28,7 @@ resource "aws_lb" "ecs" {
     var.tags,
     {
       "Terraform" = true,
-      "Name" = "ecs-${var.name}"
+      "Name"      = "ecs-${var.name}"
     },
   )
 }
@@ -47,7 +47,7 @@ resource "aws_lb_listener" "ecs_https" {
     target_group_arn = aws_lb_target_group.ecs_default_https[0].arn
   }
 
-    tags = merge(
+  tags = merge(
     var.tags,
     {
       "Terraform" = true
@@ -71,7 +71,7 @@ resource "aws_lb_listener" "ecs_http_redirect" {
       status_code = "HTTP_301"
     }
   }
-    tags = merge(
+  tags = merge(
     var.tags,
     {
       "Terraform" = true
@@ -93,7 +93,7 @@ resource "aws_lb_listener" "ecs_test_https" {
     #target_group_arn = aws_lb_target_group.ecs_replacement_https[0].arn
     target_group_arn = aws_lb_target_group.ecs_default_https[0].arn
   }
-    tags = merge(
+  tags = merge(
     var.tags,
     {
       "Terraform" = true
@@ -117,7 +117,7 @@ resource "aws_lb_listener" "ecs_test_http_redirect" {
       status_code = "HTTP_301"
     }
   }
-    tags = merge(
+  tags = merge(
     var.tags,
     {
       "Terraform" = true
@@ -140,7 +140,7 @@ resource "aws_lb_target_group" "ecs_default_http" {
   protocol = "HTTP"
   vpc_id   = var.vpc_id
 
-    tags = merge(
+  tags = merge(
     var.tags,
     {
       "Terraform" = true
@@ -160,7 +160,7 @@ resource "aws_lb_target_group" "ecs_default_https" {
   protocol = "HTTP"
   vpc_id   = var.vpc_id
 
-    tags = merge(
+  tags = merge(
     var.tags,
     {
       "Terraform" = true

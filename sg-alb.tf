@@ -5,11 +5,11 @@ resource "aws_security_group" "alb" {
   description = "SG for ECS ALB"
   vpc_id      = var.vpc_id
 
-   tags = merge(
+  tags = merge(
     var.tags,
     {
       terraform = "true"
-      Name = "ecs-${var.name}-lb"
+      Name      = "ecs-${var.name}-lb"
     },
   )
 }

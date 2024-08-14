@@ -33,7 +33,7 @@ resource "aws_launch_template" "ecs" {
     create_before_destroy = true
   }
 
-    tags = merge(
+  tags = merge(
     var.tags,
     {
       "Terraform" = true
@@ -45,7 +45,7 @@ resource "tls_private_key" "algorithm" {
   count     = var.ec2_key_enabled ? 1 : 0
   algorithm = "RSA"
   rsa_bits  = 4096
-  
+
 }
 
 resource "aws_key_pair" "generated_key" {
@@ -53,7 +53,7 @@ resource "aws_key_pair" "generated_key" {
   key_name   = "${var.name}-key"
   public_key = tls_private_key.algorithm[0].public_key_openssh
 
-    tags = merge(
+  tags = merge(
     var.tags,
     {
       "Terraform" = true

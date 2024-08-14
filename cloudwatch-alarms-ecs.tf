@@ -19,7 +19,7 @@ resource "aws_cloudwatch_metric_alarm" "ecs_high_memory" {
     ClusterName = aws_ecs_cluster.ecs.name
   }
 
-    tags = merge(
+  tags = merge(
     var.tags,
     {
       "Terraform" = true
@@ -48,7 +48,7 @@ resource "aws_cloudwatch_metric_alarm" "ecs_high_cpu" {
     ClusterName = aws_ecs_cluster.ecs.name
   }
 
-    tags = merge(
+  tags = merge(
     var.tags,
     {
       "Terraform" = true
