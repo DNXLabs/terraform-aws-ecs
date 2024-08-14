@@ -36,7 +36,8 @@ resource "aws_autoscaling_group" "ecs" {
   dynamic "tag" {
     for_each = merge(
       {
-        Name = "ecs-node-${var.name}"
+        Name             = "ecs-node-${var.name}",
+        AmazonECSManaged = ""
       },
       var.tags
     )
