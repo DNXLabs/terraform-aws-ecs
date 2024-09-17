@@ -48,9 +48,19 @@ resource "aws_autoscaling_group" "ecs" {
     }
   }
 
+  dynamic "tag" {
+    for_each = var.enable_managed_draining ? [1] : []
+    content {
+      key                 = "AmazonECSManaged"
+      value               = ""
+      propagate_at_launch = true
+    }
+  }
+
   target_group_arns         = var.target_group_arns
   health_check_grace_period = var.autoscaling_health_check_grace_period
   default_cooldown          = var.autoscaling_default_cooldown
+
   lifecycle {
     create_before_destroy = true
   }
@@ -62,7 +72,8 @@ resource "aws_ecs_capacity_provider" "ecs_capacity_provider" {
 
   auto_scaling_group_provider {
     auto_scaling_group_arn         = aws_autoscaling_group.ecs[0].arn
-    managed_termination_protection = "DISABLED"
+    managed_termination_protection = var.enable_managed_termination_protection ? "ENABLED" : "DISABLED"
+    managed_draining               = var.enable_managed_draining ? "ENABLED" : "DISABLED"
 
     managed_scaling {
       maximum_scaling_step_size = 10
