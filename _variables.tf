@@ -90,7 +90,7 @@ variable "alb_http_listener" {
   description = "Whether to enable HTTP listeners"
 }
 
-variable "alb_sg_allow_test_listener" {
+variable "alb_sg_allow_alb_test_listener" {
   default     = true
   description = "Whether to allow world access to the test listeners"
 }
@@ -371,4 +371,16 @@ variable "container_insights" {
   type        = bool
   default     = false
   description = "Enables CloudWatch Container Insights for a cluster."
+}
+
+variable "alb_test_listener" {
+  type        = bool
+  default     = true
+  description = "Enables a second listener on ports 8080 and 8443 for a phased deploy/cutover (blue/green)"
+}
+
+variable "code_deploy" {
+  type        = bool
+  default     = true
+  description = "Enables CodeDeploy role to be used for deployment"
 }

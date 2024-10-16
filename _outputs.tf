@@ -43,7 +43,7 @@ output "ecs_service_iam_role_arn" {
 }
 
 output "ecs_codedeploy_iam_role_arn" {
-  value = aws_iam_role.codedeploy_service.arn
+  value = try(aws_iam_role.codedeploy_service[0].arn, "")
 }
 
 output "ecs_service_iam_role_name" {
@@ -71,19 +71,19 @@ output "ecs_name" {
 }
 
 output "alb_listener_https_arn" {
-  value = aws_lb_listener.ecs_https.*.arn
+  value = try(aws_lb_listener.ecs_https[0].arn, "")
 }
 
 output "alb_listener_test_traffic_arn" {
-  value = aws_lb_listener.ecs_test_https.*.arn
+  value = try(aws_lb_listener.ecs_test_https[0].arn, "")
 }
 
 output "alb_internal_listener_https_arn" {
-  value = aws_lb_listener.ecs_https_internal.*.arn
+  value = try(aws_lb_listener.ecs_https_internal[0].arn, "")
 }
 
 output "alb_internal_listener_test_traffic_arn" {
-  value = aws_lb_listener.ecs_test_https_internal.*.arn
+  value = try(aws_lb_listener.ecs_test_https_internal.*.arn, "")
 }
 
 output "ecs_nodes_secgrp_id" {

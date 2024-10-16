@@ -5,11 +5,11 @@ resource "aws_security_group" "alb_internal" {
   description = "SG for ECS Internal ALB"
   vpc_id      = var.vpc_id
 
-   tags = merge(
+  tags = merge(
     var.tags,
     {
       terraform = "true"
-      Name = "ecs-${var.name}-lb"
+      Name      = "ecs-${var.name}-lb"
     },
   )
 }
@@ -26,8 +26,8 @@ resource "aws_security_group_rule" "https_from_world_to_alb_internal" {
   cidr_blocks       = data.aws_subnet.private_subnets[*].cidr_block
 }
 
-resource "aws_security_group_rule" "https_test_listener_from_world_to_alb_internal" {
-  count = var.alb_internal ? 1 : 0
+resource "aws_security_group_rule" "https_alb_test_listener_from_world_to_alb_internal" {
+  count = var.alb_internal && var.alb_test_listener ? 1 : 0
 
   description       = "HTTPS ECS Internal ALB Test Listener"
   type              = "ingress"
