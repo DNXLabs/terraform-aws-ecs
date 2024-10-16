@@ -77,9 +77,10 @@ module "ecs_apps" {
 | alb\_internal | Deploys a second internal ALB for private APIs. | `bool` | `false` | no |
 | alb\_internal\_ssl\_policy | The name of the SSL Policy for the listener. Required if protocol is HTTPS or TLS. | `string` | `"ELBSecurityPolicy-TLS-1-2-Ext-2018-06"` | no |
 | alb\_only | Whether to deploy only an alb and no cloudFront or not with the cluster. | `bool` | `false` | no |
+| alb\_sg\_allow\_alb\_test\_listener | Whether to allow world access to the test listeners | `bool` | `true` | no |
 | alb\_sg\_allow\_egress\_https\_world | Whether to allow ALB to access HTTPS endpoints - needed when using OIDC authentication | `bool` | `true` | no |
-| alb\_sg\_allow\_test\_listener | Whether to allow world access to the test listeners | `bool` | `true` | no |
 | alb\_ssl\_policy | The name of the SSL Policy for the listener. Required if protocol is HTTPS or TLS. | `string` | `"ELBSecurityPolicy-2016-08"` | no |
+| alb\_test\_listener | Enables a second listener on ports 8080 and 8443 for a phased deploy/cutover (blue/green) | `bool` | `true` | no |
 | architecture | Architecture to select the AMI, x86\_64 or arm64 | `string` | `"x86_64"` | no |
 | asg\_capacity\_rebalance | Indicates whether capacity rebalance is enabled | `bool` | `false` | no |
 | asg\_max | Max number of instances for autoscaling group. | `number` | `4` | no |
@@ -91,6 +92,7 @@ module "ecs_apps" {
 | backup | Assing a backup tag to efs resource - Backup will be performed by AWS Backup. | `string` | `"true"` | no |
 | certificate\_arn | n/a | `any` | n/a | yes |
 | certificate\_internal\_arn | certificate arn for internal ALB. | `string` | `""` | no |
+| code\_deploy | Enables CodeDeploy role to be used for deployment | `bool` | `true` | no |
 | container\_insights | Enables CloudWatch Container Insights for a cluster. | `bool` | `false` | no |
 | create\_efs | Enables creation of EFS volume for cluster | `bool` | `true` | no |
 | create\_iam\_service\_linked\_role | Create iam\_service\_linked\_role for ECS or not. | `bool` | `false` | no |
