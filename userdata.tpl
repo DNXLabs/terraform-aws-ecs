@@ -18,20 +18,23 @@ yum update -y
 yum install -y amazon-efs-utils aws-cli
 
 
-echo "### SETUP EFS"
-EFS_DIR=/mnt/efs
-EFS_ID=${tf_efs_id}
-
-mkdir -p $${EFS_DIR}
-echo "$${EFS_ID}:/ $${EFS_DIR} efs tls,_netdev" >> /etc/fstab
-
-for i in $(seq 1 20); do mount -a -t efs defaults && break || sleep 60; done
-
 echo "### SETUP AGENT"
 
 echo "ECS_CLUSTER=${tf_cluster_name}" >> /etc/ecs/ecs.config
 echo "ECS_ENABLE_SPOT_INSTANCE_DRAINING=true" >> /etc/ecs/ecs.config
 
+
+echo "### SETUP EFS"
+EFS_DIR=/mnt/efs
+EFS_ID=${tf_efs_id}
+
+if [ -n "$EFS_ID" ]; then
+  mkdir -p $${EFS_DIR}
+  echo "$${EFS_ID}:/ $${EFS_DIR} efs tls,_netdev" >> /etc/fstab
+  for i in $(seq 1 20); do mount -a -t efs defaults && break || sleep 60; done
+else
+  echo "EFS_ID is empty. Skipping EFS setup."
+fi
 
 echo "### EXTRA USERDATA"
 ${userdata_extra}
