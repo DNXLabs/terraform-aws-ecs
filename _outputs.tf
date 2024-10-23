@@ -94,6 +94,10 @@ output "alb_secgrp_id" {
   value = aws_security_group.alb.*.id
 }
 
+output "alb_internal_secgrp_id" {
+  value = try(aws_security_group.alb_internal[0].id, "")
+}
+
 output "efs_fs_id" {
   value = try(aws_efs_file_system.ecs[0].id, "")
 }
