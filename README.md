@@ -145,6 +145,7 @@ module "ecs_apps" {
 | alb\_internal\_id | n/a |
 | alb\_internal\_listener\_https\_arn | n/a |
 | alb\_internal\_listener\_test\_traffic\_arn | n/a |
+| alb\_internal\_secgrp\_id | n/a |
 | alb\_internal\_zone\_id | n/a |
 | alb\_listener\_https\_arn | n/a |
 | alb\_listener\_test\_traffic\_arn | n/a |
