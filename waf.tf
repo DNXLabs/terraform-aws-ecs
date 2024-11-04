@@ -56,11 +56,11 @@ resource "aws_wafv2_web_acl" "waf_alb" {
     }
   }
 
-   tags = merge(
+  tags = merge(
     var.tags,
     {
       terraform = "true"
-       Name = "waf-${var.name}-web-application"
+      Name      = "waf-${var.name}-web-application"
     },
   )
 

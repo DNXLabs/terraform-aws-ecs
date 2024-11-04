@@ -54,8 +54,8 @@ resource "aws_security_group" "efs" {
   description = "for EFS to talk to ECS cluster"
   vpc_id      = var.vpc_id
 
-  
-    tags = merge(
+
+  tags = merge(
     var.tags,
     {
       Name   = "ecs-efs-${var.name}"
