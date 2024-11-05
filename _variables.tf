@@ -384,3 +384,9 @@ variable "code_deploy" {
   default     = true
   description = "Enables CodeDeploy role to be used for deployment"
 }
+
+variable "idle_timeout" {
+  type        = number
+  default     = 400
+  description = "IDLE time for ALB on seconds."
+}
