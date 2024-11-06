@@ -12,7 +12,7 @@ resource "aws_lb" "ecs" {
     aws_security_group.alb[0].id,
   ]
 
-  idle_timeout = 400
+  idle_timeout = var.idle_timeout
 
   dynamic "access_logs" {
     for_each = compact([var.lb_access_logs_bucket])
