@@ -3,11 +3,11 @@ resource "aws_security_group" "ecs_nodes" {
   description = "SG for ECS nodes"
   vpc_id      = var.vpc_id
 
-   tags = merge(
+  tags = merge(
     var.tags,
     {
       terraform = "true"
-      Name = "ecs-${var.name}-nodes"
+      Name      = "ecs-${var.name}-nodes"
     },
   )
 }

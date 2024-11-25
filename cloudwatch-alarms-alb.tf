@@ -88,7 +88,7 @@ resource "aws_cloudwatch_metric_alarm" "alb_latency" {
     }
   }
 
-    tags = merge(
+  tags = merge(
     var.tags,
     {
       "Terraform" = true
