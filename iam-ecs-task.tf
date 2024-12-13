@@ -95,6 +95,27 @@ resource "aws_iam_role_policy" "s3_policy" {
 EOF
 }
 
+resource "aws_iam_role_policy" "efs_policy" {
+  name = "ecs-efs-policy"
+  role = aws_iam_role.ecs_task.name
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "elasticfilesystem:ClientMount",
+          "elasticfilesystem:ClientWrite",
+          "elasticfilesystem:DescribeMountTargets",
+          "elasticfilesystem:DescribeFileSystems"
+        ]
+        Resource = "*"
+      }
+    ]
+  })
+}
+
 resource "aws_iam_role_policy_attachment" "extra_task_policies_arn" {
   for_each   = toset(try(var.extra_task_policies_arn, []))
   role       = aws_iam_role.ecs_task.name
