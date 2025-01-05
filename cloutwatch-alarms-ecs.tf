@@ -19,12 +19,9 @@ resource "aws_cloudwatch_metric_alarm" "ecs_high_memory" {
     ClusterName = aws_ecs_cluster.ecs.name
   }
 
-    tags = merge(
-    var.tags,
-    {
-      "Terraform" = true
-    },
-  )
+  tags = merge(var.tags, {
+    Name = "${try(data.aws_iam_account_alias.current[0].account_alias, var.alarm_prefix)}-ecs-${var.name}-high-memory"
+  })
 }
 
 resource "aws_cloudwatch_metric_alarm" "ecs_high_cpu" {
@@ -48,10 +45,7 @@ resource "aws_cloudwatch_metric_alarm" "ecs_high_cpu" {
     ClusterName = aws_ecs_cluster.ecs.name
   }
 
-    tags = merge(
-    var.tags,
-    {
-      "Terraform" = true
-    },
-  )
+  tags = merge(var.tags, {
+    Name = "${try(data.aws_iam_account_alias.current[0].account_alias, var.alarm_prefix)}-ecs-${var.name}-high-cpu"
+  })
 }
