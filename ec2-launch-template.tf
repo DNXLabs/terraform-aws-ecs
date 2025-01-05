@@ -33,8 +33,8 @@ resource "aws_launch_template" "ecs" {
     create_before_destroy = true
   }
 
-  tags = merge(var.tags,{
-    })
+  tags = merge(var.tags, {
+  })
 }
 
 resource "tls_private_key" "algorithm" {
@@ -49,6 +49,6 @@ resource "aws_key_pair" "generated_key" {
   key_name   = "${var.name}-key"
   public_key = tls_private_key.algorithm[0].public_key_openssh
 
-  tags = merge(var.tags,{
-    })
+  tags = merge(var.tags, {
+  })
 }
