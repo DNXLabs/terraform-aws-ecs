@@ -15,7 +15,7 @@ variable "architecture" {
   description = "Architecture to select the AMI, x86_64 or arm64"
 }
 
-variable "on_demand_percentage" {
+variable "on_demand_percentage_above_base_capacity" {
   description = "Percentage of on-demand intances vs spot."
   default     = 100
 }
