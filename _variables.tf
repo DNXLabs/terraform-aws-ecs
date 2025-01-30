@@ -329,3 +329,12 @@ variable "asg_capacity_rebalance" {
   default     = false
   description = "Indicates whether capacity rebalance is enabled"
 }
+
+variable "spot_instance_pools" {
+  type    = number
+  default = 3
+}
+
+variable "spot_allocation_strategy" {
+  type = string
+}
