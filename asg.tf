@@ -22,6 +22,7 @@ resource "aws_autoscaling_group" "ecs" {
       on_demand_base_capacity                  = var.on_demand_base_capacity
       on_demand_percentage_above_base_capacity = var.on_demand_percentage
       spot_allocation_strategy                 = var.spot_allocation_strategy
+      on_demand_allocation_strategy            = var.on_demand_allocation_strategy
     }
   }
 

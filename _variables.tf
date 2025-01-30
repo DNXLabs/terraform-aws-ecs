@@ -336,5 +336,11 @@ variable "spot_instance_pools" {
 }
 
 variable "spot_allocation_strategy" {
-  type = string
+  type    = string
+  default = "lowest-price"
+}
+
+variable "on_demand_allocation_strategy" {
+  type    = string
+  default = "prioritized"
 }
