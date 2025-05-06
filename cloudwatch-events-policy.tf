@@ -16,6 +16,6 @@ data "aws_iam_policy_document" "ecs_events" {
 }
 
 resource "aws_cloudwatch_log_resource_policy" "ecs_events" {
-  policy_document = data.aws_iam_policy_document.ecs_events[0].json
+  policy_document = data.aws_iam_policy_document.ecs_events.json
   policy_name     = "capture-ecs-events-${var.name}"
 }
