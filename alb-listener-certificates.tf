@@ -9,4 +9,3 @@ resource "aws_lb_listener_certificate" "alb_internal" {
   listener_arn    = element(aws_lb_listener.ecs_https_internal.*.arn, 0)
   certificate_arn = var.extra_certificate_arns[count.index]
 }
-

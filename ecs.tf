@@ -14,7 +14,7 @@ resource "aws_ecs_cluster" "ecs" {
   )
   lifecycle {
     ignore_changes = []
-    
+
   }
 }
 
