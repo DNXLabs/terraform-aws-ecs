@@ -19,10 +19,7 @@ resource "aws_cloudwatch_metric_alarm" "asg_high_cpu" {
     AutoScalingGroupName = aws_autoscaling_group.ecs[0].name
   }
 
-    tags = merge(
-    var.tags,
-    {
-      "Terraform" = true
-    },
-  )
+  tags = merge(var.tags, {
+    Name = "${try(data.aws_iam_account_alias.current[0].account_alias, var.alarm_prefix)}-ecs-${var.name}-asg-high-cpu"
+  })
 }

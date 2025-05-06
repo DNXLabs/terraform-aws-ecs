@@ -6,15 +6,11 @@ resource "aws_ecs_cluster" "ecs" {
     value = var.container_insights ? "enabled" : "disabled"
   }
 
-  tags = merge(
-    var.tags,
-    {
-      "Terraform" = true
-    },
-  )
+  tags = merge(var.tags, {
+  })
   lifecycle {
     ignore_changes = []
-    
+
   }
 }
 

@@ -5,13 +5,9 @@ resource "aws_security_group" "alb_internal" {
   description = "SG for ECS Internal ALB"
   vpc_id      = var.vpc_id
 
-  tags = merge(
-    var.tags,
-    {
-      terraform = "true"
-      Name      = "ecs-${var.name}-lb"
-    },
-  )
+  tags = merge(var.tags, {
+    Name = "ecs-${var.name}-lb"
+  })
 }
 
 resource "aws_security_group_rule" "https_from_world_to_alb_internal" {
