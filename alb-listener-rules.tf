@@ -17,7 +17,7 @@ resource "aws_lb_listener_rule" "path_based_routing" {
 
   dynamic "condition" {
     for_each = var.alb_listener_rules[count.index].host_header != null ? [1] : []
-    
+
     content {
       host_header {
         values = [var.alb_listener_rules[count.index].host_header]
@@ -52,7 +52,7 @@ resource "aws_lb_listener_rule" "path_based_routing_test" {
 
   dynamic "condition" {
     for_each = var.alb_listener_rules[count.index].host_header != null ? [1] : []
-    
+
     content {
       host_header {
         values = [var.alb_listener_rules[count.index].host_header]
@@ -87,7 +87,7 @@ resource "aws_lb_listener_rule" "path_based_routing_internal" {
 
   dynamic "condition" {
     for_each = var.alb_internal_listener_rules[count.index].host_header != null ? [1] : []
-    
+
     content {
       host_header {
         values = [var.alb_internal_listener_rules[count.index].host_header]
@@ -122,7 +122,7 @@ resource "aws_lb_listener_rule" "path_based_routing_internal_test" {
 
   dynamic "condition" {
     for_each = var.alb_internal_listener_rules[count.index].host_header != null ? [1] : []
-    
+
     content {
       host_header {
         values = [var.alb_internal_listener_rules[count.index].host_header]

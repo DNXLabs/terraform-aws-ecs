@@ -16,9 +16,9 @@ module "ecs_app_wordpress_01" {
   hostname_blue          = "wp01-blue.labs.dnx.host"
   hostname_origin        = "wp01-origin.labs.dnx.host"
   hosted_zone            = "labs.dnx.host"
-  certificate_arn        = local.workspace["cf_certificate_arn"]
-  healthcheck_path       = "/readme.html"
-  service_health_check_grace_period_seconds = 120
+  certificate_arn                            = local.workspace["cf_certificate_arn"]
+  healthcheck_path                           = "/readme.html"
+  service_health_check_grace_period_seconds  = 120
 }
 
 # Second service - API
@@ -37,9 +37,9 @@ module "ecs_app_api" {
   hostname_blue          = "api-blue.labs.dnx.host"
   hostname_origin        = "api-origin.labs.dnx.host"
   hosted_zone            = "labs.dnx.host"
-  certificate_arn        = local.workspace["cf_certificate_arn"]
-  healthcheck_path       = "/health"
-  service_health_check_grace_period_seconds = 120
+  certificate_arn                            = local.workspace["cf_certificate_arn"]
+  healthcheck_path                           = "/health"
+  service_health_check_grace_period_seconds  = 120
 }
 
 # Configure path-based routing in the ECS cluster module

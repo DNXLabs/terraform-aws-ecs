@@ -87,12 +87,12 @@ output "alb_internal_listener_test_traffic_arn" {
 }
 
 output "alb_path_based_routing_rules" {
-  value = try(aws_lb_listener_rule.path_based_routing.*.id, [])
+  value       = try(aws_lb_listener_rule.path_based_routing.*.id, [])
   description = "IDs of the path-based routing rules for the external ALB"
 }
 
 output "alb_internal_path_based_routing_rules" {
-  value = try(aws_lb_listener_rule.path_based_routing_internal.*.id, [])
+  value       = try(aws_lb_listener_rule.path_based_routing_internal.*.id, [])
   description = "IDs of the path-based routing rules for the internal ALB"
 }
 
