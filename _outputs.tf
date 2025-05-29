@@ -86,6 +86,16 @@ output "alb_internal_listener_test_traffic_arn" {
   value = try(aws_lb_listener.ecs_test_https_internal.*.arn, "")
 }
 
+output "alb_path_based_routing_rules" {
+  value = try(aws_lb_listener_rule.path_based_routing.*.id, [])
+  description = "IDs of the path-based routing rules for the external ALB"
+}
+
+output "alb_internal_path_based_routing_rules" {
+  value = try(aws_lb_listener_rule.path_based_routing_internal.*.id, [])
+  description = "IDs of the path-based routing rules for the internal ALB"
+}
+
 output "ecs_nodes_secgrp_id" {
   value = aws_security_group.ecs_nodes.id
 }

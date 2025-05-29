@@ -37,9 +37,43 @@ module "ecs_apps" {
   on_demand_percentage = 0
   asg_min              = 1
   asg_max              = 4
-  asg_target_capacity    = 50
+  asg_target_capacity  = 50
+  
+  # Path-based routing example
+  alb_listener_rules = [
+    {
+      path_pattern     = "/api/service1/*"
+      target_group_arn = "arn:aws:elasticloadbalancing:us-east-1:123456789012:targetgroup/service1/abcdef1234567890"
+      priority         = 100
+    },
+    {
+      path_pattern     = "/api/service2/*"
+      target_group_arn = "arn:aws:elasticloadbalancing:us-east-1:123456789012:targetgroup/service2/abcdef1234567890"
+      priority         = 110
+      host_header      = "example.com"  # Optional: Add host-based routing
+    }
+  ]
+  
+  # For internal ALB (if enabled)
+  alb_internal_listener_rules = [
+    {
+      path_pattern     = "/internal-api/*"
+      target_group_arn = "arn:aws:elasticloadbalancing:us-east-1:123456789012:targetgroup/internal-service/abcdef1234567890"
+      priority         = 100
+    }
+  ]
 }
 ```
+
+### Path-Based Routing
+
+This module now supports path-based routing for both external and internal ALBs. This allows you to run multiple services in a single ECS cluster with different URL paths. The default action of the ALB listener will still forward to the default target group, but you can define rules to forward specific paths to different target groups.
+
+To use path-based routing, define the `alb_listener_rules` variable with a list of objects containing:
+- `path_pattern`: The path pattern to match (e.g., "/api/*")
+- `target_group_arn`: The ARN of the target group to forward requests to
+- `priority`: The priority of the rule (lower numbers are evaluated first)
+- `host_header`: (Optional) If specified, the rule will only match requests with this host header
 
 <!--- BEGIN_TF_DOCS --->
 
