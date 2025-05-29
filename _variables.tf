@@ -390,3 +390,25 @@ variable "idle_timeout" {
   default     = 400
   description = "IDLE time for ALB on seconds."
 }
+
+variable "alb_listener_rules" {
+  description = "A list of maps describing the Listener Rules for path-based routing on the external ALB"
+  type = list(object({
+    path_pattern     = string
+    target_group_arn = string
+    priority         = number
+    host_header      = optional(string)
+  }))
+  default = []
+}
+
+variable "alb_internal_listener_rules" {
+  description = "A list of maps describing the Listener Rules for path-based routing on the internal ALB"
+  type = list(object({
+    path_pattern     = string
+    target_group_arn = string
+    priority         = number
+    host_header      = optional(string)
+  }))
+  default = []
+}

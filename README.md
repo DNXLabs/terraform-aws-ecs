@@ -37,9 +37,43 @@ module "ecs_apps" {
   on_demand_percentage = 0
   asg_min              = 1
   asg_max              = 4
-  asg_target_capacity    = 50
+  asg_target_capacity  = 50
+  
+  # Path-based routing example
+  alb_listener_rules = [
+    {
+      path_pattern     = "/api/service1/*"
+      target_group_arn = "arn:aws:elasticloadbalancing:us-east-1:123456789012:targetgroup/service1/abcdef1234567890"
+      priority         = 100
+    },
+    {
+      path_pattern     = "/api/service2/*"
+      target_group_arn = "arn:aws:elasticloadbalancing:us-east-1:123456789012:targetgroup/service2/abcdef1234567890"
+      priority         = 110
+      host_header      = "example.com"  # Optional: Add host-based routing
+    }
+  ]
+  
+  # For internal ALB (if enabled)
+  alb_internal_listener_rules = [
+    {
+      path_pattern     = "/internal-api/*"
+      target_group_arn = "arn:aws:elasticloadbalancing:us-east-1:123456789012:targetgroup/internal-service/abcdef1234567890"
+      priority         = 100
+    }
+  ]
 }
 ```
+
+### Path-Based Routing
+
+This module now supports path-based routing for both external and internal ALBs. This allows you to run multiple services in a single ECS cluster with different URL paths. The default action of the ALB listener will still forward to the default target group, but you can define rules to forward specific paths to different target groups.
+
+To use path-based routing, define the `alb_listener_rules` variable with a list of objects containing:
+- `path_pattern`: The path pattern to match (e.g., "/api/*")
+- `target_group_arn`: The ARN of the target group to forward requests to
+- `priority`: The priority of the rule (lower numbers are evaluated first)
+- `host_header`: (Optional) If specified, the rule will only match requests with this host header
 
 <!--- BEGIN_TF_DOCS --->
 
@@ -75,7 +109,9 @@ module "ecs_apps" {
 | alb\_enable\_deletion\_protection | Enable deletion protection for ALBs | `bool` | `false` | no |
 | alb\_http\_listener | Whether to enable HTTP listeners | `bool` | `true` | no |
 | alb\_internal | Deploys a second internal ALB for private APIs. | `bool` | `false` | no |
+| alb\_internal\_listener\_rules | A list of maps describing the Listener Rules for path-based routing on the internal ALB | <pre>list(object({<br>    path_pattern     = string<br>    target_group_arn = string<br>    priority         = number<br>    host_header      = optional(string)<br>  }))</pre> | `[]` | no |
 | alb\_internal\_ssl\_policy | The name of the SSL Policy for the listener. Required if protocol is HTTPS or TLS. | `string` | `"ELBSecurityPolicy-TLS-1-2-Ext-2018-06"` | no |
+| alb\_listener\_rules | A list of maps describing the Listener Rules for path-based routing on the external ALB | <pre>list(object({<br>    path_pattern     = string<br>    target_group_arn = string<br>    priority         = number<br>    host_header      = optional(string)<br>  }))</pre> | `[]` | no |
 | alb\_only | Whether to deploy only an alb and no cloudFront or not with the cluster. | `bool` | `false` | no |
 | alb\_sg\_allow\_alb\_test\_listener | Whether to allow world access to the test listeners | `bool` | `true` | no |
 | alb\_sg\_allow\_egress\_https\_world | Whether to allow ALB to access HTTPS endpoints - needed when using OIDC authentication | `bool` | `true` | no |
@@ -146,10 +182,12 @@ module "ecs_apps" {
 | alb\_internal\_id | n/a |
 | alb\_internal\_listener\_https\_arn | n/a |
 | alb\_internal\_listener\_test\_traffic\_arn | n/a |
+| alb\_internal\_path\_based\_routing\_rules | IDs of the path-based routing rules for the internal ALB |
 | alb\_internal\_secgrp\_id | n/a |
 | alb\_internal\_zone\_id | n/a |
 | alb\_listener\_https\_arn | n/a |
 | alb\_listener\_test\_traffic\_arn | n/a |
+| alb\_path\_based\_routing\_rules | IDs of the path-based routing rules for the external ALB |
 | alb\_secgrp\_id | n/a |
 | alb\_zone\_id | n/a |
 | ecs\_arn | n/a |
