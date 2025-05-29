@@ -109,7 +109,9 @@ To use path-based routing, define the `alb_listener_rules` variable with a list 
 | alb\_enable\_deletion\_protection | Enable deletion protection for ALBs | `bool` | `false` | no |
 | alb\_http\_listener | Whether to enable HTTP listeners | `bool` | `true` | no |
 | alb\_internal | Deploys a second internal ALB for private APIs. | `bool` | `false` | no |
+| alb\_internal\_listener\_rules | A list of maps describing the Listener Rules for path-based routing on the internal ALB | <pre>list(object({<br>    path_pattern     = string<br>    target_group_arn = string<br>    priority         = number<br>    host_header      = optional(string)<br>  }))</pre> | `[]` | no |
 | alb\_internal\_ssl\_policy | The name of the SSL Policy for the listener. Required if protocol is HTTPS or TLS. | `string` | `"ELBSecurityPolicy-TLS-1-2-Ext-2018-06"` | no |
+| alb\_listener\_rules | A list of maps describing the Listener Rules for path-based routing on the external ALB | <pre>list(object({<br>    path_pattern     = string<br>    target_group_arn = string<br>    priority         = number<br>    host_header      = optional(string)<br>  }))</pre> | `[]` | no |
 | alb\_only | Whether to deploy only an alb and no cloudFront or not with the cluster. | `bool` | `false` | no |
 | alb\_sg\_allow\_alb\_test\_listener | Whether to allow world access to the test listeners | `bool` | `true` | no |
 | alb\_sg\_allow\_egress\_https\_world | Whether to allow ALB to access HTTPS endpoints - needed when using OIDC authentication | `bool` | `true` | no |
@@ -180,10 +182,12 @@ To use path-based routing, define the `alb_listener_rules` variable with a list 
 | alb\_internal\_id | n/a |
 | alb\_internal\_listener\_https\_arn | n/a |
 | alb\_internal\_listener\_test\_traffic\_arn | n/a |
+| alb\_internal\_path\_based\_routing\_rules | IDs of the path-based routing rules for the internal ALB |
 | alb\_internal\_secgrp\_id | n/a |
 | alb\_internal\_zone\_id | n/a |
 | alb\_listener\_https\_arn | n/a |
 | alb\_listener\_test\_traffic\_arn | n/a |
+| alb\_path\_based\_routing\_rules | IDs of the path-based routing rules for the external ALB |
 | alb\_secgrp\_id | n/a |
 | alb\_zone\_id | n/a |
 | ecs\_arn | n/a |
