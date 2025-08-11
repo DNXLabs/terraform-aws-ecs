@@ -14,6 +14,7 @@ variable "architecture" {
   default     = "x86_64"
   description = "Architecture to select the AMI, x86_64 or arm64"
 }
+
 variable "volume_type" {
   default     = "gp2"
   description = "The EBS volume type"
@@ -130,6 +131,12 @@ variable "alb_internal_ssl_policy" {
   default     = "ELBSecurityPolicy-TLS-1-2-Ext-2018-06"
   type        = string
   description = "The name of the SSL Policy for the listener. Required if protocol is HTTPS or TLS."
+}
+
+variable "alb_internal_enable_http" {
+  type = bool
+  default = false
+  description = "If listenter in port 80 should be enable for internal LB"
 }
 
 variable "alb_drop_invalid_header_fields" {

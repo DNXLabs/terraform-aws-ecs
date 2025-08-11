@@ -33,6 +33,29 @@ resource "aws_lb" "ecs_internal" {
   )
 }
 
+
+
+resource "aws_lb_listener" "ecs_optional_http_internal" {
+  count = var.alb_internal && var.alb_internal_enable_http ? 1 : 0
+
+  load_balancer_arn = aws_lb.ecs_internal[0].arn
+  port              = "80"
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.ecs_default_https_internal[0].arn
+  }
+
+  tags = merge(
+    var.tags,
+    {
+      "Terraform" = true
+    },
+  )
+}
+
+
 resource "aws_lb_listener" "ecs_https_internal" {
   count = var.alb_internal ? 1 : 0
 
@@ -46,7 +69,6 @@ resource "aws_lb_listener" "ecs_https_internal" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.ecs_default_https_internal[0].arn
   }
-
   tags = merge(
     var.tags,
     {
