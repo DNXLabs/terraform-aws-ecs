@@ -93,7 +93,7 @@ module "ecs_apps" {
 | certificate\_arn | n/a | `any` | n/a | yes |
 | certificate\_internal\_arn | certificate arn for internal ALB. | `string` | `""` | no |
 | code\_deploy | Enables CodeDeploy role to be used for deployment | `bool` | `true` | no |
-| container\_insights | Enables CloudWatch Container Insights for a cluster. | `bool` | `false` | no |
+| container\_insights | Enables CloudWatch Container Insights for a cluster. | `string` | `"disabled"` | no |
 | create\_efs | Enables creation of EFS volume for cluster | `bool` | `true` | no |
 | create\_iam\_service\_linked\_role | Create iam\_service\_linked\_role for ECS or not. | `bool` | `false` | no |
 | ebs\_key\_arn | ARN of a KMS Key to use on EBS volumes | `string` | `""` | no |
