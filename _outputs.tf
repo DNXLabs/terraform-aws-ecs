@@ -86,6 +86,10 @@ output "alb_internal_listener_test_traffic_arn" {
   value = try(aws_lb_listener.ecs_test_https_internal.*.arn, "")
 }
 
+output "alb_internal_secgrp_id" {
+  value = aws_security_group.alb_internal.*.id
+}
+
 output "ecs_nodes_secgrp_id" {
   value = aws_security_group.ecs_nodes.id
 }
