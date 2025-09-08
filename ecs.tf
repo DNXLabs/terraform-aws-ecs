@@ -3,7 +3,7 @@ resource "aws_ecs_cluster" "ecs" {
 
   setting {
     name  = "containerInsights"
-    value = var.container_insights ? "enabled" : "disabled"
+    value = var.container_insights
   }
 
   tags = merge(
@@ -13,7 +13,7 @@ resource "aws_ecs_cluster" "ecs" {
     },
   )
   lifecycle {
-    ignore_changes = []
+    ignore_changes = [service_connect_defaults]
     
   }
 }

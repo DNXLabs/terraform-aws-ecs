@@ -368,9 +368,13 @@ variable "extra_task_policies_arn" {
 }
 
 variable "container_insights" {
-  type        = bool
-  default     = false
+  type        = string
+  default     = "disabled"
   description = "Enables CloudWatch Container Insights for a cluster."
+  validation {
+    condition = contains(["enhanced", "enabled", "disabled"], var.container_insights)
+    error_message = "Container Insights must be one of: enhanced, enabled, disabled."
+  }
 }
 
 variable "alb_test_listener" {
