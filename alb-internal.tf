@@ -44,7 +44,7 @@ resource "aws_lb_listener" "ecs_https_internal" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.ecs_default_https_internal[0].arn
+    target_group_arn = var.alb_internal_default_target_group_arn != "" ? var.alb_internal_default_target_group_arn : aws_lb_target_group.ecs_default_https_internal[0].arn
   }
 
   tags = merge(

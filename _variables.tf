@@ -132,6 +132,12 @@ variable "alb_internal_ssl_policy" {
   description = "The name of the SSL Policy for the listener. Required if protocol is HTTPS or TLS."
 }
 
+variable "alb_internal_default_target_group_arn" {
+  default     = ""
+  type        = string
+  description = "ARN of target group to use as default action for internal ALB HTTPS listener. If empty, uses the default target group created by the module."
+}
+
 variable "alb_drop_invalid_header_fields" {
   default     = true
   type        = bool
