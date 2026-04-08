@@ -73,11 +73,15 @@ module "ecs_apps" {
 | alb | Whether to deploy an ALB or not with the cluster. | `bool` | `true` | no |
 | alb\_drop\_invalid\_header\_fields | Indicates whether HTTP headers with invalid header fields are removed by the load balancer (true) or routed to targets (false). | `bool` | `true` | no |
 | alb\_enable\_deletion\_protection | Enable deletion protection for ALBs | `bool` | `false` | no |
+| alb\_enable\_xff\_client\_port | Whether to enable the X-Forwarded-Client-Port header for the ALB. | `bool` | `false` | no |
 | alb\_http\_listener | Whether to enable HTTP listeners | `bool` | `true` | no |
 | alb\_internal | Deploys a second internal ALB for private APIs. | `bool` | `false` | no |
 | alb\_internal\_default\_target\_group\_arn | ARN of target group to use as default action for internal ALB HTTPS listener. If empty, uses the default target group created by the module. | `string` | `""` | no |
+| alb\_internal\_enable\_xff\_client\_port | Whether to enable the X-Forwarded-Client-Port header for the internal ALB. | `bool` | `false` | no |
+| alb\_internal\_preserve\_host\_header | Whether to preserve the Host header for the internal ALB. | `bool` | `false` | no |
 | alb\_internal\_ssl\_policy | The name of the SSL Policy for the listener. Required if protocol is HTTPS or TLS. | `string` | `"ELBSecurityPolicy-TLS-1-2-Ext-2018-06"` | no |
 | alb\_only | Whether to deploy only an alb and no cloudFront or not with the cluster. | `bool` | `false` | no |
+| alb\_preserve\_host\_header | Whether to preserve the Host header for the ALB. | `bool` | `false` | no |
 | alb\_sg\_allow\_alb\_test\_listener | Whether to allow world access to the test listeners | `bool` | `true` | no |
 | alb\_sg\_allow\_egress\_https\_world | Whether to allow ALB to access HTTPS endpoints - needed when using OIDC authentication | `bool` | `true` | no |
 | alb\_ssl\_policy | The name of the SSL Policy for the listener. Required if protocol is HTTPS or TLS. | `string` | `"ELBSecurityPolicy-2016-08"` | no |

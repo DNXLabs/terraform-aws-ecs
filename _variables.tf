@@ -126,6 +126,30 @@ variable "alb_ssl_policy" {
   description = "The name of the SSL Policy for the listener. Required if protocol is HTTPS or TLS."
 }
 
+variable "alb_internal_enable_xff_client_port" {
+  default     = false
+  type        = bool
+  description = "Whether to enable the X-Forwarded-Client-Port header for the internal ALB."
+}
+
+variable "alb_internal_preserve_host_header" {
+  default     = false
+  type        = bool
+  description = "Whether to preserve the Host header for the internal ALB."
+}
+
+variable "alb_enable_xff_client_port" {
+  default     = false
+  type        = bool
+  description = "Whether to enable the X-Forwarded-Client-Port header for the ALB."
+}
+
+variable "alb_preserve_host_header" {
+  default     = false
+  type        = bool
+  description = "Whether to preserve the Host header for the ALB."
+}
+
 variable "alb_internal_ssl_policy" {
   default     = "ELBSecurityPolicy-TLS-1-2-Ext-2018-06"
   type        = string

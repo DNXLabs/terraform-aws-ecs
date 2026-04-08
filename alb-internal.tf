@@ -7,6 +7,8 @@ resource "aws_lb" "ecs_internal" {
   subnets                    = var.private_subnet_ids
   drop_invalid_header_fields = var.alb_drop_invalid_header_fields
   enable_deletion_protection = var.alb_enable_deletion_protection
+  enable_xff_client_port     = var.alb_internal_enable_xff_client_port
+  preserve_host_header       = var.alb_internal_preserve_host_header
 
   security_groups = [
     aws_security_group.alb_internal[0].id,
