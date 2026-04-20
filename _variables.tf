@@ -34,6 +34,12 @@ variable "on_demand_base_capacity" {
   default     = 0
 }
 
+variable "spot_allocation_strategy" {
+  type        = string
+  default     = "price-capacity-optimized"
+  description = "How to allocate capacity across the Spot pools. Valid values: lowest-price, diversified, capacity-optimized, price-capacity-optimized."
+}
+
 variable "vpc_id" {
   description = "VPC ID to deploy the ECS cluster."
 }
