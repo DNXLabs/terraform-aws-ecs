@@ -50,10 +50,12 @@ jobs:
   minimum:
     name: Minimum version check
     runs-on: ubuntu-latest
-    container:
-      image: hashicorp/terraform:0.13.0
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 0.13.0
+          terraform_wrapper: false
       - name: Validate Code
         env:
           AWS_REGION: 'us-east-1'

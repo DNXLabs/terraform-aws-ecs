@@ -146,7 +146,7 @@ variable "alb_xff_header_processing_mode" {
 
   validation {
     condition     = contains(["append", "preserve", "remove"], var.alb_xff_header_processing_mode)
-    error_message = "alb_xff_header_processing_mode must be append, preserve, or remove."
+    error_message = "The alb_xff_header_processing_mode value must be append, preserve, or remove."
   }
 }
 
