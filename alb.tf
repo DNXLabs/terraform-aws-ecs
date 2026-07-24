@@ -7,6 +7,8 @@ resource "aws_lb" "ecs" {
   subnets                    = var.public_subnet_ids
   drop_invalid_header_fields = var.alb_drop_invalid_header_fields
   enable_deletion_protection = var.alb_enable_deletion_protection
+  xff_header_processing_mode = var.alb_xff_header_processing_mode
+  enable_xff_client_port     = var.alb_enable_xff_client_port
 
   security_groups = [
     aws_security_group.alb[0].id,

@@ -90,6 +90,24 @@ variable "alb_sg_allow_test_listener" {
   description = "Whether to allow world access to the test listeners"
 }
 
+variable "alb_sg_allow_https_world" {
+  default     = true
+  type        = bool
+  description = "Whether to allow world access to the external ALB HTTPS listener on port 443."
+}
+
+variable "alb_sg_https_prefix_list_ids" {
+  default     = []
+  type        = list(string)
+  description = "Managed prefix list IDs allowed to reach the external ALB HTTPS listener on port 443."
+}
+
+variable "alb_sg_test_listener_cidr_blocks" {
+  default     = []
+  type        = list(string)
+  description = "Additional CIDR blocks allowed to reach the external ALB test listener on port 8443."
+}
+
 variable "alb_sg_allow_egress_https_world" {
   default     = true
   description = "Whether to allow ALB to access HTTPS endpoints - needed when using OIDC authentication"
@@ -119,6 +137,23 @@ variable "alb_ssl_policy" {
   default     = "ELBSecurityPolicy-2016-08"
   type        = string
   description = "The name of the SSL Policy for the listener. Required if protocol is HTTPS or TLS."
+}
+
+variable "alb_xff_header_processing_mode" {
+  default     = "append"
+  type        = string
+  description = "How the external ALB processes X-Forwarded-For before forwarding to targets."
+
+  validation {
+    condition     = contains(["append", "preserve", "remove"], var.alb_xff_header_processing_mode)
+    error_message = "The alb_xff_header_processing_mode value must be append, preserve, or remove."
+  }
+}
+
+variable "alb_enable_xff_client_port" {
+  default     = false
+  type        = bool
+  description = "Whether the external ALB preserves the client source port in X-Forwarded-For."
 }
 
 variable "alb_internal_ssl_policy" {
