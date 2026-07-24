@@ -73,13 +73,18 @@ module "ecs_apps" {
 | alb | Whether to deploy an ALB or not with the cluster. | `bool` | `true` | no |
 | alb\_drop\_invalid\_header\_fields | Indicates whether HTTP headers with invalid header fields are removed by the load balancer (true) or routed to targets (false). | `bool` | `true` | no |
 | alb\_enable\_deletion\_protection | Enable deletion protection for ALBs | `bool` | `false` | no |
+| alb\_enable\_xff\_client\_port | Whether the external ALB preserves the client source port in X-Forwarded-For. | `bool` | `false` | no |
 | alb\_http\_listener | Whether to enable HTTP listeners | `bool` | `true` | no |
 | alb\_internal | Deploys a second internal ALB for private APIs. | `bool` | `false` | no |
 | alb\_internal\_ssl\_policy | The name of the SSL Policy for the listener. Required if protocol is HTTPS or TLS. | `string` | `"ELBSecurityPolicy-TLS-1-2-Ext-2018-06"` | no |
 | alb\_only | Whether to deploy only an alb and no cloudFront or not with the cluster. | `bool` | `false` | no |
 | alb\_sg\_allow\_egress\_https\_world | Whether to allow ALB to access HTTPS endpoints - needed when using OIDC authentication | `bool` | `true` | no |
+| alb\_sg\_allow\_https\_world | Whether to allow world access to the external ALB HTTPS listener on port 443. | `bool` | `true` | no |
 | alb\_sg\_allow\_test\_listener | Whether to allow world access to the test listeners | `bool` | `true` | no |
+| alb\_sg\_https\_prefix\_list\_ids | Managed prefix list IDs allowed to reach the external ALB HTTPS listener on port 443. | `list(string)` | `[]` | no |
+| alb\_sg\_test\_listener\_cidr\_blocks | Additional CIDR blocks allowed to reach the external ALB test listener on port 8443. | `list(string)` | `[]` | no |
 | alb\_ssl\_policy | The name of the SSL Policy for the listener. Required if protocol is HTTPS or TLS. | `string` | `"ELBSecurityPolicy-2016-08"` | no |
+| alb\_xff\_header\_processing\_mode | How the external ALB processes X-Forwarded-For before forwarding to targets. | `string` | `"append"` | no |
 | architecture | Architecture to select the AMI, x86\_64 or arm64 | `string` | `"x86_64"` | no |
 | asg\_capacity\_rebalance | Indicates whether capacity rebalance is enabled | `bool` | `false` | no |
 | asg\_max | Max number of instances for autoscaling group. | `number` | `4` | no |
