@@ -23,7 +23,7 @@ resource "aws_security_group_rule" "http_from_world_to_alb" {
 }
 
 resource "aws_security_group_rule" "https_from_world_to_alb" {
-  count = var.alb ? 1 : 0
+  count = var.alb && var.alb_sg_allow_https_world ? 1 : 0
 
   description       = "HTTPS ECS ALB"
   type              = "ingress"
@@ -32,6 +32,18 @@ resource "aws_security_group_rule" "https_from_world_to_alb" {
   protocol          = "tcp"
   security_group_id = aws_security_group.alb[0].id
   cidr_blocks       = ["0.0.0.0/0"]
+}
+
+resource "aws_security_group_rule" "https_from_prefix_lists_to_alb" {
+  count = var.alb && length(var.alb_sg_https_prefix_list_ids) > 0 ? 1 : 0
+
+  description       = "HTTPS ECS ALB from managed prefix lists"
+  type              = "ingress"
+  from_port         = 443
+  to_port           = 443
+  protocol          = "tcp"
+  security_group_id = aws_security_group.alb[0].id
+  prefix_list_ids   = var.alb_sg_https_prefix_list_ids
 }
 
 resource "aws_security_group_rule" "https_test_listener_from_world_to_alb" {
@@ -44,6 +56,18 @@ resource "aws_security_group_rule" "https_test_listener_from_world_to_alb" {
   protocol          = "tcp"
   security_group_id = aws_security_group.alb[0].id
   cidr_blocks       = ["0.0.0.0/0"]
+}
+
+resource "aws_security_group_rule" "https_test_listener_from_cidrs_to_alb" {
+  count = var.alb && length(var.alb_sg_test_listener_cidr_blocks) > 0 ? 1 : 0
+
+  description       = "HTTPS ECS ALB Test Listener from approved CIDRs"
+  type              = "ingress"
+  from_port         = 8443
+  to_port           = 8443
+  protocol          = "tcp"
+  security_group_id = aws_security_group.alb[0].id
+  cidr_blocks       = var.alb_sg_test_listener_cidr_blocks
 }
 
 
