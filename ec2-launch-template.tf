@@ -19,6 +19,11 @@ resource "aws_launch_template" "ecs" {
     }
   }
 
+  metadata_options {
+    http_endpoint = "enabled"
+    http_tokens   = "required"
+  }
+
   vpc_security_group_ids = concat([aws_security_group.ecs_nodes.id], var.security_group_ids)
 
   user_data = base64encode(templatefile("${path.module}/userdata.tpl", {
